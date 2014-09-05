@@ -4,9 +4,9 @@ var Gift   = require('../models/gift'),
     config = require('../../config');
 
 exports.add = function(req, res){
-  Gift.findById(req.body.productId, function(err, product){
+  Gift.findById(req.body.giftId, function(err, gift){
     req.session.cart = req.session.cart || [];
-    req.session.cart.push(product);
+    req.session.cart.push(gift);
     req.session.save(function(){
       res.redirect('/cart');
     });
@@ -14,16 +14,16 @@ exports.add = function(req, res){
 };
 
 exports.index = function(req, res){
-  var products = {},
+  var gifts    = {},
       subtotal = 0,
       tax      = 0,
       total    = 0;
 
-  (req.session.cart || []).forEach(function(p){
-    subtotal += p.price;
-    var id = p._id.toString();
-    products[id] = products[id] || {p:p, c:0};
-    products[id].c++;
+  (req.session.cart || []).forEach(function(g){
+    subtotal += g.price;
+    var id = g._id.toString();
+    gifts[id] = gifts[id] || {g:g, c:0};
+    gifts[id].c++;
   });
 
   tax = subtotal * 0.075;
@@ -31,7 +31,7 @@ exports.index = function(req, res){
 
   req.session.totalCents = Math.round(total * 100);
   req.session.save(function(){
-    res.render('cart/index', {key: config.stripe.publishKey, ids:Object.keys(products), products:products, subtotal:subtotal, tax:tax, total:total});
+    res.render('cart/index', {key: config.stripe.publishKey, ids:Object.keys(gifts), gifts:gifts, subtotal:subtotal, tax:tax, total:total});
   });
 };
 

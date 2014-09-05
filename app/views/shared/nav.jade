@@ -6,17 +6,21 @@
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href='/') UMV
+      a.navbar-brand(href='/') UWV
 
     .collapse.navbar-collapse#bs-navbar-collapse
       ul.nav.navbar-nav.navbar-right
         if user
+          li: a(href='/users') Prey &nbsp
+            i.fa.fa-group.fa-fw.fa-lg
+          li: a(href='/profile') Lair &nbsp
+            i.fa.fa-dashboard.fa-fw.fa-lg
           li
             form.navbar-form(method='post', action='/logout')
               .form-group
                 input(type='hidden', name='_method', value='delete')
-                button.btn.btn-danger= user.email
+                button.btn.btn-danger Logout
         else
-          li: a(href='/register') Register
+          li: a(href='/register') Join Us!
           li: a(href='/login') Login
 

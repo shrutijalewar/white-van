@@ -6,6 +6,9 @@ var morgan         = require('morgan'),
     less           = require('less-middleware'),
     session        = require('express-session'),
     RedisStore     = require('connect-redis')(session),
+    passport       = require('passport'),
+    passportConfig = require('../lib/passport/config.js'),
+    flash          = require('connect-flash'),
     security       = require('../lib/security'),
     debug          = require('../lib/debug'),
     cart           = require('../controllers/cart'),
@@ -20,14 +23,15 @@ module.exports = function(app, express){
   app.use(bodyParser.urlencoded({extended:true}));
   app.use(methodOverride());
   app.use(session({store:new RedisStore(), secret:'my super secret key', resave:true, saveUninitialized:true, cookie:{maxAge:null}}));
+  app.use(flash());
+  passportConfig(passport, app);
 
   app.use(security.authenticate);
   app.use(debug.info);
 
   app.get('/', home.index);
-  app.get('/register', users.new);
   app.post('/register', users.create);
-  app.get('/login', users.login);
+  app.post('/login',                   passport.authenticate('local', {successRedirect:'/profile', failureRedirect:'/', successFlash:'You\'re logged in. Knock \'em dead!', failureFlash:'Did you feed someone YOUR brains? Try logging in again.'}));
   app.post('/login', users.authenticate);
 
   app.use(security.bounce);

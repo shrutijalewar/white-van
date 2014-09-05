@@ -1,6 +1,128 @@
-@base: #f938ab;
 
+ //-----------   GENERAL -----------//
+//=================================//
 body{
-  background-color: saturate(@base, 5%);
+  .wrapper {
+    margin: 0 auto;
+    width: 100%;
+  }
 }
 
+ //----PROFILE VIEW PAGE -----------//
+//=================================//
+  .profile-img {
+    width: 300px;
+    height: 300px;
+  }
+  .file {
+    margin: 0 auto;
+  }
+  .tabs {
+  }
+
+  .tabs .tab {
+    padding: 5px 10px;
+    background-color: #eee;
+  }
+
+  .tabs .tab.active {
+    background-color: #bbb;
+    font-weight: bold;
+  }
+
+  .panes {
+  }
+
+  .panes .pane {
+    display: none;
+    border: 1px solid #eee;
+    width: 100%;
+    height: 700px;
+
+  }
+  .panes .pane.active {
+    display: block;
+
+  }
+
+//---------------
+// inbox include
+//---------------
+.inbox {
+  .message {
+    h3:fist-of-type {
+      padding: 0 40px;
+    }
+    .subject {
+      padding: 0 40px;
+    }
+    .from {
+      padding: 0 40px;
+    }
+    .date {
+      padding: 0 40px;
+    }
+    .body {
+      border: 1px solid red;
+      padding: 40px;
+    }
+  }
+}
+
+
+//---------------
+// send message include
+//---------------
+
+//---------------
+// gallery include
+//---------------
+.photo-treasure{
+    height: 410px;
+    background-size: cover;
+    }
+
+//---------------
+// edit profile include
+//---------------
+
+.checkbox {
+  margin-left: 20px;
+}
+
+//----PROFILE SHOW PAGE -----------//
+//=================================//
+
+.client-gallery {
+  border: 2px solid grey;
+  margin: 0 auto;
+  padding: 50px;
+  margin-bottom: 50px;
+}
+.interactions {
+  display: inline;
+}
+
+
+
+//----GIFTS PAGE -----------//
+//=================================//
+td:nth-child(2){
+  width: 33%;
+}
+
+//----CART PAGE -----------//
+//=================================//
+#products td{
+  height: 150px;
+  background-size:contain;
+  background-repeat: no-repeat;
+}
+#products #cartPhoto{
+  background-size: contain;
+}
+
+#backBribes a, a:visited{
+  text-decoration: none;
+  color: white;
+}

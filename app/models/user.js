@@ -1,18 +1,29 @@
 'use strict';
 
-var bcrypt = require('bcrypt'),
-    Mongo  = require('mongodb');
+var bcrypt  = require('bcrypt'),
+    Message = require('./message'),
+    async   = require('async'),
+      _     = require('underscore-contrib'),
+    Mongo   = require('mongodb');
 
-function User(){
+function User(o){
 }
 
 Object.defineProperty(User, 'collection', {
   get: function(){return global.mongodb.collection('users');}
 });
 
+User.query =function(cb){
+  User.collection.find().toArray(cb);
+};
+
 User.findById = function(id, cb){
   var _id = Mongo.ObjectID(id);
-  User.collection.findOne({_id:_id}, cb);
+  User.collection.findOne({_id:_id}, function(err, obj){
+    var user = Object.create(User.prototype);
+    user = _.extend(user, obj);
+    cb(err, user);
+  });
 };
 
 User.register = function(o, cb){
@@ -32,6 +43,32 @@ User.localAuthenticate = function(email, password, cb){
   });
 };
 
+/*User.prototype.update = function(fields, file, cb){
+  var properties = Object.keys(fields),
+      self       = this;
+
+  properties.forEach(function(property){
+    console.log (fields[property]);
+    self[property] = fields[property][0];
+  });
+
+  this.photo = uploadPhoto(file, '/img/' + this._id);
+
+  User.collection.save(this, cb);
+};*/
+
+User.prototype.send = function(receiverId, obj, cb){
+  Message.send(this._id, receiverId, obj.subject, obj.body, cb);
+};
+
+User.prototype.findStalked = function(cb){
+  async.map(this.stalk, iteratorId, cb);
+};
+
+User.prototype.findHookedUp = function(cb){
+  async.map(this.stalk, iteratorId, cb);
+};
+
 // Sample Passport Strategy Authentication
 /*User.facebookAuthenticate = function(token, secret, facebook, cb){
   console.log('TOKEN', token);
@@ -46,11 +83,16 @@ User.localAuthenticate = function(email, password, cb){
   });
 };*/
 
-User.prototype.update = function(o, cb){
-  //o is req.body
-  //this.a = o.a, etc.
-
-  User.collection.save(this, cb);
-};
-
 module.exports = User;
+
+//private helper functions
+
+//function uploadPhoto(files){
+//}
+
+function iteratorId(id, cb){
+  User.findById(id, function(err, client){
+    id = client;
+    cb(null, id);
+  });
+}

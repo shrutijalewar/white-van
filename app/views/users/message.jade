@@ -1,1 +1,17 @@
-// to be included in profile.jade
+.send-message
+  .col-xs-2
+  .col-xs-8
+    h3 Send a Message!
+    .panel-body
+      form.form-horizontal(role='form', method='', action='')
+        .form-group
+          label To
+          select
+            option a
+            option b
+            option c
+          br
+          label Subject
+          input.form-control#subject(type='text', name='subject', autofocus=true, placehlder='Mergers and Acquisitions')
+          textarea.form-control#message(name='message', rows='10')
+  .col-xs-2

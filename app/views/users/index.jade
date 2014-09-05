@@ -1,6 +1,15 @@
 extends ../shared/template
 block content
-  h2 Killer Index
+  .col-xs-6
+    #map
+  .col-xs-6
+    #searchbar
+      form
+        //a ton of search parameters
+    #users
+      .user
+        .user-img
+        .user-name
 
 block scripts
   script(src='/js/user/index.js')

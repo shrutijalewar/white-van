@@ -1,11 +1,76 @@
 {
-  "_id" : {"$oid":"000000000000000000000001"},
-  "email" : "bob@aol.com",
-  "password" : "$2a$10$XR.IQktUUujLBxed70GQn.jWY1wZ9ThM0Tar9wTqzkI4Uk1uP2Or2"
-}
-{
-  "_id" : {"$oid":"000000000000000000000002"},
-  "email" : "sue@aol.com",
-  "password" : "$2a$10$sjPx9TkrEASeXzH6uuDCDO.n1Sj/H2A/bu/9hBFfm5fm3Z4LzrEPa"
+  "_id" : {"$oid":"b00000000000000000000001"},
+  "name" : "Latex gloves",
+  "price" : 9.890000000000001,
+  "photo" : "http://www.firstaidglobal.com/images/latex-gloves.jpg"
 }
 
+{
+  "_id" : {"$oid":"b00000000000000000000002"},
+  "name" : "Duct Tape",
+  "price" : 7.22,
+  "photo" : "http://www.kilmerhouse.com/wp-content/uploads/2012/06/duct-tape-rolls.jpg"
+}
+
+{
+  "_id" : {"$oid":"b00000000000000000000003"},
+  "name" : "Bleach",
+  "price" : 24.36,
+  "photo" : "http://couponkarma.com/wp-content/uploads/2013/08/clorox-bleach-121-oz..jpg"
+}
+
+{
+  "_id" : {"$oid":"b00000000000000000000004"},
+  "name" : "Rope",
+  "price" : 8.970000000000001,
+  "photo" : "http://www.sportsscience.co/wp-content/uploads/2013/04/rope.jpg"
+}
+
+{
+  "_id" : {"$oid":"b00000000000000000000005"},
+  "name" : "Cleaver",
+  "price" : 28.48,
+  "photo" : "http://ecx.images-amazon.com/images/I/31OD78yqw4L._SX425_.jpg"
+}
+
+{
+  "_id" : {"$oid":"b00000000000000000000006"},
+  "name" : "Hand Saw",
+  "price" : 19.85,
+  "photo" : "http://www.clipartbest.com/cliparts/LiK/XyL/LiKXyLeia.jpeg"
+}
+
+{
+  "_id" : {"$oid":"b00000000000000000000007"},
+  "name" : "Heavy-Duty Trash Bags",
+  "price" : 13.76,
+  "photo" : "http://www.glad.com/images/products/large_trash_FF_25ct_angle_2.png"
+}
+
+{
+  "_id" : {"$oid":"b00000000000000000000008"},
+  "name" : "Sniper Rifle",
+  "price" : 239.99,
+  "photo" : "http://www.eastcoastairsoft.com/images/SD96OD_sd_LRG.jpg"
+}
+
+{
+  "_id" : {"$oid":"b00000000000000000000009"},
+  "name" : "Ski Mask",
+  "price" : 7.1,
+  "photo" : "http://caverpilot.com/wp-content/uploads/2013/01/criminal-mask.jpg"
+}
+
+{
+  "_id" : {"$oid":"b00000000000000000000010"},
+  "name" : "Cyanide Pills",
+  "price" : 51.27,
+  "photo" : "http://www.sott.net/image/s4/99051/full/man_holding_pills_1_.png"
+}
+
+{
+  "_id" : {"$oid":"b00000000000000000000011"},
+  "name" : "Shovel",
+  "price" : 5.98,
+  "photo" : "http://misterwhis.files.wordpress.com/2012/07/mr_whiskers_air_pirates_old_shovel.png"
+}

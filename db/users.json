@@ -1,11 +1,41 @@
 {
   "_id" : {"$oid":"000000000000000000000001"},
+  "username": "Bobby",
   "email" : "bob@aol.com",
-  "password" : "$2a$10$XR.IQktUUujLBxed70GQn.jWY1wZ9ThM0Tar9wTqzkI4Uk1uP2Or2"
+  "password" : "$2a$10$XR.IQktUUujLBxed70GQn.jWY1wZ9ThM0Tar9wTqzkI4Uk1uP2Or2",
+  "age" : 35,
+  "gender":"male",
+  "isPublic": true,
+  "profilePic": "http://murderpedia.org/male.H/images/hansen_robert/hansen000.jpg",
+  "photos":[],
+  "loc": {"name":"Knoxville", "lat":35.9 , "lng":83.9 },
+  "phone" :"615-496-3485",
+  "isSmoker" : true,
+  "isRecord" : false,
+  "lookingFor": "relationship",
+  "weapon": "blade",
+  "stalk" : ["000000000000000000000002"],
+  "hookUp" : ["000000000000000000000002"],
+  "gifted" : []
 }
 {
   "_id" : {"$oid":"000000000000000000000002"},
+  "username": "Sue",
   "email" : "sue@aol.com",
-  "password" : "$2a$10$sjPx9TkrEASeXzH6uuDCDO.n1Sj/H2A/bu/9hBFfm5fm3Z4LzrEPa"
+  "password" : "$2a$10$sjPx9TkrEASeXzH6uuDCDO.n1Sj/H2A/bu/9hBFfm5fm3Z4LzrEPa",
+  "age" : 45,
+  "gender":"female",
+  "isPublic": true,
+  "profilePic": "http://www.tinhouse.com/blog/wp-content/uploads/2011/12/Dana_Spiotta_by_Jessica_Marx.jpg",
+  "photos":[],
+  "loc": {"name":"Huntsville", "lat":34.7 , "lng":86.5 },
+  "phone" :"615-496-3485",
+  "isSmoker" : false,
+  "isRecord" : true,
+  "lookingFor": "no strings attached",
+  "weapon": "hand-to-hand",
+  "stalk" : [],
+  "hookUp" : ["000000000000000000000001"],
+  "gifted" : []
 }
 
