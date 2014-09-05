@@ -1,7 +1,7 @@
 ## name of project
 ### Code Badges
 [![Build Status](https://travis-ci.org/shrutijalewar/white-van.svg)](https://travis-ci.org/shrutijalewar/white-van)
-[![Coverage Status](https://coveralls.io/repos/shrutijalewar/white-van/badge.png)](https://coveralls.io/r/shrutijalewar/white-van)
+[![Coverage Status](https://coveralls.io/repos/shrutijalewar/white-van/badge.png?branch=views)](https://coveralls.io/r/shrutijalewar/white-van?branch=views)
 build status icon
 coverage status icon
 
