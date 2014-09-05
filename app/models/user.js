@@ -33,4 +33,3 @@ User.authenticate = function(o, cb){
 };
 
 module.exports = User;
-
