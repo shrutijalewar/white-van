@@ -1,0 +1,11 @@
+extends ../shared/template
+block content
+  h2 Profile
+
+  include inbox
+  include favorites
+  include message
+  include edit
+
+block scripts
+  script(src='/js/user/profile.js')
