@@ -1,0 +1,16 @@
+h3 Your Photos
+//.row
+  .col-xs-12
+    #carousel-example-generic(class='carousel slide', data-ride='carousel')
+      ol.carousel-indicators
+        - for (var i = 0; i < treasure.photos.length; i ++){
+          li(data-target='#carousel-example-generic', data-slide-to=i)
+        - }
+      .carousel-inner
+        each photo, index in treasure.photos
+          div(class=index === 0 ? 'item active' : 'item')
+            .photo-treasure(style='background-image: url(#{photo})')
+      a(class='left carousel-control', href='#carousel-example-generic', role='button', data-slide='prev')
+        span(class='glyphicon glyphicon-chevron-left')
+      a(class='right carousel-control', href='#carousel-example-generic', role='button', data-slide='next')
+        span(class='glyphicon glyphicon-chevron-right')
