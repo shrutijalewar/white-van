@@ -31,7 +31,8 @@ describe('Gift', function(){
 
   describe('.findById', function(){
     it('should find a gift by it\'s id', function(done){
-      Gift.findById({}, function(err, gift){
+      Gift.findById('b00000000000000000000001', function(err, gift){
+        expect(gift.name).to.equal('Latex gloves');
         done();
       });
     });

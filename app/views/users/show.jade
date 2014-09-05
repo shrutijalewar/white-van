@@ -1,6 +1,38 @@
 extends ../shared/template
 block content
-  h2 Killer Show Page
-
+  .row
+    .col-xs-2
+    .col-xs-4.basic-info
+      .profile-img(style='background-image:url("/img/anon.jpg");')
+      .name Bob
+    .col-xs-4.bio
+      h4 Bio
+      p Collection weekend sandwich grey gag hammer tank dead michelle
+      | vegan. Steve jobs facepalm pizza crying russia father cookie monster
+      | in movie le girlfriend. Bacon note rebecca black dolar simpson
+      | strangers t-rex always. Cool too mainstream i'm watching u search.
+      ul.list-group
+        li.list-group-item Nonsmoker
+        li.list-group-item Criminal Record
+        li.list-group-item Seeking: Love
+      .buttons.btn-group.btn-group-justified
+        .btn-group
+          form(name='stalk', method='post', action='')
+            button.btn.btn-danger.interactions.btn-sm#stalk(type='button') Stalk
+        .btn-group
+          form(name='shank', method='post', action='')
+            button.btn.btn-warning.interactions.btn-sm#shank(type='button') Shank
+        .btn-group
+          form(name='bribe', method='post', action='')
+            button.btn.btn-success.interactions.btn-sm#bribe(type='button') Bribe
+        .btn-group
+          form(name='hookup', method='post', action='')
+            button.btn.btn-info.interactions.btn-sm#hookup(type='button') Hookup
+    .col-xs-2
+  .row
+    .col-xs-2
+    .col-xs-8.client-gallery
+      p gallery
+    .col-xs-2
 block scripts
   script(src='/js/user/show.js')

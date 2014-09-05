@@ -1,1 +1,11 @@
-//to be included in profile.jade
+.inbox
+  .col-xs-2
+  .col-xs-8
+    h3 Inbox
+    each message in messages
+      .message
+        h4.subject= message.subject
+        h5.from From: #{message.sender.username}
+        h6.date= message.date
+        p.body= message.body
+  .col-xs-2

@@ -1,15 +1,8 @@
 'use strict';
 
-var User   = require('../models/user'),
-    moment = require('moment');
-
-exports.new = function(req, res){
-  res.render('users/new');
-};
-
-exports.login = function(req, res){
-  res.render('users/login');
-};
+var User    = require('../models/user'),
+    Message = require('../models/message'),
+    moment  = require('moment');
 
 exports.logout = function(req, res){
   req.session.destroy(function(){
@@ -20,9 +13,11 @@ exports.logout = function(req, res){
 exports.create = function(req, res){
   User.register(req.body, function(err, user){
     if(user){
+      req.flash('error', 'Congrats! You are registered. Climb in the van for free candy');
       res.redirect('/');
     }else{
-      res.redirect('/register');
+      req.flash('error', 'Are you cop? Try again. Serial killers only.');
+      res.redirect('/');
     }
   });
 };
@@ -37,26 +32,36 @@ exports.authenticate = function(req, res){
         });
       });
     }else{
-      res.redirect('/login');
+      res.redirect('/');
     }
   });
 };
 
 exports.profile = function(req, res){
-  res.render('users/profile', {moment:moment});
+  Message.messages(res.locals.user._id, function(err, messages){
+    console.log('messages array >>>>>>>>>>>>>>>', messages);
+    res.locals.user.findStalked(function(err, stalked){
+      console.log('stalked array >>>>>>>>>>>>>>>>>>', stalked);
+      res.locals.user.findHookedUp(function(err, hookedUp){
+        console.log('hookedUp array >>>>>>>>>>>>>>>>>', hookedUp);
+        res.render('users/profile', {messages:messages, stalked:stalked, hookedUp:hookedUp, moment:moment});
+      });
+    });
+  });
 };
 
 exports.update = function(req, res){
-  req.user.update(req.body, function(err, user){
-    req.flash('success', 'Your killer profile is updated.');
-    res.redirect('/profile');
-  });
+  //req.user.update(req.body, function(err, user){
+    //req.flash('success', 'Your killer profile is updated.');
+    //res.redirect('/profile');
+  //});
 };
 
 exports.index = function(req, res){
   //eventually add sort & filter params
 
-  User.all(function(err, clients){
+  User.query(function(err, clients){
+    console.log('clients >>>>>>>>>>>>>>>>>>>>>>>', clients);
     res.render('users/index', {clients:clients});
   });
 };

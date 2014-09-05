@@ -1,1 +1,75 @@
-// to be included in profile.jade
+h2 Edit Profile
+.row
+  form#editProfile(role='form', method='post', action='/profile')
+    input(type='hidden', name='_method', value='put')
+    .col-xs-6
+      .form-group
+        label(for='username') Username
+        input.form-control#username(type='text', name='username', value=user.name, autofocus=true)
+      .form-group
+        label(for='email') Email
+        input.form-control#email(type='email', name='email', value=user.email)
+      .form-group
+        label(for='phone') Phone
+        input.form-control#phone(type='tel', name='phone', value=user.phone)
+      .form-group
+        label(for='location') Location
+        input#lat(type='hidden', name='lat')
+        input#lng(type='hidden', name='lng')
+        input.form-control#location(type='text', name='location', value=user.location)
+      .form-group
+        label(for='bio') Biography
+        textarea.form-control#bio(name='bio', value=user.bio)
+      .form-group
+        label(for='lookingFor') Looking For: &nbsp
+        select(name='lookingFor')
+          option Relationship
+          option Companionship
+          option No Strings Attached
+      .form-group
+        label(for='weapon') Weapon of Choice: &nbsp
+        select(name='weapon') Weapon of Choice
+          option Blade
+          option Firearm
+          option Hand-to-Hand
+          option Natural Elements
+          option Other
+    .col-xs-6
+      .form-group
+        label(for='profilePhoto') Profile Photo
+        input.form-control#profilePhoto(type='file', name='profilePhoto', multiple=false)
+      .form-group
+        label(for='photos') Photos
+        input.form-control#photos(type='file', name='photos', multiple=true)
+      .form-group
+        label(for='age') Age
+        input.form-control#age(type='number', name='age', value=user.age)
+      .form-group
+        label(for='gender') Gender
+        .radio
+          label
+            input(type='radio' name='gender' value='female' checked=!user.isMale)
+            span Female
+        .radio
+          label
+            input(type='radio' name='gender' value='male', checked=user.isMale)
+            span Male
+      .form-group
+        label(for='smoker') Smoking Preference
+        .radio
+          label
+            input(type='radio' name='smoker' value='false' checked=!user.isSmoker)
+            span Non-Smoker
+        .radio
+          label
+            input(type='radio' name='smoker' value='true', checked=user.isSmoker)
+            span Smoker
+      .form-group
+        label(for='criminal') Criminal Record
+        .checkbox
+          input(type='checkbox', name='criminal', value='true', checked=user.isCriminal)
+          span Yes
+
+      button.btn.btn-primary(type='submit') Submit
+
+

@@ -1,11 +1,43 @@
 extends ../shared/template
 block content
-  h2 Profile
+  .row
+    .col-xs-2
+    .col-xs-4.basic-info
+      .profile-img(style='background-image:url("#{user.profilePic}");')
+      .name= user.username
+    .col-xs-4.bio
+      h4 Bio:
+      p Collection weekend sandwich grey gag hammer tank dead michelle 
+      | vegan. Steve jobs facepalm pizza crying russia father cookie monster
+      | in movie le girlfriend. Bacon note rebecca black dolar simpson 
+      | strangers t-rex always. Cool too mainstream i'm watching u search 
+      | homework avenger face yao one does not simply. Bear woman aww yeah 
+      | iron man keyboard dad angry birds genius so close.
+      h4 Stalking:
+      ul.list-group
+        each prey in stalked
+          li.list-group-item= prey.username
+    .col-xs-4
+  .row
+    .col-xs-2
+    .col-xs-8.file
+      .tabs.nav.nav-tabs
+        a.tab.active(href='javascript:void(0)') Inbox
+        a.tab(href='javascript:void(0)') Send Message
+        a.tab(href='javascript:void(0)') Gallery
+        a.tab(href='javascript:void(0)') Edit Profile
+      .panes
+        .pane.active
+          include inbox
+        .pane
+          include message
+        .pane
+          include gallery
+        .pane
+          include edit
+    .col-xs-2
 
-  include inbox
-  include favorites
-  include message
-  include edit
+
 
 block scripts
   script(src='/js/user/profile.js')

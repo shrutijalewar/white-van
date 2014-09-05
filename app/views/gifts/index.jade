@@ -1,6 +1,23 @@
 extends ../shared/template
 block content
-  h2 Killer Products
+  h2 Bribes
+  table.table.table-bordered.table-hover
+    thead
+      tr
+        th Product
+        th Image
+        th Price
+    tbody
+      each gift in gifts
+        tr
+          td
+            form(method='post', action='/cart')
+              input(type='hidden', name='giftId', value=gift._id)
+              button.btn.btn-info(type='submit')=gift.name
+          td: a.thumbnail(href='#')
+            img(src=gift.photo)
+          td $#{gift.price.toFixed(2)}
+
 
 block scripts
   script(src='/js/user/index.js')
