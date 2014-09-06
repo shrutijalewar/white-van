@@ -3,7 +3,7 @@ block content
   .row
     .col-xs-2
     .col-xs-4.basic-info
-      .profile-img(style='background-image:url("#{client.profilePic}");')
+      .profile-img(style='background-image:url(#{client.profilePic || "/img/anon.jpg"});')
       .name= client.username
     .col-xs-4.bio
       .buttons.btn-group.btn-group-justified.interaction-btns
