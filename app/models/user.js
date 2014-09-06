@@ -43,7 +43,13 @@ User.localAuthenticate = function(email, password, cb){
   });
 };
 
-User.boxAuthenticate = function(){};
+User.tumblrAuthenticate = function(token, secret, tumblr, cb){
+  User.collection.findOne({tumblrId:tumblr.id}, function(err, user){
+    if(user){return cb(null, user);}
+    user = {tumblrId:tumblr.id, type:'tumblr'};
+    User.collection.save(user, cb);
+  });
+};
 
 User.redditAuthenticate = function(token, secret, reddit, cb){
   User.collection.findOne({redditId:reddit.id}, function(err, user){

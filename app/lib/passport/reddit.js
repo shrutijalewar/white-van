@@ -7,7 +7,7 @@ var RedditStrategy = require('passport-reddit').Strategy,
                     {
                       clientID : config.reddit.clientID,
                       clientSecret : config.reddit.clientSecret,
-                      callbackURL : config.reddit.callbackURL,
+                      callbackURL : config.reddit.callbackURL
                     },
                     User.redditAuthenticate);
 

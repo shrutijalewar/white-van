@@ -37,11 +37,12 @@ module.exports = function(app, express){
 
   app.get('/auth/reddit', function(req, res, next){
     req.session.state = crypto.randomBytes(32).toString('hex');
-      passport.authenticate('reddit', {
-        state: req.session.state,
-      })(req, res, next);
+    passport.authenticate('reddit', {state: req.session.state})(req, res, next);
   });
   app.get('/auth/reddit/callback', passport.authenticate('reddit', {successRedirect:'/', failureRedirect:'/login', successFlash:'You are logged with Reddit!', failureFlash:'Failed to login through Reddit'}));
+
+  app.get('/auth/tumblr', passport.authenticate('tumblr'));
+  app.get('/auth/tumblr/callback', passport.authenticate('tumblr', {successRedirect:'/', failureRedirect:'/login', successFlash:'You are logged with Tumblr!', failureFlash:'Failed to login through Tumblr'}));
 
   app.use(security.bounce);
   app.get('/profile', users.profile);

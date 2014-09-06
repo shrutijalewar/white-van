@@ -8,10 +8,10 @@ config.stripe = {
   secretKey : process.env.STRIPE_SECRET
 };
 
-config.box = {
-  clientID    :'pjowyd9lwf19ll3zodeffbhrn64w1o3n',
-  clientSecret: process.env.BOX_SECRET,
-  callbackURL : URL+'box/callback'
+config.tumblr = {
+  consumerKey    :'GfHoULdthEKVp6Z6ZPdAsllbVcR0DR6AGeSUHgXCCqHhG1Dv0E',
+  consumerSecret: process.env.TUMBLR_SECRET,
+  callbackURL : URL+'tumblr/callback'
 };
 
 config.reddit = {
