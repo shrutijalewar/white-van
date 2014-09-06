@@ -77,7 +77,7 @@ block content
         .col-xs-4.clients: a(href='/users/'+client._id)
           .client-img.thumbnail(style='background-image:url(#{client.profilePic || "/img/anon.jpg"});')
           .caption
-            .client-name= client.username
+            .client-name.locationValue(data-name=client.loc.name, data-lat=client.loc.lat, data-lng=client.loc.lng)= client.username
 
 block scripts
   script(src='/js/user/index.js')

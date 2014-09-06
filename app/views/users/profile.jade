@@ -4,10 +4,10 @@ block content
     .col-xs-2
     .col-xs-4.basic-info: a(href='/users/'+ user._id.toString())
       .profile-img(style='background-image:url(#{user.profilePic || "/img/anon.jpg"});')
-      .name= user.username
+      .name= user.username || 'anonymous'
     .col-xs-4.bio
       h3 Bio:
-      p= user.bio
+      p= user.bio || 'Tell them who you are! Write a bio.'
       if(isPublic)
         p Your profile is set to Public.
       else
@@ -41,3 +41,4 @@ block content
 
 block scripts
   script(src='/js/user/profile.js')
+  script(src='/js/user/message.js')
