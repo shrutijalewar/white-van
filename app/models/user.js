@@ -47,6 +47,8 @@ User.prototype.update = function(obj, cb){
   var properties = Object.keys(obj),
       self       = this;
 
+  self.loc   = this.loc || {};
+
   properties.forEach(function(property){
     switch(property){
       case 'age':
@@ -66,6 +68,9 @@ User.prototype.update = function(obj, cb){
         break;
       case 'location':
         self.loc.name  = obj[property];
+        break;
+      case 'isPublic':
+        self[property] = (obj[property] === 'true' ? true : false);
         break;
       default:
         self[property] = obj[property];
