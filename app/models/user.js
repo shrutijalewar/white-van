@@ -43,19 +43,37 @@ User.localAuthenticate = function(email, password, cb){
   });
 };
 
-/*User.prototype.update = function(fields, file, cb){
-  var properties = Object.keys(fields),
+User.prototype.update = function(obj, cb){
+  var properties = Object.keys(obj),
       self       = this;
 
   properties.forEach(function(property){
-    console.log (fields[property]);
-    self[property] = fields[property][0];
+    switch(property){
+      case 'age':
+        self[property] = obj[property] * 1;
+        break;
+      case 'isSmoker':
+        self[property] = (obj[property] === 'true' ? true : false);
+        break;
+      case 'isRecord':
+        self[property] = (obj[property] === 'true' ? true : false);
+        break;
+      case 'lat':
+        self.loc.lat   = obj[property] * 1;
+        break;
+      case 'lng':
+        self.loc.lng   = obj[property] * 1;
+        break;
+      case 'location':
+        self.loc.name  = obj[property];
+        break;
+      default:
+        self[property] = obj[property];
+    }
   });
 
-  this.photo = uploadPhoto(file, '/img/' + this._id);
-
   User.collection.save(this, cb);
-};*/
+};
 
 User.prototype.send = function(receiverId, obj, cb){
   Message.send(this._id, receiverId, obj.subject, obj.body, cb);

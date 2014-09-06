@@ -9,6 +9,12 @@ function geocode(address, cb){
         lat  = results[0].geometry.location.lat(),
         lng  = results[0].geometry.location.lng();
 
-    cb(name, lat, lng);
+    console.log(name, lat, lng);
+
+    $('#loc').val(name);
+    $('#lat').val(lat);
+    $('#lng').val(lng);
+
+    $('form').submit();
   });
 }
