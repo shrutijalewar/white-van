@@ -1,6 +1,6 @@
 extends ../shared/template
 block content
-  .col-xs-5#userLocation(data-name='user.loc.name', data-lat='user.loc.lat', data-lng='user.loc.lng')
+  .col-xs-5#userLocation(data-name=user.loc.name, data-lat=user.loc.lat, data-lng=user.loc.lng)
     #map
   .col-xs-7
     #searchbar
@@ -73,11 +73,11 @@ block content
       .col-xs-2.search-btn
         button.btn.btn-default.form-control.btn-search(type='submit') Search
     #users
-      //each user in users
-        .user
-          .user-img.thumbnail(style='background-image: url("#{user.profilePic}");')
+      each client in clients
+        .users
+          .user-img.thumbnail(style='background-image: url("#{client.profilePic}");')
           .caption
-            .user-name= user.username
+            .user-name= client.username
 
 block scripts
   script(src='/js/user/index.js')

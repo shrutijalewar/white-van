@@ -17,7 +17,7 @@ block content
         .panel-heading You are currently stalking
         ul.list-group
           each prey in stalked
-            li.list-group-item= prey.username
+            li.list-group-item: a(href='/users/#{prey._id}')= prey.username
     .col-xs-4
   .row
     .col-xs-2
