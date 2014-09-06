@@ -72,12 +72,12 @@ block content
               a(href='#') No Strings Attached
       .col-xs-2.search-btn
         button.btn.btn-default.form-control.btn-search(type='submit') Search
-    #users
+    #clients
       each client in clients
-        .users
-          .user-img.thumbnail(style='background-image: url("#{client.profilePic}");')
+        .col-xs-4.clients
+          .client-img.thumbnail(style='background-image: url("#{client.profilePic}");')
           .caption
-            .user-name= client.username
+            .client-name= client.username
 
 block scripts
   script(src='/js/user/index.js')
