@@ -1,15 +1,21 @@
-h3 Your Photos
-//.row
+h2 Your Photos
+form#addPhotos(role='form', method='post', action='/photos', enctype='multipart/form-data')
+  .col-xs-12
+    .form-group
+      label(for='photos') Upload Photos
+      input.form-control#photos(type='file', name='photos', multiple=true)
+    button.btn.btn-primary(type='submit') Add
+
   .col-xs-12
     #carousel-example-generic(class='carousel slide', data-ride='carousel')
       ol.carousel-indicators
-        - for (var i = 0; i < treasure.photos.length; i ++){
+        - for (var i = 0; i < user.photos.length; i ++){
           li(data-target='#carousel-example-generic', data-slide-to=i)
         - }
       .carousel-inner
-        each photo, index in treasure.photos
-          div(class=index === 0 ? 'item active' : 'item')
-            .photo-treasure(style='background-image: url(#{photo})')
+        each photo, index in user.photos
+          div(class=index === 0 ? 'item active' : 'item', style='height: 50px, width: 75px')
+            .photo-treasure(style='background-image: url("#{photo}")')
       a(class='left carousel-control', href='#carousel-example-generic', role='button', data-slide='prev')
         span(class='glyphicon glyphicon-chevron-left')
       a(class='right carousel-control', href='#carousel-example-generic', role='button', data-slide='next')

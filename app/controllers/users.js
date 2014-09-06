@@ -2,7 +2,7 @@
 
 var User    = require('../models/user'),
     Message = require('../models/message'),
-    //mp      = require('multiparty'),
+    mp      = require('multiparty'),
     moment  = require('moment');
 
 exports.logout = function(req, res){
@@ -40,11 +40,8 @@ exports.authenticate = function(req, res){
 
 exports.profile = function(req, res){
   Message.messages(res.locals.user._id, function(err, messages){
-    console.log('messages array >>>>>>>>>>>>>>>', messages);
     res.locals.user.findStalked(function(err, stalked){
-      console.log('stalked array >>>>>>>>>>>>>>>>>>', stalked);
       res.locals.user.findHookedUp(function(err, hookedUp){
-        console.log('hookedUp array >>>>>>>>>>>>>>>>>', hookedUp);
         res.render('users/profile', {messages:messages, stalked:stalked, hookedUp:hookedUp, moment:moment});
       });
     });
@@ -52,10 +49,18 @@ exports.profile = function(req, res){
 };
 
 exports.update = function(req, res){
-  console.log(req.body);
   res.locals.user.update(req.body, function(){
     req.flash('success', 'Your killer profile is updated.');
     res.redirect('/profile');
+  });
+};
+
+exports.photos = function(req, res){
+  var form = new mp.Form();
+  form.parse(req, function(err, fields, files){
+    res.locals.user.uploadPhotos(files, function(){
+      res.redirect('/profile');
+    });
   });
 };
 
@@ -63,7 +68,6 @@ exports.index = function(req, res){
   //eventually add sort & filter params
 
   User.query(function(err, clients){
-    console.log('clients >>>>>>>>>>>>>>>>>>>>>>>', clients);
     res.render('users/index', {clients:clients});
   });
 };

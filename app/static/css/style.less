@@ -22,6 +22,15 @@ body{
   button {
     font-size: 20px;
   }
+  a {
+    color: black;
+  }
+  a:hover {
+    color: black;
+  }
+  a:visited {
+    color: black;
+  }
 }
 
  //----PROFILE VIEW PAGE -----------//
@@ -61,8 +70,13 @@ body{
     background-color: #bbb;
     font-weight: bold;
   }
-  a:hover {
+  .tab a {
     text-decoration: none;
+    color: black;
+  }
+  .tab a:hover {
+    text-decoration: none;
+    color: black;
   }
   .panes .pane {
     display: none;
@@ -102,7 +116,7 @@ body{
       background-color: #FCFCFC;
       padding: 40px;
     }
-    
+
   }
 }
 
@@ -207,10 +221,27 @@ td:nth-child(2){
   width: 100%;
   height: 600px;
 }
-#users {
+#clients {
   height: 550px;
   border: 1px solid #bbb;
   overflow: scroll;
+
+  .clients {
+    width: 33.333333333%;
+    border: 1px outset #eee;
+
+    .client-img {
+      width: 100%;
+      height: 200px;
+      background-size: cover;
+    }
+    .caption {
+      .client-name {
+        font-size: 25px;
+        text-align: center;
+      }
+    }
+  }
 }
 //======================//
 //home-page//

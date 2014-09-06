@@ -16,7 +16,7 @@ h2.text-center Edit Profile
         label(for='location') Location
         input#lat(type='hidden', name='lat')
         input#lng(type='hidden', name='lng')
-        input.form-control#location(type='text', name='location', value=user.loc.name)
+        input.form-control#location(type='text', name='location', value=(user.loc ? user.loc.name : 'Enter a city'))
       .form-group
         label(for='bio') Biography
         textarea.form-control#bio(name='bio')= user.bio
@@ -35,12 +35,6 @@ h2.text-center Edit Profile
           option(selected=(user.weapon === 'Natural Elements' ? true : false)) Natural Elements
           option(selected=(user.weapon === 'Other' ? true : false)) Other
     .col-xs-6
-      //.form-group
-        label(for='profilePhoto') Profile Photo
-        input.form-control#profilePhoto(type='file', name='profilePhoto', multiple=false)
-      //.form-group
-        label(for='photos') Photos
-        input.form-control#photos(type='file', name='photos', multiple=true)
       .form-group
         label(for='age') Age
         input.form-control#age(type='number', name='age', value=user.age)
