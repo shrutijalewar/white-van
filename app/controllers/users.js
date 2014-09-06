@@ -2,6 +2,7 @@
 
 var User    = require('../models/user'),
     Message = require('../models/message'),
+    //mp      = require('multiparty'),
     moment  = require('moment');
 
 exports.logout = function(req, res){
@@ -51,10 +52,11 @@ exports.profile = function(req, res){
 };
 
 exports.update = function(req, res){
-  //req.user.update(req.body, function(err, user){
-    //req.flash('success', 'Your killer profile is updated.');
-    //res.redirect('/profile');
-  //});
+  console.log(req.body);
+  res.locals.user.update(req.body, function(){
+    req.flash('success', 'Your killer profile is updated.');
+    res.redirect('/profile');
+  });
 };
 
 exports.index = function(req, res){

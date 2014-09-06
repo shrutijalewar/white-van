@@ -5,7 +5,7 @@ h2 Edit Profile
     .col-xs-6
       .form-group
         label(for='username') Username
-        input.form-control#username(type='text', name='username', value=user.name, autofocus=true)
+        input.form-control#username(type='text', name='username', value=user.username, autofocus=true)
       .form-group
         label(for='email') Email
         input.form-control#email(type='email', name='email', value=user.email)
@@ -19,26 +19,26 @@ h2 Edit Profile
         input.form-control#location(type='text', name='location', value=user.location)
       .form-group
         label(for='bio') Biography
-        textarea.form-control#bio(name='bio', value=user.bio)
+        textarea.form-control#bio(name='bio')= user.bio
       .form-group
         label(for='lookingFor') Looking For: &nbsp
         select(name='lookingFor')
-          option Relationship
-          option Companionship
-          option No Strings Attached
+          option(selected=(user.lookingFor === 'Relationship' ? true : false)) Relationship
+          option(selected=(user.lookingFor === 'Companionship' ? true : false)) Companionship
+          option(selected=(user.lookingFor === 'No Strings Attached' ? true : false)) No Strings Attached
       .form-group
         label(for='weapon') Weapon of Choice: &nbsp
         select(name='weapon') Weapon of Choice
-          option Blade
-          option Firearm
-          option Hand-to-Hand
-          option Natural Elements
-          option Other
+          option(selected=(user.weapon === 'Blade' ? true : false)) Blade
+          option(selected=(user.weapon === 'Firearm' ? true : false)) Firearm
+          option(selected=(user.weapon === 'Hand-to-Hand' ? true : false)) Hand-to-Hand
+          option(selected=(user.weapon === 'Natural Elements' ? true : false)) Natural Elements
+          option(selected=(user.weapon === 'Other' ? true : false)) Other
     .col-xs-6
-      .form-group
+      //.form-group
         label(for='profilePhoto') Profile Photo
         input.form-control#profilePhoto(type='file', name='profilePhoto', multiple=false)
-      .form-group
+      //.form-group
         label(for='photos') Photos
         input.form-control#photos(type='file', name='photos', multiple=true)
       .form-group
@@ -48,26 +48,26 @@ h2 Edit Profile
         label(for='gender') Gender
         .radio
           label
-            input(type='radio' name='gender' value='female' checked=!user.isMale)
+            input(type='radio' name='gender' value='female' checked=(user.gender === 'female' ? true : false))
             span Female
         .radio
           label
-            input(type='radio' name='gender' value='male', checked=user.isMale)
+            input(type='radio' name='gender' value='male', checked=(user.gender === 'male' ? true : false))
             span Male
       .form-group
         label(for='smoker') Smoking Preference
         .radio
           label
-            input(type='radio' name='smoker' value='false' checked=!user.isSmoker)
+            input(type='radio' name='isSmoker' value='false' checked=!user.isSmoker)
             span Non-Smoker
         .radio
           label
-            input(type='radio' name='smoker' value='true', checked=user.isSmoker)
+            input(type='radio' name='isSmoker' value='true', checked=user.isSmoker)
             span Smoker
       .form-group
         label(for='criminal') Criminal Record
         .checkbox
-          input(type='checkbox', name='criminal', value='true', checked=user.isCriminal)
+          input(type='checkbox', name='isRecord', value='true', checked=user.isRecord)
           span Yes
 
       button.btn.btn-primary(type='submit') Submit
