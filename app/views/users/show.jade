@@ -3,8 +3,8 @@ block content
   .row
     .col-xs-2
     .col-xs-4.basic-info
-      .profile-img(style='background-image:url("#{user.profilePic}");')
-      .name= user.username
+      .profile-img(style='background-image:url("#{client.profilePic}");')
+      .name= client.username
     .col-xs-4.bio
       .buttons.btn-group.btn-group-justified.interaction-btns
         .btn-group
@@ -22,20 +22,20 @@ block content
       .panel.panel-default
         .panel-heading The Quick and Dirty
         ul.list-group
-          li.list-group-item Seeking: &nbsp#{user.lookingFor}
-          li.list-group-item Age: &nbsp#{user.age}
-          li.list-group-item Gender: &nbsp#{user.gender}
-          if(user.isSmoker)
+          li.list-group-item Seeking: &nbsp#{client.lookingFor}
+          li.list-group-item Age: &nbsp#{client.age}
+          li.list-group-item Gender: &nbsp#{client.gender}
+          if(client.isSmoker)
             li.list-group-item Smoker: Yes
           else
             li.list-group-item Smoker: No
-          if(user.isRecord)
+          if(client.isRecord)
             li.list-group-item Criminal Record: Yes
           else
             li.list-group-item Criminal Record: No
-          li.list-group-item My Favorite Weapon is: &nbsp#{user.weapon}
-      p Collection weekend sandwich grey gag hammer tank dead michelle vegan. 
-        Steve jobs facepalm pizza crying russia father cookie monster.
+          li.list-group-item My Favorite Weapon is: &nbsp#{client.weapon}
+      p= client.bio
+
     .col-xs-2
   .row
     .col-xs-2

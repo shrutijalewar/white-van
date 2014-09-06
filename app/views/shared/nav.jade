@@ -15,12 +15,11 @@
             i.fa.fa-binoculars.fa-fw.fa-lg
           li: a(href='/profile') Lair &nbsp
             i.fa.fa-dashboard.fa-fw.fa-lg
+          li: a(href='#')= user.username
           li
             form.navbar-form(method='post', action='/logout')
               .form-group
                 input(type='hidden', name='_method', value='delete')
                 button.btn.btn-danger Logout
         else
-          li: a(href='/register') Join Us!
-          li: a(href='/login') Login
 
