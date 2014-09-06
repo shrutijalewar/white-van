@@ -8,6 +8,7 @@ var morgan         = require('morgan'),
     RedisStore     = require('connect-redis')(session),
     passport       = require('passport'),
     passportConfig = require('../lib/passport/config.js'),
+    crypto         = require('crypto'),
     flash          = require('connect-flash'),
     security       = require('../lib/security'),
     debug          = require('../lib/debug'),
@@ -33,6 +34,14 @@ module.exports = function(app, express){
   app.post('/register', users.create);
   app.post('/login',                   passport.authenticate('local', {successRedirect:'/profile', failureRedirect:'/', successFlash:'You\'re logged in. Knock \'em dead!', failureFlash:'Did you feed someone YOUR brains? Try logging in again.'}));
   app.post('/login', users.authenticate);
+
+  app.get('/auth/reddit', function(req, res, next){
+    req.session.state = crypto.randomBytes(32).toString('hex');
+      passport.authenticate('reddit', {
+        state: req.session.state,
+      })(req, res, next);
+  });
+  app.get('/auth/reddit/callback', passport.authenticate('reddit', {successRedirect:'/', failureRedirect:'/login', successFlash:'You are logged with Reddit!', failureFlash:'Failed to login through Reddit'}));
 
   app.use(security.bounce);
   app.get('/profile', users.profile);

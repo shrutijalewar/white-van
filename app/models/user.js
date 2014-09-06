@@ -33,13 +33,23 @@ User.register = function(o, cb){
     User.collection.save(o, cb);
   });
 };
-
+// Authentication Functions
 User.localAuthenticate = function(email, password, cb){
   User.collection.findOne({email:email}, function(err, user){
     if(!user){return cb();}
     var isOk = bcrypt.compareSync(password, user.password);
     if(!isOk){return cb();}
     cb(null, user);
+  });
+};
+
+User.boxAuthenticate = function(){};
+
+User.redditAuthenticate = function(token, secret, reddit, cb){
+  User.collection.findOne({redditId:reddit.id}, function(err, user){
+    if(user){return cb(null, user);}
+    user = {redditId:reddit.id, username:reddit.name, displayName:reddit.name, type:'reddit'};
+    User.collection.save(user, cb);
   });
 };
 
