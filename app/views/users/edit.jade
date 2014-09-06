@@ -16,7 +16,7 @@ h2.text-center Edit Profile
         label(for='location') Location
         input#lat(type='hidden', name='lat')
         input#lng(type='hidden', name='lng')
-        input.form-control#location(type='text', name='location', value=user.location)
+        input.form-control#location(type='text', name='location', value=user.loc.name)
       .form-group
         label(for='bio') Biography
         textarea.form-control#bio(name='bio')= user.bio
@@ -58,17 +58,32 @@ h2.text-center Edit Profile
         label(for='smoker') Smoking Preference
         .radio
           label
-            input(type='radio' name='isSmoker' value='false' checked=!user.isSmoker)
-            span Non-Smoker
-        .radio
-          label
             input(type='radio' name='isSmoker' value='true', checked=user.isSmoker)
             span Smoker
+        .radio
+          label
+            input(type='radio' name='isSmoker' value='false' checked=!user.isSmoker)
+            span Non-Smoker
       .form-group
         label(for='criminal') Criminal Record
-        .checkbox
-          input(type='checkbox', name='isRecord', value='true', checked=user.isRecord)
-          span Yes
+        .radio
+          label
+            input(type='radio' name='isRecord' value='true' checked=user.isRecord)
+            span Yes
+        .radio
+          label
+            input(type='radio' name='isRecord' value='false', checked=!user.isRecord)
+            span No
+      .form-group
+        label(for='visible') Make Profile Searchable
+        .radio
+          label
+            input(type='radio' name='isPublic' value='true' checked=user.isPublic)
+            span Yes - Make Public
+        .radio
+          label
+            input(type='radio' name='isPublic' value='false', checked=!user.isPublic)
+            span No - Keep Private
 
       button.btn.btn-primary(type='submit') Submit
 
