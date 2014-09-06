@@ -14,7 +14,7 @@ exports.logout = function(req, res){
 exports.create = function(req, res){
   User.register(req.body, function(err, user){
     if(user){
-      req.flash('error', 'Congrats! You are registered. Climb in the van for free candy');
+      req.flash('success', 'Congrats! You are registered. Climb in the van for free candy');
       res.redirect('/');
     }else{
       req.flash('error', 'Are you cop? Try again. Serial killers only.');
