@@ -4,8 +4,8 @@
     h3 Inbox
     each message in messages
       .message
-        h4.subject= message.subject
+        h4.subject= message.Subject
         h5.from From: #{message.sender.username}
         h6.date= message.date
-        p.body= message.body
+        p.body= message.Body
   .col-xs-2
