@@ -1,15 +1,83 @@
 extends ../shared/template
 block content
-  .col-xs-6
+  .col-xs-5#userLocation(data-name='user.loc.name', data-lat='user.loc.lat', data-lng='user.loc.lng')
     #map
-  .col-xs-6
+  .col-xs-7
     #searchbar
-      form
-        //a ton of search parameters
+    form(method='post', action='' name='query')
+      .col-xs-2.search-btn
+        .btn-group.btn-input.clearfix
+          button.btn.btn-default.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
+            input(type='hidden', name='gender', value='')
+            span(data-bind='label') Gender
+            span.caret
+          ul.dropdown-menu(role='menu')
+            li
+              a(href='#') Male
+            li
+              a(href='#') Female
+            li
+              a(href='#') Other
+      .col-xs-2.search-btn
+        .btn-group.btn-input.clearfix
+          button.btn.btn-default.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
+            input(type='hidden', name='smoker', value='')
+            span(data-bind='label') Smoker
+            span.caret
+          ul.dropdown-menu(role='menu')
+            li
+              a(href='#') NonSmoker
+            li
+              a(href='#') Smoker
+      .col-xs-2.search-btn
+        .btn-group.btn-input.clearfix
+          button.btn.btn-default.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
+            input(type='hidden', name='criminal', value='')
+            span(data-bind='label') Record
+            span.caret
+          ul.dropdown-menu(role='menu')
+            li
+              a(href='#') Criminal
+            li
+              a(href='#') Clean
+      .col-xs-2.search-btn
+        .btn-group.btn-input.clearfix
+          button.btn.btn-default.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
+            input(type='hidden', name='weapon', value='')
+            span(data-bind='label') Weapon
+            span.caret
+          ul.dropdown-menu(role='menu')
+            li
+              a(href='#') Blade
+            li
+              a(href='#') Firearm
+            li
+              a(href='#') Hand-to-Hand
+            li
+              a(href='#') Natural Elements
+            li
+              a(href='#') Other
+      .col-xs-2.search-btn
+        .btn-group.btn-input.clearfix
+          button.btn.btn-default.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
+            input(type='hidden', name='lookingFor', value='')
+            span(data-bind='label') Seeking
+            span.caret
+          ul.dropdown-menu(role='menu')
+            li
+              a(href='#') Relationship
+            li
+              a(href='#') Companionship
+            li
+              a(href='#') No Strings Attached
+      .col-xs-2.search-btn
+        button.btn.btn-default.form-control.btn-search(type='submit') Search
     #users
-      .user
-        .user-img
-        .user-name
+      //each user in users
+        .user
+          .user-img.thumbnail(style='background-image: url("#{user.profilePic}");')
+          .caption
+            .user-name= user.username
 
 block scripts
   script(src='/js/user/index.js')

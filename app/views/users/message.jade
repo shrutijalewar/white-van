@@ -5,13 +5,23 @@
     .panel-body
       form.form-horizontal(role='form', method='', action='')
         .form-group
-          label To
-          select
-            option a
-            option b
-            option c
+          label To &nbsp
+          select.form-control(for='receiverId', autofocus=true)
+            each hookUp in hookedUp
+              option= hookUp.username
           br
-          label Subject
-          input.form-control#subject(type='text', name='subject', autofocus=true, placehlder='Mergers and Acquisitions')
+          .radio-inine
+            label
+              input#internal(type='radio', name='mType')
+              span &nbsp Internal &nbsp
+            label
+              input#email(type='radio', name='mType')
+              span &nbsp Email &nbsp
+            label
+              input#text(type='radio', name='mType')
+              span &nbsp Text &nbsp
+          label
+          input.form-control#subject(type='text', name='subject', placeholder='Subject')
           textarea.form-control#message(name='message', rows='10')
+          button.btn.btn-info.btn-md(type='submit') Send
   .col-xs-2

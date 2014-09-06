@@ -1,10 +1,26 @@
+@import url(http://fonts.googleapis.com/css?family=Nothing+You+Could+Do|Forum);
 
- //-----------   GENERAL -----------//
+@headerfont: 'Nothing You Could Do', cursive;
+@bodyfont: 'Forum', cursive;
+
+//-----------   GENERAL -----------//
 //=================================//
 body{
+  font-family: @bodyfont;
+  font-size: 16px;
+
+  h1, h2, h3, h4, h5, h5 {
+    font-family: @headerfont;
+  }
   .wrapper {
     margin: 0 auto;
     width: 100%;
+  }
+  .panel-heading {
+    font-size: 20px;
+  }
+  button {
+    font-size: 20px;
   }
 }
 
@@ -13,26 +29,41 @@ body{
   .profile-img {
     width: 300px;
     height: 300px;
+    background-size: cover;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+  }
+  .interaction-btns {
+    margin-bottom: 20px;
+  }
+  .btn-group {
+    padding: 0 2px;
   }
   .file {
     margin: 0 auto;
+    margin-top: 60px;
   }
-  .tabs {
-  }
-
   .tabs .tab {
     padding: 5px 10px;
     background-color: #eee;
   }
-
+  .tab {
+    width: 150px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    text-align: center;
+    padding: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px;
+  }
   .tabs .tab.active {
     background-color: #bbb;
     font-weight: bold;
   }
-
-  .panes {
+  a:hover {
+    text-decoration: none;
   }
-
   .panes .pane {
     display: none;
     border: 1px solid #eee;
@@ -50,7 +81,11 @@ body{
 //---------------
 .inbox {
   .message {
-    h3:fist-of-type {
+    padding: 10px;
+    background-color: rgba(128, 128, 128, 0.19);
+    margin: 15px 0;
+
+    h3:first-of-type {
       padding: 0 40px;
     }
     .subject {
@@ -63,9 +98,11 @@ body{
       padding: 0 40px;
     }
     .body {
-      border: 1px solid red;
+      border: 1px solid #eee;
+      background-color: #FCFCFC;
       padding: 40px;
     }
+    
   }
 }
 
@@ -73,6 +110,13 @@ body{
 //---------------
 // send message include
 //---------------
+
+.send-message {
+  button {
+    float: right;
+    margin-top: 10px;
+  }
+}
 
 //---------------
 // gallery include
@@ -102,6 +146,13 @@ body{
 .interactions {
   display: inline;
 }
+.name {
+  border: 1px solid #eee;
+  padding: 20px;
+  text-align: center;
+  font-size: 40px;
+  margin: 0 47px;
+}
 
 
 
@@ -125,4 +176,39 @@ td:nth-child(2){
 #backBribes a, a:visited{
   text-decoration: none;
   color: white;
+}
+
+//----Index PAGE -----------//
+//=================================//
+.btn-input {
+   display: block;
+}
+.search-btn {
+  padding: 0;
+  margin: 0;
+}
+.btn-input .btn.form-control {
+  text-align: left;
+}
+.btn.btn-search {
+  height: 60px;
+}
+.btn.dropdown-toggle {
+  height: 60px;
+  background-color: #bbb;
+}
+.btn-input .btn.form-control .caret {
+   margin-top: -1px;
+   position: absolute;
+   right: 10px;
+   top: 50%;
+}
+#map {
+  width: 100%;
+  height: 600px;
+}
+#users {
+  height: 550px;
+  border: 1px solid #bbb;
+  overflow: scroll;
 }

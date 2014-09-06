@@ -1,4 +1,4 @@
-h2 Edit Profile
+h2.text-center Edit Profile
 .row
   form#editProfile(role='form', method='post', action='/profile')
     input(type='hidden', name='_method', value='put')
@@ -22,13 +22,13 @@ h2 Edit Profile
         textarea.form-control#bio(name='bio')= user.bio
       .form-group
         label(for='lookingFor') Looking For: &nbsp
-        select(name='lookingFor')
+        select.form-control(name='lookingFor')
           option(selected=(user.lookingFor === 'Relationship' ? true : false)) Relationship
           option(selected=(user.lookingFor === 'Companionship' ? true : false)) Companionship
           option(selected=(user.lookingFor === 'No Strings Attached' ? true : false)) No Strings Attached
       .form-group
         label(for='weapon') Weapon of Choice: &nbsp
-        select(name='weapon') Weapon of Choice
+        select.form-control(name='weapon') Weapon of Choice
           option(selected=(user.weapon === 'Blade' ? true : false)) Blade
           option(selected=(user.weapon === 'Firearm' ? true : false)) Firearm
           option(selected=(user.weapon === 'Hand-to-Hand' ? true : false)) Hand-to-Hand
