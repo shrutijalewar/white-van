@@ -7,6 +7,10 @@
     $('.dropdown-menu li').click(itemSelected);
     var pos = getUserPosition();
     initMap(pos.lat, pos.lng, 7);
+    var positions = getPositions();
+    positions.forEach(function(pos){
+      addMarker(pos.lat, pos.lng, pos.name);
+    });
   });
 
 
@@ -36,6 +40,22 @@
            .find('input')
            .val($target.text());
     return false;
+  }
+
+  function addMarker(lat, lng, name){
+    var latLng = new google.maps.LatLng(lat, lng);
+    new google.maps.Marker({map: map, position: latLng, title: name, animation: google.maps.Animation.DROP});
+  }
+
+  function getPositions(){
+    var positions = $('.locationValue').toArray().map(function(a){
+      var name = $(a).attr('data-name'),
+           lat = $(a).attr('data-lat'),
+           lng = $(a).attr('data-lng'),
+           pos = {name:name, lat:parseFloat(lat), lng:parseFloat(lng)};
+      return pos;
+    });
+    return positions;
   }
 })();
 

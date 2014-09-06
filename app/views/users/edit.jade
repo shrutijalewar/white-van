@@ -16,7 +16,7 @@ h2.text-center Edit Profile
         label(for='location') Location
         input#lat(type='hidden', name='lat')
         input#lng(type='hidden', name='lng')
-        input.form-control#location(type='text', name='location', value=user.loc.name)
+        input.form-control#location(type='text', name='location', value=(user.loc ? user.loc.name : 'Enter a city'))
       .form-group
         label(for='bio') Biography
         textarea.form-control#bio(name='bio')= user.bio
