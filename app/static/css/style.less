@@ -1,10 +1,26 @@
+@import url(http://fonts.googleapis.com/css?family=Nothing+You+Could+Do|Forum);
 
- //-----------   GENERAL -----------//
+@headerfont: 'Nothing You Could Do', cursive;
+@bodyfont: 'Forum', cursive;
+
+//-----------   GENERAL -----------//
 //=================================//
 body{
+  font-family: @bodyfont;
+  font-size: 16px;
+
+  h1, h2, h3, h4, h5, h5 {
+    font-family: @headerfont;
+  }
   .wrapper {
     margin: 0 auto;
     width: 100%;
+  }
+  .panel-heading {
+    font-size: 20px;
+  }
+  button {
+    font-size: 20px;
   }
 }
 
@@ -45,10 +61,9 @@ body{
     background-color: #bbb;
     font-weight: bold;
   }
-
-  .panes {
+  a:hover {
+    text-decoration: none;
   }
-
   .panes .pane {
     display: none;
     border: 1px solid #eee;
@@ -135,7 +150,7 @@ body{
   border: 1px solid #eee;
   padding: 20px;
   text-align: center;
-  font-size: 25px;
+  font-size: 40px;
   margin: 0 47px;
 }
 

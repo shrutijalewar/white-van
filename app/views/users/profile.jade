@@ -6,9 +6,13 @@ block content
       .profile-img(style='background-image:url("#{user.profilePic}");')
       .name= user.username
     .col-xs-4.bio
-      h4 Bio:
+      h3 Bio:
       p Collection weekend sandwich grey gag hammer tank dead michelle vegan.
         Steve jobs facepalm pizza crying russia father cookie monster
+      if(isPublic)
+        p Your profile is set to Public.
+      else
+        p Your profile is set to Private.
       .panel-default.panel
         .panel-heading You are currently stalking
         ul.list-group
