@@ -80,11 +80,11 @@ User.prototype.send = function(receiverId, obj, cb){
 };
 
 User.prototype.findStalked = function(cb){
-  async.map(this.stalk, iteratorId, cb);
+  async.map(this.stalk || [], iteratorId, cb);
 };
 
 User.prototype.findHookedUp = function(cb){
-  async.map(this.stalk, iteratorId, cb);
+  async.map(this.hookUp || [], iteratorId, cb);
 };
 
 // Sample Passport Strategy Authentication
