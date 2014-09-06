@@ -84,7 +84,7 @@ User.prototype.update = function(obj, cb){
 
 User.prototype.uploadPhotos = function(files, cb){
   var baseDir     = __dirname + '/../static',
-      relDir      = '/img/' + this._id,
+      relDir      = '/img/users/' + this._id,
       absDir      = baseDir + relDir,
       exist    = fs.existsSync(absDir);
 
