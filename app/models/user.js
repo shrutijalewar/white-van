@@ -119,10 +119,6 @@ User.prototype.changePhoto = function(numb, cb){
   User.collection.save(this, cb);
 };
 
-User.prototype.send = function(receiverId, obj, cb){
-  Message.send(this._id, receiverId, obj.subject, obj.body, cb);
-};
-
 User.prototype.findStalked = function(cb){
   async.map(this.stalk || [], iteratorId, cb);
 };
@@ -131,16 +127,16 @@ User.prototype.findHookedUp = function(cb){
   async.map(this.hookUp || [], iteratorId, cb);
 };
 
-User.prototype.send = function(receiver, obj, cb){
-  switch(obj.mtype){
+User.prototype.send = function(obj, cb){
+  switch(obj.mType){
     case 'text':
-      sendText(receiver.phone, obj.message, cb);
+      sendText(obj.message, cb);
       break;
     case 'email':
-      sendEmail(this.email, receiver.email, 'Message from Unmarked White Van', obj.message, cb);
+      sendEmail(this.email, 'Message from Unmarked White Van', obj.message, cb);
       break;
     case 'internal':
-      Message.send(this._id, receiver._id, obj.message, cb);
+      Message.send(this._id, obj.receiverId, obj.subject, obj.message, cb);
   }
 };
 
