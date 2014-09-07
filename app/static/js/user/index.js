@@ -6,7 +6,7 @@
   $(document).ready(function(){
     $('.dropdown-menu li a').click(itemSelected);
     var pos = getUserPosition();
-    initMap(pos.lat, pos.lng, 6);
+    initMap(pos.lat, pos.lng, 5);
     var positions = getPositions();
     positions.forEach(function(pos){
       addMarker(pos.lat, pos.lng, pos.name);
@@ -22,9 +22,9 @@
 
   function getUserPosition(){
     var $loc = $('#userLocation'),
-        name      = $loc.attr('data-name'),
-        lat       = $loc.attr('data-lat'),
-        lng       = $loc.attr('data-lng'),
+        name      = $loc.attr('data-name') || ('Cincinnati'),
+        lat       = $loc.attr('data-lat') || (39.10),
+        lng       = $loc.attr('data-lng') || (-84.52),
         pos       = {name:name, lat:parseFloat(lat), lng:parseFloat(lng)};
 
     return pos;

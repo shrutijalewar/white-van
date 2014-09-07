@@ -1,24 +1,12 @@
 extends ../shared/template
 block content
-  .row
+  .row.veil
     .col-xs-2
     .col-xs-4.basic-info
       .profile-img(style='background-image:url(#{client.profilePic || "/img/anon.jpg"});')
-      .name= client.username || 'anonymous'
+      .name
+        h2= client.username || 'anonymous'
     .col-xs-4.bio
-      .buttons.btn-group.btn-group-justified.interaction-btns
-        .btn-group
-          form(name='stalk', method='post', action='/users/#{client._id}/stalk')
-            button.btn.btn-danger.interactions.btn-md#stalk(type='submit') Stalk
-        .btn-group
-          form(name='shank', method='post', action='/users/#{client._id}/shank')
-            button.btn.btn-warning.interactions.btn-md#shank(type='submit') Shank
-        .btn-group
-          form(name='bribe', method='post', action='/users/#{client._id}/bribe')
-            button.btn.btn-success.interactions.btn-md#bribe(type='submit') Bribe
-        .btn-group
-          form(name='hookup', method='post', action='/users/#{client._id}/hookup')
-            button.btn.btn-info.interactions.btn-md#hookup(type='submit') Hookup
       .panel.panel-default
         .panel-heading The Quick and Dirty
         ul.list-group
@@ -35,7 +23,19 @@ block content
             li.list-group-item Criminal Record: No
           li.list-group-item My Favorite Weapon is: &nbsp#{client.weapon}
       p= client.bio
-
+      .buttons.btn-group.btn-group-justified.interaction-btns
+        .btn-group
+          form(name='stalk', method='post', action='/users/#{client._id}/stalk')
+            button.btn.btn-danger.interactions.btn-md#stalk(type='submit') Stalk
+        .btn-group
+          form(name='shank', method='post', action='/users/#{client._id}/shank')
+            button.btn.btn-warning.interactions.btn-md#shank(type='submit') Shank
+        .btn-group
+          form(name='bribe', method='post', action='/users/#{client._id}/bribe')
+            button.btn.btn-success.interactions.btn-md#bribe(type='submit') Bribe
+        .btn-group
+          form(name='hookup', method='post', action='/users/#{client._id}/hookup')
+            button.btn.btn-info.interactions.btn-md#hookup(type='submit') Hookup
     .col-xs-2
   .row
     .col-xs-2

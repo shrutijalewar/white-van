@@ -1,6 +1,6 @@
 extends ../shared/template
 block content
-  .row
+  .row.veil
     .col-xs-2
     .col-xs-4.basic-info: a(href='/users/'+ user._id.toString())
       .profile-img(style='background-image:url(#{user.profilePic || "/img/anon.jpg"});')
@@ -28,13 +28,13 @@ block content
         a.tab(href='javascript:void(0)') Gallery
         a.tab(href='javascript:void(0)') Edit Profile
       .panes
-        .pane.active
+        .pane.inbox.active
           include inbox
-        .pane
+        .pane.message
           include message
-        .pane
+        .pane.gallery
           include gallery
-        .pane
+        .pane.edit
           include edit
     .col-xs-2
 
