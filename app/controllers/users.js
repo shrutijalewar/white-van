@@ -135,6 +135,10 @@ exports.hookup = function(req, res){
   res.redirect('/users/' + req.params.userId);
 };
 
+exports.breakup = function(req, res){
+  res.redirect('/users/' + req.params.userId);
+};
+
 exports.reject = function(req, res){
   res.redirect('/users/' + req.params.userId);
 };

@@ -168,7 +168,7 @@ User.prototype.shank = function(client, cb){
   var subject = 'Call Doctor Love...',
       message = 'Because you\'ve been SHANKED!';
 
-  Message.send(this._id, client._id, subject, message, cb);
+  Message.send(this._id, client._id, subject, message, false, cb);
 };
 
 User.prototype.stalkStart = function(id, cb){
