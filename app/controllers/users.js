@@ -64,6 +64,12 @@ exports.photos = function(req, res){
   });
 };
 
+exports.photo = function(req, res){
+  res.locals.user.changePhoto(req.body.photo, function(){
+    res.redirect('/profile');
+  });
+};
+
 exports.index = function(req, res){
   //eventually add sort & filter params
 

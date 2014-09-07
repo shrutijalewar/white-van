@@ -8,11 +8,12 @@
 
   function hideSubject(e){
     var $input = $(e.target);
-    $input.parents('.form-group').find('#subject').fadeOut()
+    $input.parents('.form-group').find('#subject').fadeOut();
   }
+
   function showSubject(e){
     var $input = $(e.target);
-    $input.parents('.form-group').find('#subject').fadeIn()
+    $input.parents('.form-group').find('#subject').fadeIn();
   }
 
 })();
