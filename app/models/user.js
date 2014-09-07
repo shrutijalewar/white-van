@@ -110,6 +110,13 @@ User.prototype.uploadPhotos = function(files, cb){
   User.collection.save(this, cb);
 };
 
+User.prototype.changePhoto = function(numb, cb){
+  var index = (numb * 1) - 1;
+
+  this.profilePic = this.photos[index];
+  User.collection.save(this, cb);
+};
+
 User.prototype.send = function(receiverId, obj, cb){
   Message.send(this._id, receiverId, obj.subject, obj.body, cb);
 };
