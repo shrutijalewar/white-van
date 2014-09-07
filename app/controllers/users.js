@@ -3,6 +3,7 @@
 var User    = require('../models/user'),
     Message = require('../models/message'),
     mp      = require('multiparty'),
+    _       = require('underscore-contrib'),
     moment  = require('moment');
 
 exports.logout = function(req, res){
@@ -78,6 +79,8 @@ exports.index = function(req, res){
 
 exports.show = function(req, res){
   User.findById(req.params.userId, function(err, client){
+    var stalked = _.contains(res.locals.user.stalk, String(client._id));
+    console.log(stalked);
     res.render('users/show', {client:client});
   });
 };
