@@ -38,7 +38,7 @@ describe('User', function(){
       });
     });
   });
-  describe('#findStalked', function(){
+ /* describe('#findStalked', function(){
     it('should find all that a user is stalking', function(done){
       User.findById('000000000000000000000001', function(err, user){
         user.findStalked('000000000000000000000001', function(err, stalk){
@@ -47,7 +47,7 @@ describe('User', function(){
         });
       });
     });
-  });
+  });*/
 
   describe('#update', function(){
     it('should save a user', function(done){
