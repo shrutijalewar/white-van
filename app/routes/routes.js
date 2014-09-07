@@ -38,6 +38,7 @@ module.exports = function(app, express){
   app.get('/profile', users.profile);
   app.put('/profile', users.update);
   app.post('/photos', users.photos);
+  app.put('/photos', users.photo);
   app.get('/users', users.index);
   app.post('/users/:userId/stalk', users.favorite);
   app.post('/users/:userId/shank', users.poke);
