@@ -57,7 +57,6 @@ describe('User', function(){
           mat = new User();
       mat.update(o, function(){
         mat.findHookedUp(function(err, hookUp){
-          console.log('>>>>>>>>>>>>>>', hookUp);
           expect(hookUp[0].username).to.equal('Sue');
           expect(hookUp[0].isSmoker).to.be.false;
           done();
@@ -67,13 +66,18 @@ describe('User', function(){
   });
   describe('#update', function(){
     it('should save a user', function(done){
-      var u = new User(),
-          o = {x:3, isPublic:'No', foo:'bar'};
+      var user = new User(),
+          o = {loc:{name:'abc',lat:33, lng: 44}, isRecord: false, age:'44',isPublic:'No'};
 
-      u.baz = 'bim';
-      u.update(o, function(err, user){
+      user.baz = 'bim';
+      user.update(o, function(err, user){
+        console.log('>>>>>>>', user);
         expect(user.isPublic).to.be.false;
-        expect(user.foo).to.equal('bar');
+        expect(user.isRecord).to.be.false;
+        expect(user.age).to.equal(44);
+        expect(user.loc.name).to.equal('abc');
+        expect(user.loc.lat).to.equal(33);
+        expect(user.loc.lng).to.equal(44);
         expect(user.baz).to.equal('bim');
         done();
       });
