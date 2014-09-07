@@ -41,10 +41,11 @@ module.exports = function(app, express){
   app.put('/photos', users.photo);
   app.get('/users', users.index);
   app.post('/users/:userId/stalk', users.favorite);
-  app.post('/users/:userId/shank', users.poke);
+  app.post('/users/:userId/shank', users.shank);
   app.post('/users/:userId/request', users.request);
   app.post('/users/:userId/hookup', users.hookup);
   app.post('/users/:userId/reject', users.reject);
+  app.post('/users/:userId/bribe', users.bribe);
   app.get('/users/:userId', users.show);
   app.get('/gifts', gifts.index);
   app.get('/cart', cart.index);

@@ -8,17 +8,17 @@ block content
     .col-xs-4.bio
       .buttons.btn-group.btn-group-justified.interaction-btns
         .btn-group
-          form(name='stalk', method='post', action='')
-            button.btn.btn-danger.interactions.btn-md#stalk(type='button') Stalk
+          form(name='stalk', method='post', action='/users/#{client._id}/stalk')
+            button.btn.btn-danger.interactions.btn-md#stalk(type='submit') Stalk
         .btn-group
-          form(name='shank', method='post', action='')
-            button.btn.btn-warning.interactions.btn-md#shank(type='button') Shank
+          form(name='shank', method='post', action='/users/#{client._id}/shank')
+            button.btn.btn-warning.interactions.btn-md#shank(type='submit') Shank
         .btn-group
-          form(name='bribe', method='post', action='')
-            button.btn.btn-success.interactions.btn-md#bribe(type='button') Bribe
+          form(name='bribe', method='post', action='/users/#{client._id}/bribe')
+            button.btn.btn-success.interactions.btn-md#bribe(type='submit') Bribe
         .btn-group
-          form(name='hookup', method='post', action='')
-            button.btn.btn-info.interactions.btn-md#hookup(type='button') Hookup
+          form(name='hookup', method='post', action='/users/#{client._id}/hookup')
+            button.btn.btn-info.interactions.btn-md#hookup(type='submit') Hookup
       .panel.panel-default
         .panel-heading The Quick and Dirty
         ul.list-group

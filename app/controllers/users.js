@@ -84,11 +84,18 @@ exports.show = function(req, res){
   });
 };
 
+exports.bribe = function(req, res){
+  User.findById(req.params.userId, function(err, receiver){
+    req.session.receiver = receiver;
+    res.redirect('/gifts');
+  });
+};
+
 exports.favorite = function(req, res){
   res.redirect('/users/' + req.params.userId);
 };
 
-exports.poke = function(req, res){
+exports.shank = function(req, res){
   res.redirect('/users/' + req.params.userId);
 };
 
