@@ -54,7 +54,7 @@ exports.purchase = function(req, res){
     description: req.user.email || 'anonymous'
   }, function(err, charge){
     req.session.cart       = [];
-    req.flash('success', 'You successfully bribed', req.session.receiver.username + '!');
+    req.flash('success', 'You have successfully bribed'/*, req.session.receiver.username + '!'*/);
     req.session.receiver   = null;
     req.session.totalCents = null;
     req.session.save(function(){
