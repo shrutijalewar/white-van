@@ -2,13 +2,18 @@
 
 @headerfont: 'Nothing You Could Do', cursive;
 @bodyfont: 'Forum', cursive;
+@greencolor: #1C7A05;
+@bluecolor: #246690;
+@redcolor: #E81F12;
+@darkredcolor: #9E001B;
+@purplecolor: #7F1D4A;
 
 //-----------   GENERAL -----------//
 //=================================//
 body{
   font-family: @bodyfont;
   font-size: 16px;
-  background-image: url('/img/assault.png') !important;
+  background-image: url('/img/dark_Tire.png') !important;
   h1, h2, h3, h4, h5, h5 {
     font-family: @headerfont;
   }
@@ -24,6 +29,38 @@ body{
   }
   button {
     font-size: 20px;
+  }
+  .btn-danger{
+    background-color: @redcolor;
+    border: none;
+  }
+  .btn-warning{
+    background-color: @purplecolor;
+    border: none;
+  }
+  .btn-info{
+    background-color: @bluecolor;
+    border: none;
+  }
+  .btn-success{
+    background-color: @greencolor;
+    border: none;
+  }
+  .btn-danger:hover{
+    background-color: darken(@redcolor, 20%);
+    border: none;
+  }
+  .btn-warning:hover{
+    background-color: darken(@purplecolor, 10%);
+    border: none;
+  }
+  .btn-info:hover{
+    background-color: darken(@bluecolor, 20%);
+    border: none;
+  }
+  .btn-success:hover{
+    background-color: darken(@greencolor, 10%);
+    border: none;
   }
   a {
     color: black;
@@ -202,9 +239,12 @@ body{
 //----GIFTS PAGE -----------//
 //=================================//
 .table {
-  background-color: rgba(151, 151, 151, 0.55);
+  //background-color: #282828;i
+  border-color: #3C3B3B;
+  border: 2px outset #3C3B3B;
   th {
    font-size: 25px;
+   background-color: #3C3B3B;
   }
   .add-cart-btn {
     padding: 20px 0 20px 40px;
@@ -215,6 +255,9 @@ body{
   .price {
     font-size: 25px;
     padding-top: 20px;
+  }
+  td:hover {
+    background-color: rgba(151, 151, 151, 0.55);
   }
 }
 //----CART PAGE -----------//
