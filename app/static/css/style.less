@@ -66,10 +66,10 @@ body{
     color: black;
   }
   a:hover {
-    color: black;
+    color: rgb(194, 194, 194);
   }
   a:visited {
-    color: black;
+    color: rgb(194, 194, 194);
   }
   .navbar {
     margin-bottom: 0;
@@ -138,11 +138,9 @@ body{
   }
   .tab a {
     text-decoration: none;
-    color: black;
   }
   .tab a:hover {
     text-decoration: none;
-    color: black;
   }
   .panes .pane {
     display: none;
@@ -155,15 +153,26 @@ body{
     display: block;
 
   }
+  .veil {
+    background-color: rgba(255, 255, 255, .2);
+  padding: 50px 0;
+  }
+  .gallery {
+    //background-image: url('/img/lightpaperfibers.png');
+    background-color: lightgrey;
+  }
 
 //---------------
 // inbox include
 //---------------
 .inbox {
+  overflow: scroll;
+
   .message {
     padding: 10px;
     background-color: rgba(128, 128, 128, 0.19);
     margin: 15px 0;
+    background-image: url('/img/linedpaper.png');
 
     h3:first-of-type {
       padding: 0 40px;
@@ -192,6 +201,7 @@ body{
 //---------------
 
 .send-message {
+    background-image: url('/img/linedpaper.png');
   button {
     float: right;
     margin-top: 10px;
@@ -228,10 +238,14 @@ body{
 }
 .name {
   border: 1px solid #eee;
-  padding: 20px;
   text-align: center;
   font-size: 40px;
-  margin: 0 47px;
+  margin: 0 52px;
+  background-color: rgb(233,232,232);
+
+  h2 {
+    color: black;
+  }
 }
 
 

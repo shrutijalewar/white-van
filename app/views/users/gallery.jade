@@ -1,11 +1,11 @@
-h2 Your Photos
+h2.text-center Your Photos
 .col-xs-6
   form#addPhotos(role='form', method='post', action='/photos', enctype='multipart/form-data')
     .form-group
       label(for='photos') Upload Photos
       input.form-control#photos(type='file', name='photos', multiple=true)
     button.btn.btn-primary(type='submit') Add
-  br
+.col-xs-6
   form#changeProfile(role='form', method='post', action='/photos')
     input(type='hidden', name='_method', value='put')
     .form-group
@@ -14,8 +14,8 @@ h2 Your Photos
         each photo, index in user.photos
           option= index + 1
     button.btn.btn-primary(type='submit') Change
-
-.col-xs-6
-  each photo, index in user.photos
-    div.profile-photo(style='background-image: url(#{photo})')
-    h3=index + 1
+.row
+  .col-xs-12.user-photos
+    each photo, index in user.photos
+      div.profile-photo(style='background-image: url(#{photo})')
+      h3=index + 1

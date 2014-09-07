@@ -6,7 +6,7 @@
   $(document).ready(function(){
     $('.dropdown-menu li a').click(itemSelected);
     var pos = getUserPosition();
-    initMap(pos.lat, pos.lng, 6);
+    initMap(pos.lat, pos.lng, 5);
     var positions = getPositions();
     positions.forEach(function(pos){
       addMarker(pos.lat, pos.lng, pos.name);

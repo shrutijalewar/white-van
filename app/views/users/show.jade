@@ -1,10 +1,11 @@
 extends ../shared/template
 block content
-  .row
+  .row.veil
     .col-xs-2
     .col-xs-4.basic-info
       .profile-img(style='background-image:url(#{client.profilePic || "/img/anon.jpg"});')
-      .name= client.username || 'anonymous'
+      .name
+        h2= client.username || 'anonymous'
     .col-xs-4.bio
       .buttons.btn-group.btn-group-justified.interaction-btns
         .btn-group
