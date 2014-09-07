@@ -163,8 +163,10 @@ User.prototype.send = function(obj, cb){
 };
 
 User.prototype.shank = function(client, cb){
-  console.log(client);
-  cb();
+  var subject = 'Call Doctor Love...',
+      message = 'Because you\'ve been SHANKED!';
+
+  Message.send(this._id, client._id, subject, message, cb);
 };
 
 module.exports = User;
