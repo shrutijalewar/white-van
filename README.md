@@ -91,6 +91,7 @@ $ npm test
 - [Kayla Jones](https://github.com/kaylalynjones)
 - [Brian Hiatt](https://github.com/bchiatt)
 - [Liza Carter](https://github.com/LizaHCarter)
+- [Shruti Sharma](https://github.com/shrutijalewar)
 
 ### License
 [MIT](LICENSE)
