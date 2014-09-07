@@ -72,6 +72,33 @@ block content
               a(href='#', data-value='no strings attached') No Strings Attached
       .col-xs-2.search-btn
         button.btn.btn-default.form-control.btn-search(type='submit') Search
+    #criteria
+      h4 You searched for:
+
+      if(query.gender)
+        span= query.gender
+      else
+
+      if(query.isSmoker)
+        span smoker
+      else
+        span= !query.isSmoker === '' ? 'nonsmoker' : ''
+
+      if(query.isRecord)
+        span criminal record
+      else
+        span= !query.isRecord === '' ? 'no record' : ''
+
+      if(query.weapon)
+        span= query.weapon
+      else
+
+      if(query.lookingFor)
+        span= query.lookingFor
+      else
+
+      #clear.pull-right
+        a.btn.btn-warning.btn-xs(href='/users') Clear
     #clients
       each client in clients
         .col-xs-4.clients: a(href='/users/'+client._id)

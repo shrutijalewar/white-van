@@ -15,11 +15,27 @@ Object.defineProperty(User, 'collection', {
   get: function(){return global.mongodb.collection('users');}
 });
 
-User.query =function(currentUser, cb){
+User.query =function(currentUser, criteria, cb){
   var query = {
     'isPublic': true,
     '_id': {'$ne': currentUser._id}
   };
+
+  if (!isNullOrEmpty(criteria.gender)) {
+    query.gender = criteria.gender;
+  }
+  if (!isNullOrEmpty(criteria.isSmoker)) {
+    query.isSmoker = criteria.isSmoker === 'true' ? true : false;
+  }
+  if (!isNullOrEmpty(criteria.isRecord)) {
+    query.isRecord = criteria.isRecord === 'true' ? true : false;
+  }
+  if (!isNullOrEmpty(criteria.weapon)) {
+    query.weapon = criteria.weapon;
+  }
+  if (!isNullOrEmpty(criteria.lookingFor)) {
+    query.lookingFor = criteria.lookingFor;
+  }
   User.collection.find(query).toArray(cb);
 };
 
@@ -136,6 +152,10 @@ User.prototype.findHookedUp = function(cb){
 module.exports = User;
 
 //private helper functions
+
+function isNullOrEmpty(prop){
+  return !prop || prop.length < 1;
+}
 
 function iteratorId(id, cb){
   User.findById(id, function(err, client){

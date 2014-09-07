@@ -71,10 +71,8 @@ exports.photo = function(req, res){
 };
 
 exports.index = function(req, res){
-  //eventually add sort & filter params
-  console.log(req.query);
-  User.query(req.user, function(err, clients){
-    res.render('users/index', {clients:clients});
+  User.query(req.user, req.query, function(err, clients){
+    res.render('users/index', {clients:clients, query:req.query});
   });
 };
 
