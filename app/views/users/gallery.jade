@@ -19,16 +19,3 @@ h2 Your Photos
   each photo, index in user.photos
     div.profile-photo(style='background-image: url(#{photo})')
     h3=index + 1
-  //#carousel-example-generic(class='carousel slide', data-ride='carousel')
-    ol.carousel-indicators
-      - for (var i = 0; i < user.photos.length; i ++){
-        li(data-target='#carousel-example-generic', data-slide-to=i)
-      - }
-    .carousel-inner
-      each photo, index in user.photos
-        div(class=index === 0 ? 'item active' : 'item', style='height: 50px, width: 75px')
-          .photo-treasure(style='background-image: url("#{photo}")')
-    a(class='left carousel-control', href='#carousel-example-generic', role='button', data-slide='prev')
-      span(class='glyphicon glyphicon-chevron-left')
-    a(class='right carousel-control', href='#carousel-example-generic', role='button', data-slide='next')
-      span(class='glyphicon glyphicon-chevron-right')
