@@ -4,7 +4,7 @@
   var map;
 
   $(document).ready(function(){
-    $('.dropdown-menu li').click(itemSelected);
+    $('.dropdown-menu li a').click(itemSelected);
     var pos = getUserPosition();
     initMap(pos.lat, pos.lng, 7);
     var positions = getPositions();
@@ -38,7 +38,7 @@
            .children('.dropdown-toggle').dropdown('toggle');
     $target.closest('.btn-group')
            .find('input')
-           .val($target.text());
+           .val($target.data('value'));
     return false;
   }
 

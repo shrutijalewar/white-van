@@ -15,8 +15,12 @@ Object.defineProperty(User, 'collection', {
   get: function(){return global.mongodb.collection('users');}
 });
 
-User.query =function(cb){
-  User.collection.find().toArray(cb);
+User.query =function(currentUser, cb){
+  var query = {
+    'isPublic': true,
+    '_id': {'$ne': currentUser._id}
+  };
+  User.collection.find(query).toArray(cb);
 };
 
 User.findById = function(id, cb){

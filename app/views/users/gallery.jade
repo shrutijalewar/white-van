@@ -11,12 +11,12 @@ h2 Your Photos
     .form-group
       label(for='photo') Select Profile Photo
       select.form-control(name='photo')
-        each photo, index in user.photos
+        //each photo, index in user.photos
           option= index + 1
     button.btn.btn-primary(type='submit') Change
 
 .col-xs-6
-  each photo, index in user.photos
+  //each photo, index in user.photos
     div.profile-photo(style='background-image: url(#{photo})')
     h3=index + 1
   //#carousel-example-generic(class='carousel slide', data-ride='carousel')
