@@ -1,3 +1,5 @@
 node_modules/
 ./config.js
 app/static/img/users/
+app/lib/debug.js
+app/static/css/style.css

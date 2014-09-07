@@ -38,17 +38,16 @@ describe('User', function(){
       });
     });
   });
- /* describe('#findStalked', function(){
+  describe('#findStalked', function(){
     it('should find all that a user is stalking', function(done){
       User.findById('000000000000000000000001', function(err, user){
         user.findStalked('000000000000000000000001', function(err, stalk){
-          expect(User.stalk[0].username).to.equal('Sue');
-          expect(User.stalk[0].email).to.equal('sue@aol.com');
+          expect(User.stalk).not.to.be(null);
           done();
         });
       });
     });
-  });*/
+  });
 
   describe('#update', function(){
     it('should save a user', function(done){
