@@ -7,6 +7,7 @@ var expect    = require('chai').expect,
     Message   = require('../../app/models/message'),
     dbConnect = require('../../app/lib/mongodb'),
     cp        = require('child_process'),
+    Mongo     = require('mongodb'),
     db        = 'white-van-test';
 
 describe('Message', function(){
@@ -31,7 +32,19 @@ describe('Message', function(){
 
   describe('.findById', function(){
     it('should find a message by it\'s id', function(done){
-      done();
+      Message.findById('a00000000000000000000001', function(err, msg){
+        expect(msg.subject).to.equal('Hola');
+        expect(msg._id).to.be.instanceof(Mongo.ObjectID);
+        done();
+      });
+    });
+  });
+  describe('.unread', function(){
+    it('should find no of unread messages of an user', function(done){
+      Message.unread('000000000000000000000002', function(){
+        //expect(Message).count.to.equal(2);
+        done();
+      });
     });
   });
 });

@@ -3,6 +3,7 @@
   "date":{"$date":477295200000},
   "senderId":{"$oid":"000000000000000000000001"},
   "receiverId":{"$oid":"000000000000000000000002"},
+  "isRead":false,
   "subject": "Hola",
   "body" : "How are you? Good to see you here. Do you wanna meet up?"
 }
@@ -11,6 +12,7 @@
   "date":{"$date":477295300000},
   "senderId":{"$oid":"000000000000000000000002"},
   "receiverId":{"$oid":"000000000000000000000001"},
+  "isRead":true,
   "subject": "Hola Back",
   "body" : "Ummmm just to be sure you know I am not looking for an ever after!"
 }
@@ -19,6 +21,7 @@
   "date":{"$date":477295400000},
   "senderId":{"$oid":"000000000000000000000001"},
   "receiverId":{"$oid":"000000000000000000000002"},
+  "isRead":false,
   "subject": "Oops",
   "body" : "I am not big on rules. Do you still wanna meet up?"
 }
@@ -27,6 +30,7 @@
   "date":{"$date":477295500000},
   "senderId":{"$oid":"000000000000000000000002"},
   "receiverId":{"$oid":"000000000000000000000001"},
+  "isRead":true,
   "subject": "Oops Back",
   "body" : "As long as there are no misunderstandings. Yes Lets meet up."
 }
