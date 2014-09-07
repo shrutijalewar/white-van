@@ -3,25 +3,25 @@
   .col-xs-8
     h3 Send a Message!
     .panel-body
-      form.form-horizontal(role='form', method='', action='')
+      form.form-horizontal(role='form', method='post', action='/messages')
         .form-group
           label To &nbsp
-          select.form-control(for='receiverId', autofocus=true)
+          select.form-control(name='receiverId', for='receiverId', autofocus=true)
             each hookUp in hookedUp
-              option= hookUp.username
-          br
-          .radios
-            label
-              input#internal(type='radio', name='mType')
-              span &nbsp Internal &nbsp
-            label
-              input#email(type='radio', name='mType')
-              span &nbsp Email &nbsp
-            label
-              input#text(type='radio', name='mType')
-              span &nbsp Text &nbsp
+              option(value=hookUp._id)= hookUp.username
+        br
+        .radios
           label
-          input.form-control#subject(type='text', name='subject', placeholder='Subject')
-          textarea.form-control#message(name='message', rows='10')
-          button.btn.btn-info.btn-md(type='submit') Send
+            input#internal(type='radio', name='mType', value='internal')
+            span &nbsp Internal &nbsp
+          label
+            input#email(type='radio', name='mType', value='email')
+            span &nbsp Email &nbsp
+          label
+            input#text(type='radio', name='mType', value='text')
+            span &nbsp Text &nbsp
+        label
+        input.form-control#subject(type='text', name='subject', placeholder='Subject')
+        textarea.form-control#message(name='message', rows='10')
+        button.btn.btn-info.btn-md(type='submit') Send
   .col-xs-2

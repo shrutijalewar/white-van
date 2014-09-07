@@ -4,8 +4,8 @@ var Mongo  = require('mongodb'),
     async  = require('async');
 
 function Message(senderId, receiverId, subject, body){
-  this.senderId = senderId;
-  this.receiverId = receiverId;
+  this.senderId = Mongo.ObjectID(senderId);
+  this.receiverId = Mongo.ObjectID(receiverId);
   this.subject = subject;
   this.body = body;
   this.date = new Date();

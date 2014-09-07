@@ -40,6 +40,7 @@ module.exports = function(app, express){
   app.post('/photos', users.photos);
   app.put('/photos', users.photo);
   app.get('/users', users.index);
+  app.post('/messages', users.send);
   app.post('/users/:userId/stalk', users.favorite);
   app.post('/users/:userId/shank', users.shank);
   app.post('/users/:userId/request', users.request);

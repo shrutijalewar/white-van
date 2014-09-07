@@ -84,6 +84,12 @@ exports.show = function(req, res){
   });
 };
 
+exports.send = function(req, res){
+  res.locals.user.send(req.body, function(){
+    res.redirect('profile');
+  });
+};
+
 exports.bribe = function(req, res){
   User.findById(req.params.userId, function(err, receiver){
     req.session.receiver = receiver;
