@@ -4,7 +4,8 @@ block content
     .col-xs-2
     .col-xs-4.basic-info: a(href='/users/'+ user._id.toString())
       .profile-img(style='background-image:url(#{user.profilePic || "/img/anon.jpg"});')
-      .name= user.username || 'anonymous'
+      .name
+        h2= user.username || 'anonymous'
     .col-xs-4.bio
       h3 Bio:
       p= user.bio || 'Tell them who you are! Write a bio.'
