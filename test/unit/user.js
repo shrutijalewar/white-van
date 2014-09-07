@@ -38,17 +38,33 @@ describe('User', function(){
       });
     });
   });
- /* describe('#findStalked', function(){
+  describe('#findStalked', function(){
     it('should find all that a user is stalking', function(done){
-      User.findById('000000000000000000000001', function(err, user){
-        user.findStalked('000000000000000000000001', function(err, stalk){
-          expect(User.stalk).not.to.be(null);
+      var o = {name:'patty', stalk:['000000000000000000000002']},
+          pat = new User();
+      pat.update(o, function(){
+        pat.findStalked(function(err, stalk){
+          expect(stalk[0].username).to.equal('Sue');
+          expect(stalk[0].isSmoker).to.be.false;
           done();
         });
       });
     });
-  });*/
-
+  });
+  describe('#findHookedUp', function(){
+    it('should find all that a user is hooked up with', function(done){
+      var o = {name:'patty', hookUp:['000000000000000000000002']},
+          mat = new User();
+      mat.update(o, function(){
+        mat.findHookedUp(function(err, hookUp){
+          console.log('>>>>>>>>>>>>>>', hookUp);
+          expect(hookUp[0].username).to.equal('Sue');
+          expect(hookUp[0].isSmoker).to.be.false;
+          done();
+        });
+      });
+    });
+  });
   describe('#update', function(){
     it('should save a user', function(done){
       var u = new User(),
