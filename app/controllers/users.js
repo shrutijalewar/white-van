@@ -96,7 +96,12 @@ exports.bribe = function(req, res){
 };
 
 exports.favorite = function(req, res){
-  res.redirect('/users/' + req.params.userId);
+  User.findById(req.params.userId, function(err, client){
+    res.locals.user.stalkStart(req.params.userId, function(){
+      req.flash('success', 'You are now stalking', client.username + '. Don\'t worry, we won\'t tell.');
+      res.redirect('/users/' + req.params.userId);
+    });
+  });
 };
 
 exports.shank = function(req, res){
