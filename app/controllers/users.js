@@ -88,7 +88,7 @@ exports.favorite = function(req, res){
   res.redirect('/users/' + req.params.userId);
 };
 
-exports.poke = function(req, res){
+exports.shank = function(req, res){
   res.redirect('/users/' + req.params.userId);
 };
 
