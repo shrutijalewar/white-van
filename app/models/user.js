@@ -150,6 +150,8 @@ User.prototype.findHookedUp = function(cb){
 };
 
 User.prototype.send = function(obj, cb){
+  var request = obj.request || false;
+
   switch(obj.mType){
     case 'text':
       sendText(obj.message, cb);
@@ -158,7 +160,7 @@ User.prototype.send = function(obj, cb){
       sendEmail(this.email, 'Message from Unmarked White Van', obj.message, cb);
       break;
     case 'internal':
-      Message.send(this._id, obj.receiverId, obj.subject, obj.message, cb);
+      Message.send(this._id, obj.receiverId, obj.subject, obj.message, request, cb);
   }
 };
 
@@ -178,6 +180,14 @@ User.prototype.stalkStart = function(id, cb){
 User.prototype.stalkStop = function(id, cb){
   this.stalk = _.without(this.stalk, String(id));
   User.collection.save(this, cb);
+};
+
+User.prototype.request = function(receiverId, cb){
+  var body     = this.username + ' would like you to ride shotgun in their unmarked white van. Are you in or not?',
+      subject  = 'An APB Has Been Issued',
+      senderId = this._id;
+
+  Message.send(senderId, receiverId, subject, body, true, cb);
 };
 
 module.exports = User;

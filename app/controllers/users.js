@@ -125,7 +125,10 @@ exports.shank = function(req, res){
 };
 
 exports.request = function(req, res){
-  res.redirect('/users/' + req.params.userId);
+  res.locals.user.request(req.params.userId, function(){
+    req.flash('success', 'Your request was sent!');
+    res.redirect('/users/' + req.params.userId);
+  });
 };
 
 exports.hookup = function(req, res){
