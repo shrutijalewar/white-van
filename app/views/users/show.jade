@@ -24,9 +24,15 @@ block content
           li.list-group-item My Favorite Weapon is: &nbsp#{client.weapon}
       p= client.bio
       .buttons.btn-group.btn-group-justified.interaction-btns
-        .btn-group
-          form(name='stalk', method='post', action='/users/#{client._id}/stalk')
-            button.btn.btn-danger.interactions.btn-md#stalk(type='submit') Stalk
+        if(stalked === false)
+          .btn-group
+            form(name='stalk', method='post', action='/users/#{client._id}/stalk')
+              button.btn.btn-danger.interactions.btn-md#stalk(type='submit') Stalk
+        else
+          .btn-group
+            form(name='stalk', method='post', action='/users/#{client._id}/stalk')
+              input(type='hidden', name='_method', value='put')
+              button.btn.btn-danger.interactions.btn-md#stalk(type='submit') Unstalk
         .btn-group
           form(name='shank', method='post', action='/users/#{client._id}/shank')
             button.btn.btn-warning.interactions.btn-md#shank(type='submit') Shank
