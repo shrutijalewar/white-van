@@ -105,26 +105,28 @@ User.prototype.update = function(obj, cb){
 };
 
 User.prototype.uploadPhotos = function(files, cb){
-  var baseDir     = __dirname + '/../static',
-      relDir      = '/img/users/' + this._id,
-      absDir      = baseDir + relDir,
-      exist    = fs.existsSync(absDir);
+  var baseDir = __dirname + '/../static',
+      relDir  = '/img/users/' + this._id,
+      absDir  = baseDir + relDir,
+      exist   = fs.existsSync(absDir),
+      self    = this;
 
-  this.photos = this.photos || [];
+  self.photos = self.photos || [];
 
   if(!exist){
     fs.mkdir(absDir);
   }
 
-  this.photos = files.photos.map(function(photo, index){
+  files.photos.forEach(function(photo, index){
     if(!photo.size){return;}
 
     var ext     = path.extname(photo.path),
-        name    = index + ext,
+        name    = (index + self.photos.length) + ext,
         relPath = relDir + '/' + name,
         absPath = absDir + '/' + name;
     fs.renameSync(photo.path, absPath);
-    return relPath;
+
+    self.photos.push(relPath);
   });
 
   this.photos = _.compact(this.photos);
@@ -158,6 +160,13 @@ User.prototype.send = function(obj, cb){
     case 'internal':
       Message.send(this._id, obj.receiverId, obj.subject, obj.message, cb);
   }
+};
+
+User.prototype.shank = function(client, cb){
+  var subject = 'Call Doctor Love...',
+      message = 'Because you\'ve been SHANKED!';
+
+  Message.send(this._id, client._id, subject, message, cb);
 };
 
 module.exports = User;
