@@ -2,13 +2,18 @@
 
 @headerfont: 'Nothing You Could Do', cursive;
 @bodyfont: 'Forum', cursive;
+@greencolor: #1C7A05;
+@bluecolor: #246690;
+@redcolor: #E81F12;
+@darkredcolor: #9E001B;
+@purplecolor: #7F1D4A;
 
 //-----------   GENERAL -----------//
 //=================================//
 body{
   font-family: @bodyfont;
   font-size: 16px;
-  background-image: url('/img/assault.png') !important;
+  background-image: url('/img/dark_Tire.png') !important;
   h1, h2, h3, h4, h5, h5 {
     font-family: @headerfont;
   }
@@ -25,14 +30,46 @@ body{
   button {
     font-size: 20px;
   }
+  .btn-danger{
+    background-color: @redcolor;
+    border: none;
+  }
+  .btn-warning{
+    background-color: @purplecolor;
+    border: none;
+  }
+  .btn-info{
+    background-color: @bluecolor;
+    border: none;
+  }
+  .btn-success{
+    background-color: @greencolor;
+    border: none;
+  }
+  .btn-danger:hover{
+    background-color: darken(@redcolor, 20%);
+    border: none;
+  }
+  .btn-warning:hover{
+    background-color: darken(@purplecolor, 10%);
+    border: none;
+  }
+  .btn-info:hover{
+    background-color: darken(@bluecolor, 20%);
+    border: none;
+  }
+  .btn-success:hover{
+    background-color: darken(@greencolor, 10%);
+    border: none;
+  }
   a {
     color: black;
   }
   a:hover {
-    color: black;
+    color: rgb(194, 194, 194);
   }
   a:visited {
-    color: black;
+    color: rgb(194, 194, 194);
   }
   .navbar {
     margin-bottom: 0;
@@ -101,11 +138,9 @@ body{
   }
   .tab a {
     text-decoration: none;
-    color: black;
   }
   .tab a:hover {
     text-decoration: none;
-    color: black;
   }
   .panes .pane {
     display: none;
@@ -118,15 +153,26 @@ body{
     display: block;
 
   }
+  .veil {
+    background-color: rgba(255, 255, 255, .1);
+    padding: 50px 0;
+  }
+  .gallery {
+    //background-image: url('/img/lightpaperfibers.png');
+    background-color: lightgrey;
+  }
 
 //---------------
 // inbox include
 //---------------
 .inbox {
+  overflow: scroll;
+
   .message {
     padding: 10px;
     background-color: rgba(128, 128, 128, 0.19);
     margin: 15px 0;
+    background-image: url('/img/linedpaper.png');
 
     h3:first-of-type {
       padding: 0 40px;
@@ -155,6 +201,7 @@ body{
 //---------------
 
 .send-message {
+    background-image: url('/img/linedpaper.png');
   button {
     float: right;
     margin-top: 10px;
@@ -181,20 +228,33 @@ body{
 //=================================//
 
 .client-gallery {
-  border: 2px solid grey;
   margin: 0 auto;
   padding: 50px;
   margin-bottom: 50px;
+  padding-top: 60px;
+
+  .carousel {
+    height: 400px;
+  }
+  .photo-client {
+    height: 400px;
+    width: 100%;
+    background-size: cover;
+  }
 }
 .interactions {
   display: inline;
 }
 .name {
   border: 1px solid #eee;
-  padding: 20px;
   text-align: center;
   font-size: 40px;
-  margin: 0 47px;
+  margin: 0 52px;
+  background-color: rgb(233,232,232);
+
+  h2 {
+    color: black;
+  }
 }
 
 
@@ -202,9 +262,12 @@ body{
 //----GIFTS PAGE -----------//
 //=================================//
 .table {
-  background-color: rgba(151, 151, 151, 0.55);
+  //background-color: #282828;i
+  border-color: #3C3B3B;
+  border: 2px outset #3C3B3B;
   th {
    font-size: 25px;
+   background-color: #3C3B3B;
   }
   .add-cart-btn {
     padding: 20px 0 20px 40px;
@@ -215,6 +278,9 @@ body{
   .price {
     font-size: 25px;
     padding-top: 20px;
+  }
+  td:hover {
+    background-color: rgba(151, 151, 151, 0.55);
   }
 }
 //----CART PAGE -----------//
