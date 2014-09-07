@@ -11,24 +11,11 @@ h2 Your Photos
     .form-group
       label(for='photo') Select Profile Photo
       select.form-control(name='photo')
-        //each photo, index in user.photos
+        each photo, index in user.photos
           option= index + 1
     button.btn.btn-primary(type='submit') Change
 
 .col-xs-6
-  //each photo, index in user.photos
+  each photo, index in user.photos
     div.profile-photo(style='background-image: url(#{photo})')
     h3=index + 1
-  //#carousel-example-generic(class='carousel slide', data-ride='carousel')
-    ol.carousel-indicators
-      - for (var i = 0; i < user.photos.length; i ++){
-        li(data-target='#carousel-example-generic', data-slide-to=i)
-      - }
-    .carousel-inner
-      each photo, index in user.photos
-        div(class=index === 0 ? 'item active' : 'item', style='height: 50px, width: 75px')
-          .photo-treasure(style='background-image: url("#{photo}")')
-    a(class='left carousel-control', href='#carousel-example-generic', role='button', data-slide='prev')
-      span(class='glyphicon glyphicon-chevron-left')
-    a(class='right carousel-control', href='#carousel-example-generic', role='button', data-slide='next')
-      span(class='glyphicon glyphicon-chevron-right')
