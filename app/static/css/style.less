@@ -7,6 +7,7 @@
 @redcolor: #E81F12;
 @darkredcolor: #9E001B;
 @purplecolor: #7F1D4A;
+@greyfont : dimgrey;
 
 //-----------   GENERAL -----------//
 //=================================//
@@ -14,7 +15,7 @@ body{
   font-family: @bodyfont;
   font-size: 16px;
   background-image: url('/img/dark_Tire.png') !important;
-  h1, h2, h3, h4, h5, h5 {
+  h1, h2, h3, h4, h5, h5, h6{
     font-family: @headerfont;
   }
   .container-fluid {
@@ -144,10 +145,10 @@ body{
   }
   .panes .pane {
     display: none;
-    border: 1px solid #eee;
+    border: 1px solid #5F5F5F;
     width: 100%;
     height: 700px;
-
+    overflow: scroll;
   }
   .panes .pane.active {
     display: block;
@@ -157,16 +158,15 @@ body{
     background-color: rgba(255, 255, 255, .1);
     padding: 50px 0;
   }
-  .gallery {
-    //background-image: url('/img/lightpaperfibers.png');
-    background-color: lightgrey;
+  .inbox-container, .gallery, .message, .edit {
+    background-color: rgba(173, 173, 173, 0.29);
+    overflow: scroll;
   }
 
 //---------------
 // inbox include
 //---------------
 .inbox {
-  overflow: scroll;
 
   .message {
     padding: 10px;
@@ -176,20 +176,24 @@ body{
 
     h3:first-of-type {
       padding: 0 40px;
+      color: @greyfont;
     }
     .subject {
       padding: 0 40px;
+      color: @greyfont;
     }
     .from {
       padding: 0 40px;
+      color: @greyfont;
     }
     .date {
       padding: 0 40px;
+      color: @greyfont;
     }
     .body {
-      border: 1px solid #eee;
-      background-color: #FCFCFC;
+      background-color: transparent;
       padding: 40px;
+      color: @greyfont;
     }
 
   }
