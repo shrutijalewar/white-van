@@ -5,7 +5,7 @@
     each message in messages
       .message
         h4.subject= message.subject
-        h5.from From: #{message.sender.username}
         h6.date= moment(message.date).fromNow()
-        p.body= message.body
+        h5.body= message.body
+        h4.from From: #{message.sender.username}
   .col-xs-2
