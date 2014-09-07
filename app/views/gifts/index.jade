@@ -1,22 +1,24 @@
 extends ../shared/template
 block content
-  h2 Bribes
-  table.table.table-bordered.table-hover
-    thead
-      tr
-        th Product
-        th Image
-        th Price
-    tbody
-      each gift in gifts
+  h2.text-center Bribes
+  .col-xs-2
+  .col-xs-8
+    table.table.table-hover
+      thead
         tr
-          td
-            form(method='post', action='/cart')
-              input(type='hidden', name='giftId', value=gift._id)
-              button.btn.btn-info(type='submit')=gift.name
-          td: a.thumbnail(href='#')
-            img(src=gift.photo)
-          td $#{gift.price.toFixed(2)}
+          th Product
+          th Image
+          th Price
+      tbody
+        each gift in gifts
+          tr
+            td
+              form.add-cart-btn(method='post', action='/cart')
+                input(type='hidden', name='giftId', value=gift._id)
+                button.btn.btn-success(type='submit')=gift.name
+            td: img.product-img(src=gift.photo)
+            td.price $#{gift.price.toFixed(2)}
+  .col-xs-2
 
 
 block scripts
