@@ -171,8 +171,12 @@ User.prototype.shank = function(client, cb){
 
 User.prototype.stalkStart = function(id, cb){
   this.stalk = this.stalk || [];
-  console.log(this.stalk);
   this.stalk.push(id);
+  User.collection.save(this, cb);
+};
+
+User.prototype.stalkStop = function(id, cb){
+  this.stalk = _.without(this.stalk, String(id));
   User.collection.save(this, cb);
 };
 

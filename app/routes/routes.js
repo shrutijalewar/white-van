@@ -42,6 +42,7 @@ module.exports = function(app, express){
   app.get('/users', users.index);
   app.post('/messages', users.send);
   app.post('/users/:userId/stalk', users.favorite);
+  app.put('/users/:userId/stalk', users.unfavorite);
   app.post('/users/:userId/shank', users.shank);
   app.post('/users/:userId/request', users.request);
   app.post('/users/:userId/hookup', users.hookup);

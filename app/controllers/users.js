@@ -80,8 +80,7 @@ exports.index = function(req, res){
 exports.show = function(req, res){
   User.findById(req.params.userId, function(err, client){
     var stalked = _.contains(res.locals.user.stalk, String(client._id));
-    console.log(stalked);
-    res.render('users/show', {client:client});
+    res.render('users/show', {client:client, stalked:stalked});
   });
 };
 
@@ -102,6 +101,15 @@ exports.favorite = function(req, res){
   User.findById(req.params.userId, function(err, client){
     res.locals.user.stalkStart(req.params.userId, function(){
       req.flash('success', 'You are now stalking', client.username + '. Don\'t worry, we won\'t tell.');
+      res.redirect('/users/' + req.params.userId);
+    });
+  });
+};
+
+exports.unfavorite = function(req, res){
+  User.findById(req.params.userId, function(err, client){
+    res.locals.user.stalkStop(req.params.userId, function(){
+      req.flash('success', 'We\'ve made a note that you lost interest in', client.username + '.');
       res.redirect('/users/' + req.params.userId);
     });
   });
