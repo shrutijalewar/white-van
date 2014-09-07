@@ -22,9 +22,9 @@
 
   function getUserPosition(){
     var $loc = $('#userLocation'),
-        name      = $loc.attr('data-name'),
-        lat       = $loc.attr('data-lat'),
-        lng       = $loc.attr('data-lng'),
+        name      = $loc.attr('data-name') || ('Cincinnati'),
+        lat       = $loc.attr('data-lat') || (39.10),
+        lng       = $loc.attr('data-lng') || (-84.52),
         pos       = {name:name, lat:parseFloat(lat), lng:parseFloat(lng)};
 
     return pos;
