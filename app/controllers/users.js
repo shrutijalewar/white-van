@@ -64,11 +64,15 @@ exports.photos = function(req, res){
   });
 };
 
-exports.index = function(req, res){
-  //eventually add sort & filter params
+exports.photo = function(req, res){
+  res.locals.user.changePhoto(req.body.photo, function(){
+    res.redirect('/profile');
+  });
+};
 
-  User.query(function(err, clients){
-    res.render('users/index', {clients:clients});
+exports.index = function(req, res){
+  User.query(req.user, req.query, function(err, clients){
+    res.render('users/index', {clients:clients, query:req.query});
   });
 };
 
@@ -78,11 +82,24 @@ exports.show = function(req, res){
   });
 };
 
+exports.send = function(req, res){
+  res.locals.user.send(req.body, function(){
+    res.redirect('profile');
+  });
+};
+
+exports.bribe = function(req, res){
+  User.findById(req.params.userId, function(err, receiver){
+    req.session.receiver = receiver;
+    res.redirect('/gifts');
+  });
+};
+
 exports.favorite = function(req, res){
   res.redirect('/users/' + req.params.userId);
 };
 
-exports.poke = function(req, res){
+exports.shank = function(req, res){
   res.redirect('/users/' + req.params.userId);
 };
 

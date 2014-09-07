@@ -5,6 +5,8 @@ var bcrypt  = require('bcrypt'),
     async   = require('async'),
     _       = require('underscore-contrib'),
     fs      = require('fs'),
+    twilio  = require('twilio'),
+    Mailgun = require('mailgun-js'),
     path    = require('path'),
     Mongo   = require('mongodb');
 
@@ -15,8 +17,28 @@ Object.defineProperty(User, 'collection', {
   get: function(){return global.mongodb.collection('users');}
 });
 
-User.query =function(cb){
-  User.collection.find().toArray(cb);
+User.query =function(currentUser, criteria, cb){
+  var query = {
+    'isPublic': true,
+    '_id': {'$ne': currentUser._id}
+  };
+
+  if (!isNullOrEmpty(criteria.gender)) {
+    query.gender = criteria.gender;
+  }
+  if (!isNullOrEmpty(criteria.isSmoker)) {
+    query.isSmoker = criteria.isSmoker === 'true' ? true : false;
+  }
+  if (!isNullOrEmpty(criteria.isRecord)) {
+    query.isRecord = criteria.isRecord === 'true' ? true : false;
+  }
+  if (!isNullOrEmpty(criteria.weapon)) {
+    query.weapon = criteria.weapon;
+  }
+  if (!isNullOrEmpty(criteria.lookingFor)) {
+    query.lookingFor = criteria.lookingFor;
+  }
+  User.collection.find(query).toArray(cb);
 };
 
 User.findById = function(id, cb){
@@ -110,8 +132,11 @@ User.prototype.uploadPhotos = function(files, cb){
   User.collection.save(this, cb);
 };
 
-User.prototype.send = function(receiverId, obj, cb){
-  Message.send(this._id, receiverId, obj.subject, obj.body, cb);
+User.prototype.changePhoto = function(numb, cb){
+  var index = (numb * 1) - 1;
+
+  this.profilePic = this.photos[index];
+  User.collection.save(this, cb);
 };
 
 User.prototype.findStalked = function(cb){
@@ -122,13 +147,48 @@ User.prototype.findHookedUp = function(cb){
   async.map(this.hookUp || [], iteratorId, cb);
 };
 
+User.prototype.send = function(obj, cb){
+  switch(obj.mType){
+    case 'text':
+      sendText(obj.message, cb);
+      break;
+    case 'email':
+      sendEmail(this.email, 'Message from Unmarked White Van', obj.message, cb);
+      break;
+    case 'internal':
+      Message.send(this._id, obj.receiverId, obj.subject, obj.message, cb);
+  }
+};
+
 module.exports = User;
 
 //private helper functions
+
+function isNullOrEmpty(prop){
+  return !prop || prop.length < 1;
+}
 
 function iteratorId(id, cb){
   User.findById(id, function(err, client){
     id = client;
     cb(null, id);
   });
+}
+
+function sendText(to, body, cb){
+  if(!to){return cb();}
+
+  var accountSid = process.env.TWSID,
+      authToken  = process.env.TWTOK,
+      from       = process.env.FROM,
+      client     = twilio(accountSid, authToken);
+
+  client.messages.create({to:to, from:from, body:body}, cb);
+}
+
+function sendEmail(from, to, subject, message, cb){
+  var mailgun = new Mailgun({apiKey:process.env.MGKEY, domain:process.env.MGDOM}),
+      data   = {from:from, to:to, subject:subject, text:message};
+
+  mailgun.messages().send(data, cb);
 }

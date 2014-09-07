@@ -36,7 +36,7 @@ exports.index = function(req, res){
 };
 
 exports.destroy = function(req, res){
-  req.session.cart = [];
+  req.session.cart     = [];
   req.session.save(function(){
     res.redirect('/cart');
   });
@@ -53,9 +53,11 @@ exports.purchase = function(req, res){
     card: stripeToken,
     description: req.user.email || 'anonymous'
   }, function(err, charge){
-    req.session.cart = [];
+    req.session.cart       = [];
+    req.flash('success', 'You successfully bribed', req.session.receiver.username + '!');
+    req.session.receiver   = null;
+    req.session.totalCents = null;
     req.session.save(function(){
-      req.flash('success', 'Your purchase was successful!');
       res.redirect('/profile');
     });
   });

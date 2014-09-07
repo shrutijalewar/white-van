@@ -1,6 +1,6 @@
 extends ../shared/template
 block content
-  h2 Bribes Cart
+  h2 Duffel Bag
 
   table#products.table.table-bordered-table-hover
     thead
@@ -45,7 +45,7 @@ block content
       button.btn.btn-info#backBribes: a(href='/gifts') Back to Bribes
     .col-xs-4
       form(action='/charge', method='post')
-        script.stripe-button(src='https://checkout.stripe.com/checkout.js', data-key=key, data-image='/img/marketplace.png', data-name='Amzon', data-amount=Math.round(total * 100))
+        script.stripe-button(src='https://checkout.stripe.com/checkout.js', data-key=key, data-image='/img/marketplace.png', data-name='True Love Has A Price', data-amount=Math.round(total * 100))
 
 block scripts
   script(src='/js/user/index.js')

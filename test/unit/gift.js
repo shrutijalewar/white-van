@@ -37,5 +37,13 @@ describe('Gift', function(){
       });
     });
   });
+  describe('.all', function(){
+    it('should find all gifts in an array', function(done){
+      Gift.all(function(err, gifts){
+        expect(gifts.length).to.equal(11);
+        done();
+      });
+    });
+  });
 });
 

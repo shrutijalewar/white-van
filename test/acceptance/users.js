@@ -162,6 +162,18 @@ describe('users', function(){
       });
     });
   });
+  describe('post /users/:userId/bribe', function(){
+    it('should show a series of giftable objects on the page', function(done){
+      request(app)
+      .post('/users/000000000000000000000002/bribe')
+      .set('cookie',cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/gifts');
+        done();
+      });
+    });
+  });
   describe('delete /logout', function(){
     it('should delete redis and logout user', function(done){
       request(app)

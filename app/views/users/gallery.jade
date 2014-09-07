@@ -1,22 +1,34 @@
 h2 Your Photos
-form#addPhotos(role='form', method='post', action='/photos', enctype='multipart/form-data')
-  .col-xs-12
+.col-xs-6
+  form#addPhotos(role='form', method='post', action='/photos', enctype='multipart/form-data')
     .form-group
       label(for='photos') Upload Photos
       input.form-control#photos(type='file', name='photos', multiple=true)
     button.btn.btn-primary(type='submit') Add
+  br
+  form#changeProfile(role='form', method='post', action='/photos')
+    input(type='hidden', name='_method', value='put')
+    .form-group
+      label(for='photo') Select Profile Photo
+      select.form-control(name='photo')
+        //each photo, index in user.photos
+          option= index + 1
+    button.btn.btn-primary(type='submit') Change
 
-  .col-xs-12
-    #carousel-example-generic(class='carousel slide', data-ride='carousel')
-      ol.carousel-indicators
-        - for (var i = 0; i < user.photos.length; i ++){
-          li(data-target='#carousel-example-generic', data-slide-to=i)
-        - }
-      .carousel-inner
-        each photo, index in user.photos
-          div(class=index === 0 ? 'item active' : 'item', style='height: 50px, width: 75px')
-            .photo-treasure(style='background-image: url("#{photo}")')
-      a(class='left carousel-control', href='#carousel-example-generic', role='button', data-slide='prev')
-        span(class='glyphicon glyphicon-chevron-left')
-      a(class='right carousel-control', href='#carousel-example-generic', role='button', data-slide='next')
-        span(class='glyphicon glyphicon-chevron-right')
+.col-xs-6
+  //each photo, index in user.photos
+    div.profile-photo(style='background-image: url(#{photo})')
+    h3=index + 1
+  //#carousel-example-generic(class='carousel slide', data-ride='carousel')
+    ol.carousel-indicators
+      - for (var i = 0; i < user.photos.length; i ++){
+        li(data-target='#carousel-example-generic', data-slide-to=i)
+      - }
+    .carousel-inner
+      each photo, index in user.photos
+        div(class=index === 0 ? 'item active' : 'item', style='height: 50px, width: 75px')
+          .photo-treasure(style='background-image: url("#{photo}")')
+    a(class='left carousel-control', href='#carousel-example-generic', role='button', data-slide='prev')
+      span(class='glyphicon glyphicon-chevron-left')
+    a(class='right carousel-control', href='#carousel-example-generic', role='button', data-slide='next')
+      span(class='glyphicon glyphicon-chevron-right')
