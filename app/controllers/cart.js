@@ -54,11 +54,13 @@ exports.purchase = function(req, res){
     description: req.user.email || 'anonymous'
   }, function(err, charge){
     req.session.cart       = [];
-    req.flash('success', 'You have successfully bribed'/*, req.session.receiver.username + '!'*/);
-    req.session.receiver   = null;
-    req.session.totalCents = null;
-    req.session.save(function(){
-      res.redirect('/profile');
+    req.flash('success', 'You successfully bribed', req.session.receiver.username + '!');
+    res.locals.user.send({mType: 'internal', senderId: res.locals.user._id, receiverId: req.session.receiver._id, subject: 'Head\'s Up!', message: 'A bribe is on its way to you.'}, function(){
+      req.session.receiver   = null;
+      req.session.totalCents = null;
+      req.session.save(function(){
+        res.redirect('/profile');
+      });
     });
   });
 };

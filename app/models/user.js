@@ -169,6 +169,13 @@ User.prototype.shank = function(client, cb){
   Message.send(this._id, client._id, subject, message, cb);
 };
 
+User.prototype.stalkStart = function(id, cb){
+  this.stalk = this.stalk || [];
+  console.log(this.stalk);
+  this.stalk.push(id);
+  User.collection.save(this, cb);
+};
+
 module.exports = User;
 
 //private helper functions
