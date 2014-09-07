@@ -11,9 +11,12 @@ coverage status icon
 ![Image1](https://raw.githubusercontent.com/shrutijalewar/white-van/master/docs/screenshots/3.jpg)
 ![Image1](https://raw.githubusercontent.com/shrutijalewar/white-van/master/docs/screenshots/4.jpg)
 
-
+## Unmarked White Van
 ### Description
-write a description about your project
+Are you lonely, looking for love, companionship and have a fetish for killing people? Then look no further, this is a dating website made especially for serial killers. Feel free to air your skeletons from the closet (literally or figuratively) in the company that you can gel well with. Feel free to stalk, shank and hookup with others from the safety and convenience of your home...
+##It really is as simple as that or is it?? There is only one way to find out...
+###Come hop in the unmarked white van for free candy!
+
 
 ### Models
 ```
@@ -68,7 +71,6 @@ messages
 ```
 ```
 users
-```
 
 ### Features
 - [x] Local Login, login(passport strategy)

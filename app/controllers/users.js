@@ -132,9 +132,19 @@ exports.request = function(req, res){
 };
 
 exports.hookup = function(req, res){
-  res.redirect('/users/' + req.params.userId);
+  res.locals.user.hookup(req.params, function(){
+    req.flash('success', 'Congrats! You are now hooked up!');
+    res.redirect('/profile');
+  });
 };
 
 exports.reject = function(req, res){
+  res.locals.user.reject(req.params, function(){
+    req.flash('success', 'Hey killer. We would have said no as well.');
+    res.redirect('/profile');
+  });
+};
+
+exports.breakup = function(req, res){
   res.redirect('/users/' + req.params.userId);
 };

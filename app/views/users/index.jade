@@ -16,8 +16,6 @@ block content
               a(href='#', data-value='male') Male
             li
               a(href='#', data-value='female') Female
-            li
-              a(href='#') Other
       .col-xs-2.search-btn
         .btn-group.btn-input.clearfix
           button.btn.btn-info.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
@@ -26,9 +24,9 @@ block content
             span.caret
           ul.dropdown-menu(role='menu')
             li
-              a(href='#', data-value='false') NonSmoker
+              a(href='#', data-value='false') No
             li
-              a(href='#', data-value='true') Smoker
+              a(href='#', data-value='true') Yes
       .col-xs-2.search-btn
         .btn-group.btn-input.clearfix
           button.btn.btn-info.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
@@ -75,27 +73,16 @@ block content
     #criteria
       h4 You searched for:
 
-      if(query.gender)
+      if query.gender
         span= query.gender
-      else
-
-      if(query.isSmoker)
-        span smoker
-      else
-        span= !query.isSmoker === '' ? 'nonsmoker' : ''
-
-      if(query.isRecord)
-        span criminal record
-      else
-        span= !query.isRecord === '' ? 'no record' : ''
-
-      if(query.weapon)
+      if query.isSmoker
+        span= query.isSmoker === 'true' ? 'Smoker' : 'Non-smoker'
+      if query.isRecord
+        span= query.isRecord === 'true' ? 'Criminal Record' : 'No Record'
+      if query.weapon
         span= query.weapon
-      else
-
-      if(query.lookingFor)
+      if query.lookingFor 
         span= query.lookingFor
-      else
 
       #clear.pull-right
         a.btn.btn-info.btn-xs(href='/users') Clear

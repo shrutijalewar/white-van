@@ -168,7 +168,7 @@ User.prototype.shank = function(client, cb){
   var subject = 'Call Doctor Love...',
       message = 'Because you\'ve been SHANKED!';
 
-  Message.send(this._id, client._id, subject, message, cb);
+  Message.send(this._id, client._id, subject, message, false, cb);
 };
 
 User.prototype.stalkStart = function(id, cb){
@@ -188,6 +188,40 @@ User.prototype.request = function(receiverId, cb){
       senderId = this._id;
 
   Message.send(senderId, receiverId, subject, body, true, cb);
+};
+
+User.prototype.hookup = function(obj, cb){
+  console.log('in the model');
+  var messageId = Mongo.ObjectID(obj.messageId),
+      self      = this,
+      body      = 'And you\'re not going to have to ride it alone. Total messaging is now available with ' + self.username + '.',
+      subject   = 'Life Is A Highway...';
+  self.hookUp = self.hookUp || [];
+
+  Message.collection.remove({_id:messageId}, function(){
+    User.findById(obj.userId, function(err, receiver){
+      receiver.hookUp = receiver.hookUp || [];
+      receiver.hookUp.push(self._id);
+      self.hookUp.push(receiver._id);
+      User.collection.save(receiver, function(){
+        User.collection.save(self, function(){
+          Message.send(self._id, receiver._id, subject, body, false, cb);
+        });
+      });
+    });
+  });
+};
+
+User.prototype.reject = function(obj, cb){
+  var messageId = Mongo.ObjectID(obj.messageId),
+      self      = this,
+      body      = 'And, ' + this.username + ' is making you ride with an empty passenger seat a while longer. Chin up and do something you enjoy tonight! If you get too lonely, you can always turn yourself in.',
+      subject   = 'Life Is A Highway...';
+
+  Message.collection.remove({_id:messageId}, function(a, b, c){
+    console.log(a, b, c);
+    Message.send(self._id, obj.userId, subject, body, false, cb);
+  });
 };
 
 module.exports = User;

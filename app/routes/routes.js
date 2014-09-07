@@ -45,8 +45,9 @@ module.exports = function(app, express){
   app.put('/users/:userId/stalk', users.unfavorite);
   app.post('/users/:userId/shank', users.shank);
   app.post('/users/:userId/request', users.request);
-  app.post('/users/:userId/hookup', users.hookup);
-  app.post('/users/:userId/reject', users.reject);
+  app.delete('/users/:userId/request/:messageId', users.reject);
+  app.post('/users/:userId/hookup/:messageId', users.hookup);
+  app.delete('/users/:userId/hookup', users.breakup);
   app.post('/users/:userId/bribe', users.bribe);
   app.get('/users/:userId', users.show);
   app.get('/gifts', gifts.index);

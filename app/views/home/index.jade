@@ -2,12 +2,12 @@ extends ../shared/template
 block content
   #index(style= 'background-image: url(/img/home-bg.jpg)')
     if(!user)
-      .row
+      .row#login-header
         .col-xs-6
           h2.text-center Register
         .col-xs-6
           h2.text-center Login
-      .row
+      .row#login-form
         .col-xs-1
         .col-xs-4
           form(role='form', method='post', action='/register')
@@ -17,7 +17,7 @@ block content
             .form-group
               label(for='password') Password
               input.form-control#password(type='password', name='password')
-            button.btn.btn-primary(type='submit') Submit
+            button.btn.btn-warning(type='submit') Submit
         .col-xs-1
         .col-xs-1
         .col-xs-4

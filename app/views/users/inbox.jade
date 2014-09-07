@@ -8,4 +8,12 @@
         h6.date= moment(message.date).fromNow()
         h5.body= message.body
         h4.from From: #{message.sender.username}
+        if(message.isRequest)
+          .btn-group
+            form(name='response', method='post', action='/users/#{message.sender._id}/hookup/#{message._id}')
+              button.btn.btn-success.interactions.btn-md#bribe(type='submit') Hook Up!
+          .btn-group
+            form(name='response', method='post', action='/users/#{message.sender._id}/request/#{message._id}')
+              input(type='hidden', name='_method', value='delete')
+              button.btn.btn-warning.interactions.btn-md#shank(type='submit') No Way!
   .col-xs-2
