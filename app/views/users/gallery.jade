@@ -17,5 +17,5 @@ h2.text-center Your Photos
 .row
   .col-xs-12.user-photos
     each photo, index in user.photos
-      div.profile-photo(style='background-image: url(#{photo})')
+      .profile-photo(style='background-image: url(#{photo})')
       p.index=index + 1
