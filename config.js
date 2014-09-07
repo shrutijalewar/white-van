@@ -21,13 +21,14 @@ config.stripe = {
 };
 
 config.twilio = {
-accountSid = process.env.TWSID,
-authToken  = process.env.TWTOK,
-from       = process.env.FROM,
+  accountSid : process.env.TWSID,
+authToken  : process.env.TWTOK,
+from       : process.env.FROM,
 };
 
-config.mailgun{
-ApiKey = process.env.MAILAPIKEY,
-domain = process.env.MAILDOMAIN,
+config.mailgun = {
+  ApiKey : process.env.MAILAPIKEY,
+domain : process.env.MAILDOMAIN,
 };
+
 module.exports = config;
