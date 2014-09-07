@@ -100,12 +100,12 @@ exports.favorite = function(req, res){
 };
 
 exports.shank = function(req, res){
-  User.findById(req.params.userId, function(err, client){
+  //User.findById(req.params.userId, function(err, client){
     //res.locals.user.shank(client, function(){
-    req.flash('success', 'You just shanked', client.username + '!');
-    res.redirect('/users/' + req.params.userId);
+   // req.flash('success', 'You just shanked', client.username + '!');
+  res.redirect('/users/' + req.params.userId);
    // });
-  });
+  //});
 };
 
 exports.request = function(req, res){
