@@ -17,24 +17,25 @@ block content
           td $#{gifts[id].g.price.toFixed(2)}
           td= gifts[id].c
           td= '$' + (gifts[id].g.price * gifts[id].c).toFixed(2)
-        tr
-          td
-          td
-          td
-          td Subtotal
-          td= '$'+ subtotal.toFixed(2)
-        tr
-          td
-          td
-          td
-          td Tax
-          td= '$'+ tax.toFixed(2)
-        tr
-          td
-          td
-          td
-          td Total
-          td= '$'+ total.toFixed(2)
+    tfoot
+      tr
+        td
+        td
+        td
+        td Subtotal
+        td= '$'+ subtotal.toFixed(2)
+      tr
+        td
+        td
+        td
+        td Tax
+        td= '$'+ tax.toFixed(2)
+      tr
+        td
+        td
+        td
+        td Total
+        td= '$'+ total.toFixed(2)
 
   .row
     .col-xs-4
