@@ -149,12 +149,14 @@ User.prototype.findHookedUp = function(cb){
   async.map(this.hookUp || [], iteratorId, cb);
 };
 
-User.prototype.send = function(obj, cb){
-  var request = obj.request || false;
+User.prototype.send = function(receiver, obj, cb){
+  var request        = obj.request || false;
+
+  receiver.phone = receiver.phone || null;
 
   switch(obj.mType){
     case 'text':
-      sendText(obj.message, cb);
+      sendText(receiver.phone, obj.message, cb);
       break;
     case 'email':
       sendEmail(this.email, 'Message from Unmarked White Van', obj.message, cb);
@@ -168,7 +170,10 @@ User.prototype.shank = function(client, cb){
   var subject = 'Call Doctor Love...',
       message = 'Because you\'ve been SHANKED!';
 
-  Message.send(this._id, client._id, subject, message, false, cb);
+  Message.send(this._id, client._id, subject, message, false, function(){
+    client.phone = client.phone || null;
+    sendText(client.phone, 'SHANKED!! -UWV', cb);
+  });
 };
 
 User.prototype.stalkStart = function(id, cb){
