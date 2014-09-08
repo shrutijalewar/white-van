@@ -39,12 +39,12 @@ block content
           td= '$'+ total.toFixed(2)
   .col-xs-2
   .row
-    .col-xs-6
+    .col-xs-6.buttons
       button.btn.btn-success#backBribes: a(href='/gifts') Back to Bribes
         form(method='post', action='/cart')
           input(type='hidden', name='_method', value='delete')
-      button.btn.btn-success(type='submit') Empty Cart
-      form(action='/charge', method='post')
+      button.btn.btn-success#empty-cart(type='submit') Empty Cart
+      form#pay-here(action='/charge', method='post')
       script.stripe-button(src='https://checkout.stripe.com/checkout.js', data-key=key, data-image='/img/marketplace.png', data-name='True Love Has A Price', data-amount=Math.round(total * 100))
 
 block scripts
