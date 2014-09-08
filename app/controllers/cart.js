@@ -36,7 +36,7 @@ exports.index = function(req, res){
 };
 
 exports.destroy = function(req, res){
-  req.session.cart = [];
+  req.session.cart     = [];
   req.session.save(function(){
     res.redirect('/cart');
   });
@@ -47,16 +47,24 @@ exports.purchase = function(req, res){
   var stripe = require('stripe')(config.stripe.secretKey),
       stripeToken = req.body.stripeToken;
 
+  console.log('stripeToken', stripeToken);
+
   stripe.charges.create({
     amount: req.session.totalCents,
     currency: 'usd',
     card: stripeToken,
     description: req.user.email || 'anonymous'
   }, function(err, charge){
-    req.session.cart = [];
-    req.session.save(function(){
-      req.flash('success', 'Your purchase was successful!');
-      res.redirect('/profile');
+    req.session.cart       = [];
+    req.flash('success', 'You successfully bribed', req.session.receiver.username + '!');
+    res.locals.user.send(req.session.receiver, {mType: 'internal', subject: 'Head\'s Up!', message: 'A bribe is on its way to you.'}, function(){
+      res.locals.user.send(req.session.receiver, {mType: 'email', subject: 'Head\'s Up!', message: 'A bribe is on its way to you.'}, function(){
+        req.session.receiver   = null;
+        req.session.totalCents = null;
+        req.session.save(function(){
+          res.redirect('/profile');
+        });
+      });
     });
   });
 };

@@ -57,22 +57,22 @@ describe('cart', function(){
       request(app)
       .post('/charge')
       .set('cookie',cookie)
-      .send('')
+      //how to set req.session.reciever??
       .end(function(err, res){
-        //expect(res.status).to.equal(302);
-       // expect(res.text).to.include('Total');
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/profile');
         done();
       });
     });
   });
-  describe('delete /carts', function(){
+  describe('delete /cart', function(){
     it('should delete objects in the cart', function(done){
       request(app)
-      .delete('/carts')
+      .delete('/cart')
       .set('cookie',cookie)
       .end(function(err, res){
-        //expect(res.status).to.equal(200);
-       // expect(res.text).to.include('Total');
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/cart');
         done();
       });
     });

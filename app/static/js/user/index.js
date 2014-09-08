@@ -4,23 +4,27 @@
   var map;
 
   $(document).ready(function(){
-    $('.dropdown-menu li').click(itemSelected);
+    $('.dropdown-menu li a').click(itemSelected);
     var pos = getUserPosition();
-    initMap(pos.lat, pos.lng, 7);
+    initMap(pos.lat, pos.lng, 5);
+    var positions = getPositions();
+    positions.forEach(function(pos){
+      addMarker(pos.lat, pos.lng, pos.name);
+    });
   });
 
 
   function initMap(lat, lng, zoom){
-    var styles = [{'featureType':'road','elementType':'geometry','stylers':[{'lightness':100},{'visibility':'simplified'}]},{'featureType':'water','elementType':'geometry','stylers':[{'visibility':'on'},{'color':'#C6E2FF'}]},{'featureType':'poi','elementType':'geometry.fill','stylers':[{'color':'#C5E3BF'}]},{'featureType':'road','elementType':'geometry.fill','stylers':[{'color':'#D1D1B8'}]}],
+    var styles = [{'stylers':[{'hue':'#ff1a00'},{'invert_lightness':true},{'saturation':-100},{'lightness':33},{'gamma':0.5}]},{'featureType':'water','elementType':'geometry','stylers':[{'color':'#2D333C'}]}],
         mapOptions = {center: new google.maps.LatLng(lat, lng), zoom: zoom, mapTypeId: google.maps.MapTypeId.ROADMAP, styles: styles};
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
   }
 
   function getUserPosition(){
     var $loc = $('#userLocation'),
-        name      = $loc.attr('data-name'),
-        lat       = $loc.attr('data-lat'),
-        lng       = $loc.attr('data-lng'),
+        name      = $loc.attr('data-name') || ('Cincinnati'),
+        lat       = $loc.attr('data-lat') || (39.10),
+        lng       = $loc.attr('data-lng') || (-84.52),
         pos       = {name:name, lat:parseFloat(lat), lng:parseFloat(lng)};
 
     return pos;
@@ -34,8 +38,24 @@
            .children('.dropdown-toggle').dropdown('toggle');
     $target.closest('.btn-group')
            .find('input')
-           .val($target.text());
+           .val($target.data('value'));
     return false;
+  }
+
+  function addMarker(lat, lng, name){
+    var latLng = new google.maps.LatLng(lat, lng);
+    new google.maps.Marker({map: map, position: latLng, title: name, animation: google.maps.Animation.DROP});
+  }
+
+  function getPositions(){
+    var positions = $('.locationValue').toArray().map(function(a){
+      var name = $(a).attr('data-name'),
+           lat = $(a).attr('data-lat'),
+           lng = $(a).attr('data-lng'),
+           pos = {name:name, lat:parseFloat(lat), lng:parseFloat(lng)};
+      return pos;
+    });
+    return positions;
   }
 })();
 

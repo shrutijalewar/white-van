@@ -1,41 +1,55 @@
 extends ../shared/template
 block content
-  .row
+  .row.veil
     .col-xs-2
     .col-xs-4.basic-info
-      .profile-img(style='background-image:url("#{user.profilePic}");')
-      .name= user.username
+      .profile-img(style='background-image:url(#{client.profilePic || "/img/anon.jpg"});')
+      .name
+        h2= client.username || 'anonymous'
     .col-xs-4.bio
-      .buttons.btn-group.btn-group-justified.interaction-btns
-        .btn-group
-          form(name='stalk', method='post', action='')
-            button.btn.btn-danger.interactions.btn-md#stalk(type='button') Stalk
-        .btn-group
-          form(name='shank', method='post', action='')
-            button.btn.btn-warning.interactions.btn-md#shank(type='button') Shank
-        .btn-group
-          form(name='bribe', method='post', action='')
-            button.btn.btn-success.interactions.btn-md#bribe(type='button') Bribe
-        .btn-group
-          form(name='hookup', method='post', action='')
-            button.btn.btn-info.interactions.btn-md#hookup(type='button') Hookup
       .panel.panel-default
         .panel-heading The Quick and Dirty
         ul.list-group
-          li.list-group-item Seeking: &nbsp#{user.lookingFor}
-          li.list-group-item Age: &nbsp#{user.age}
-          li.list-group-item Gender: &nbsp#{user.gender}
-          if(user.isSmoker)
+          li.list-group-item Seeking: &nbsp#{client.lookingFor}
+          li.list-group-item Age: &nbsp#{client.age}
+          li.list-group-item Gender: &nbsp#{client.gender}
+          if(client.isSmoker)
             li.list-group-item Smoker: Yes
           else
             li.list-group-item Smoker: No
-          if(user.isRecord)
+          if(client.isRecord)
             li.list-group-item Criminal Record: Yes
           else
             li.list-group-item Criminal Record: No
-          li.list-group-item My Favorite Weapon is: &nbsp#{user.weapon}
-      p Collection weekend sandwich grey gag hammer tank dead michelle vegan. 
-        Steve jobs facepalm pizza crying russia father cookie monster.
+          li.list-group-item My Favorite Weapon is: &nbsp#{client.weapon}
+      p= client.bio
+      if user.username === client.username
+      else
+        .buttons.btn-group.btn-group-justified.interaction-btns
+          if stalked === false
+            .btn-group
+              form(name='stalk', method='post', action='/users/#{client._id}/stalk')
+                button.btn.btn-danger.btn-disabled.interactions.btn-md#stalk(type='submit') Stalk
+          else
+            .btn-group
+              form(name='stalk', method='post', action='/users/#{client._id}/stalk')
+                input(type='hidden', name='_method', value='put')
+                button.btn.btn-danger.interactions.btn-md#stalk(type='submit') Unstalk
+          .btn-group
+            form(name='shank', method='post', action='/users/#{client._id}/shank')
+              button.btn.btn-warning.interactions.btn-md#shank(type='submit') Shank
+          .btn-group
+            form(name='bribe', method='post', action='/users/#{client._id}/bribe')
+              button.btn.btn-success.interactions.btn-md#bribe(type='submit') Bribe
+          if hooked === false
+            .btn-group
+              form(name='hookup', method='post', action='/users/#{client._id}/request')
+                button.btn.btn-info.interactions.btn-md#hookup(type='submit') Hookup
+          else
+            .btn-group
+              form(name='hookup', method='post', action='/users/#{client._id}/hookup')
+                input(type='hidden', name='_method', value='delete')
+                button.btn.btn-info.interactions.btn-md#hookup(type='submit') Breakup
     .col-xs-2
   .row
     .col-xs-2

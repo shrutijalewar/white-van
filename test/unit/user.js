@@ -8,7 +8,7 @@ var expect    = require('chai').expect,
     dbConnect = require('../../app/lib/mongodb'),
     //Mongo     = require('mongodb'),
     cp        = require('child_process'),
-    db        = 'template-test';
+    db        = 'white-van-test';
 
 describe('User', function(){
   before(function(done){
@@ -38,21 +38,51 @@ describe('User', function(){
       });
     });
   });
-
-  /*describe('#update', function(){
+  describe('#findStalked', function(){
+    it('should find all that a user is stalking', function(done){
+      var o = {name:'patty', stalk:['000000000000000000000002']},
+          pat = new User();
+      pat.update(o, function(){
+        pat.findStalked(function(err, stalk){
+          expect(stalk[0].username).to.equal('Sue');
+          expect(stalk[0].isSmoker).to.be.false;
+          done();
+        });
+      });
+    });
+  });
+  describe('#findHookedUp', function(){
+    it('should find all that a user is hooked up with', function(done){
+      var o = {name:'patty', hookUp:['000000000000000000000002']},
+          mat = new User();
+      mat.update(o, function(){
+        mat.findHookedUp(function(err, hookUp){
+          expect(hookUp[0].username).to.equal('Sue');
+          expect(hookUp[0].isSmoker).to.be.false;
+          done();
+        });
+      });
+    });
+  });
+  describe('#update', function(){
     it('should save a user', function(done){
-      var u = new User(),
-          o = {x:3, visible:'public', foo:'bar'};
+      var user = new User(),
+          o = {loc:{name:'abc',lat:33, lng: 44}, isRecord: false, age:'44',isPublic:'No'};
 
-      u.baz = 'bim';
-      u.update(o, function(err, user){
-        expect(user.isVisible).to.be.true;
-        expect(user.foo).to.equal('bar');
+      user.baz = 'bim';
+      user.update(o, function(err, user){
+        console.log('>>>>>>>', user);
+        expect(user.isPublic).to.be.false;
+        expect(user.isRecord).to.be.false;
+        expect(user.age).to.equal(44);
+        expect(user.loc.name).to.equal('abc');
+        expect(user.loc.lat).to.equal(33);
+        expect(user.loc.lng).to.equal(44);
         expect(user.baz).to.equal('bim');
         done();
       });
     });
-  });*/
+  });
 //Last braces
 });
 

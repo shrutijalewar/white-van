@@ -2,15 +2,30 @@
 
 @headerfont: 'Nothing You Could Do', cursive;
 @bodyfont: 'Forum', cursive;
+@greencolor: #1C7A05;
+@bluecolor: #246690;
+@redcolor: #E81F12;
+@darkredcolor: #9E001B;
+@purplecolor: #7F1D4A;
+@greyfont : dimgrey;
 
 //-----------   GENERAL -----------//
 //=================================//
-body{
+body {
   font-family: @bodyfont;
   font-size: 16px;
-
-  h1, h2, h3, h4, h5, h5 {
+  background-image: url('/img/dark_Tire.png') !important;
+  h1, h2, h3, h4, h5, h5, h6 {
     font-family: @headerfont;
+  }
+  .navbar {
+    z-index: 100;
+  }
+  .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+    margin-left: 5px;
+  }
+  .container-fluid {
+    padding: 0;
   }
   .wrapper {
     margin: 0 auto;
@@ -22,16 +37,116 @@ body{
   button {
     font-size: 20px;
   }
+  .btn-danger{
+    background-color: @redcolor;
+    border: none;
+  }
+  .btn-warning{
+    background-color: @purplecolor;
+    border: none;
+  }
+  .btn-info{
+    background-color: @bluecolor;
+    border: none;
+  }
+  .btn-success{
+    background-color: @greencolor;
+    border: none;
+  }
+  .btn-danger:hover{
+    background-color: darken(@redcolor, 20%);
+    border: none;
+  }
+  .btn-warning:hover{
+    background-color: darken(@purplecolor, 10%);
+    border: none;
+  }
+  .btn-info:hover{
+    background-color: darken(@bluecolor, 20%);
+    border: none;
+  }
+  .btn-success:hover{
+    background-color: darken(@greencolor, 10%);
+    border: none;
+  }
+  .btn-danger:active{
+    background-color: darken(@redcolor, 20%);
+    border: none;
+  }
+  .btn-warning:active{
+    background-color: darken(@purplecolor, 10%);
+    border: none;
+  }
+  .btn-info:active{
+    background-color: darken(@bluecolor, 20%);
+    border: none;
+  }
+  .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open>.dropdown-toggle.btn-info {
+    background-color: darken(@bluecolor, 20%);
+  }
+  .btn-success:active{
+    background-color: darken(@greencolor, 10%);
+    border: none;
+  }
+  a {
+    color: black;
+  }
+  a:hover {
+    color: rgb(194, 194, 194);
+    text-decoration: none;
+  }
+  a:visited {
+    color: rgb(194, 194, 194);
+  }
+  .navbar {
+    margin-bottom: 0;
+  }
+  .band {
+    width: 100%;
+    height: 300px;
+    background-color: rgba(0, 0, 0, .4);
+  }
+  .title {
+    margin-top: 50px;
+
+    h1 {
+      font-size: 75px;
+      letter-spacing: 2px;
+
+      .color {
+        //color: @darkredcolor;
+      }
+    }
+    p {
+      font-size: 40px;
+      color: #eee;
+      text-align: center;
+        color: @darkredcolor;
+    }
+    span {
+      display: block;
+      text-align: center;
+      font-weight: bold;
+      font-size: 30px;
+    }
+  }
 }
 
  //----PROFILE VIEW PAGE -----------//
 //=================================//
+  .profile-photo {
+    width: 120px;
+    height: 80px;
+    background-size: cover;
+  }
   .profile-img {
     width: 300px;
     height: 300px;
     background-size: cover;
     margin: 0 auto;
     background-repeat: no-repeat;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
   }
   .interaction-btns {
     margin-bottom: 20px;
@@ -45,7 +160,7 @@ body{
   }
   .tabs .tab {
     padding: 5px 10px;
-    background-color: #eee;
+    background-color: #3C3C3C;
   }
   .tab {
     width: 150px;
@@ -58,51 +173,69 @@ body{
     margin: 0 5px;
   }
   .tabs .tab.active {
-    background-color: #bbb;
+    background-color: #810000;
     font-weight: bold;
   }
-  a:hover {
+  .tab a {
+    text-decoration: none;
+  }
+  .tab a:hover {
     text-decoration: none;
   }
   .panes .pane {
     display: none;
-    border: 1px solid #eee;
+    border: 1px solid #5F5F5F;
     width: 100%;
     height: 700px;
-
+    overflow: scroll;
+    border-radius: 5px;
   }
   .panes .pane.active {
     display: block;
 
+  }
+  .veil {
+    background-color: rgba(255, 255, 255, .1);
+    padding: 50px 0;
+  }
+  .inbox-container, .gallery, .message, .edit {
+    background-color: rgba(173, 173, 173, 0.29);
+    overflow: scroll;
   }
 
 //---------------
 // inbox include
 //---------------
 .inbox {
+
   .message {
     padding: 10px;
     background-color: rgba(128, 128, 128, 0.19);
     margin: 15px 0;
+    background-image: url('/img/linedpaper.png');
 
     h3:first-of-type {
       padding: 0 40px;
+      color: @greyfont;
     }
     .subject {
       padding: 0 40px;
+      color: @greyfont;
     }
     .from {
       padding: 0 40px;
+      color: @greyfont;
     }
     .date {
       padding: 0 40px;
+      color: @greyfont;
     }
     .body {
-      border: 1px solid #eee;
-      background-color: #FCFCFC;
+      background-color: transparent;
       padding: 40px;
+      color: @greyfont;
     }
-    
+
   }
 }
 
@@ -117,19 +250,52 @@ body{
     margin-top: 10px;
   }
 }
+#to {
+  margin-left: 13px;
+  width: 95%;
+}
+#subject, #message {
+  background-image: url('/img/linedpaper.png');
+  margin-bottom: 15px;
+}
 
 //---------------
 // gallery include
 //---------------
-.photo-treasure{
-    height: 410px;
+
+.user-photos {
+  margin-top: 40px;
+
+  .profile-photo {
+    height: 200px;
     background-size: cover;
-    }
+    width: 200px;
+    margin: 15px;
+    border-radius: 5px;
+    display: inline-block;
+  }
+  p.index {
+    font-size: 25px;
+    color: rgb(250, 244, 244);
+    display: inline;
+    background-color: grey;
+    padding: 5px 15px;
+    width: 50px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: top;
+  }
+}
 
 //---------------
 // edit profile include
 //---------------
 
+#editProfile {
+  overflow: hidden;
+  margin: 0 5px;
+}
 .checkbox {
   margin-left: 20px;
 }
@@ -138,41 +304,92 @@ body{
 //=================================//
 
 .client-gallery {
-  border: 2px solid grey;
   margin: 0 auto;
   padding: 50px;
   margin-bottom: 50px;
+  padding-top: 60px;
+
+  .carousel {
+    height: 400px;
+  }
+  .photo-client {
+    height: 400px;
+    width: 100%;
+    background-size: cover;
+  }
 }
 .interactions {
   display: inline;
 }
 .name {
   border: 1px solid #eee;
-  padding: 20px;
   text-align: center;
   font-size: 40px;
-  margin: 0 47px;
+  margin: 0 52px;
+  background-color: rgb(233,232,232);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  h2 {
+    color: black;
+  }
 }
 
 
 
 //----GIFTS PAGE -----------//
 //=================================//
-td:nth-child(2){
-  width: 33%;
+.table {
+  border-color: #3C3B3B;
+  border: 2px outset #3C3B3B;
+  th {
+   font-size: 25px;
+   background-color: #3C3B3B;
+  }
+  .add-cart-btn {
+    padding: 20px 0 20px 40px;
+  }
+  .product-img {
+    width: 140px;
+    border-radius: 5px;
+  }
+  .price {
+    font-size: 25px;
+    padding-top: 20px;
+  }
+  td:hover {
+    background-color: rgba(151, 151, 151, 0.55);
+  }
 }
-
 //----CART PAGE -----------//
 //=================================//
-#products td{
-  height: 150px;
-  background-size:contain;
-  background-repeat: no-repeat;
+#products td:hover{
+  background-color: transparent;
 }
-#products #cartPhoto{
+td {
+ font-size: 18px;
+}
+#cartPhoto{
   background-size: contain;
+  background-repeat: no-repeat;
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
+  vertical-align: middle;
 }
-
+.buttons {
+  float: right;
+  margin-bottom: 50px;
+}
+#pay-here {
+  display: inline-block;
+  margin: 5px;
+}
+#empty-cart {
+  margin: 0 15px 0 0;
+}
+#backBribes {
+  margin: 0 30px;
+}
 #backBribes a, a:visited{
   text-decoration: none;
   color: white;
@@ -195,7 +412,6 @@ td:nth-child(2){
 }
 .btn.dropdown-toggle {
   height: 60px;
-  background-color: #bbb;
 }
 .btn-input .btn.form-control .caret {
    margin-top: -1px;
@@ -207,10 +423,47 @@ td:nth-child(2){
   width: 100%;
   height: 600px;
 }
-#users {
-  height: 550px;
-  border: 1px solid #bbb;
+#criteria {
+  margin-top: 60px;
+}
+#criteria h4 {
+  padding-top: 20px;
+  padding-left: 10px;
+}
+#criteria span {
+  padding: 10px;
+  padding-bottom: 20px;
+}
+#clear {
+}
+#clients {
+  height: 450px;
   overflow: scroll;
+  margin-top: 15px;
+
+  .clients {
+    width: 33.333333333%;
+    border: 1px outset #eee;
+    padding-top: 10px;
+    background-color: rgb(235, 232, 232);
+    border-radius: 5px;
+
+    .client-img {
+      width: 100%;
+      height: 200px;
+      background-size: cover;
+    }
+    .caption {
+      .client-name {
+        font-size: 25px;
+        text-align: center;
+
+        h2 {
+          color: black;
+        }
+      }
+    }
+  }
 }
 //======================//
 //home-page//
@@ -233,13 +486,20 @@ video {
   min-height: 100%;
   width: auto;
   height: auto;
-  z-index: -100;
   background-color: cover;
 }
 
 #index {
-  background: url('../img/home-bg.jpg') no-repeat;
+  background: url('/img/home-bg.jpg') no-repeat;
   background-size: cover;
   height: 800px;
+  width: 100%;
 
+}
+#login-header {
+  padding-top: 60px;
+}
+#login-form {
+  opacity: .75;
+  color: black;
 }

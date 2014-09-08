@@ -1,14 +1,14 @@
 extends ../shared/template
 block content
-  .row
+  .row.veil
     .col-xs-2
-    .col-xs-4.basic-info
-      .profile-img(style='background-image:url("#{user.profilePic}");')
-      .name= user.username
+    .col-xs-4.basic-info: a(href='/users/'+ user._id.toString())
+      .profile-img(style='background-image:url(#{user.profilePic || "/img/anon.jpg"});')
+      .name
+        h2= user.username || 'anonymous'
     .col-xs-4.bio
       h3 Bio:
-      p Collection weekend sandwich grey gag hammer tank dead michelle vegan.
-        Steve jobs facepalm pizza crying russia father cookie monster
+      p= user.bio || 'Tell them who you are! Write a bio.'
       if(isPublic)
         p Your profile is set to Public.
       else
@@ -17,7 +17,7 @@ block content
         .panel-heading You are currently stalking
         ul.list-group
           each prey in stalked
-            li.list-group-item= prey.username
+            li.list-group-item: a(href='/users/#{prey._id}')= prey.username
     .col-xs-4
   .row
     .col-xs-2
@@ -28,13 +28,13 @@ block content
         a.tab(href='javascript:void(0)') Gallery
         a.tab(href='javascript:void(0)') Edit Profile
       .panes
-        .pane.active
+        .pane.inbox-container.active
           include inbox
-        .pane
+        .pane.message
           include message
-        .pane
+        .pane.gallery
           include gallery
-        .pane
+        .pane.edit
           include edit
     .col-xs-2
 
@@ -42,3 +42,4 @@ block content
 
 block scripts
   script(src='/js/user/profile.js')
+  script(src='/js/user/message.js')

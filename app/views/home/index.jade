@@ -1,42 +1,47 @@
 extends ../shared/template
 block content
-  .section.content-section.video-section
-    #bgvid(autoplay='autoplay', loop='loop', muted='muted', src='/video/bgClip2L.mp4', type='video/mp4')
-    #img(style= 'background-image:url(/img/home-bg);')
-          .container
-            .row
-              .col-lg-12
-                .row
-                  .col-xs-6
-                    h2.text-center Register
-                  .col-xs-6
-                    h2.text-center Login
-                .row
-                  .col-xs-1
-                  .col-xs-4
-                    form(role='form', method='post', action='/register')
-                      .form-group
-                        label(for='email') Email
-                        input.form-control#email(type='email', name='email', autofocus=true)
-                      .form-group
-                        label(for='password') Password
-                        input.form-control#password(type='password', name='password')
-                      button.btn.btn-primary(type='submit') Submit
-                  .col-xs-1
-                  .col-xs-1
-                  .col-xs-4
-                    form(role='form', method='post', action='/login')
-                      .form-group
-                        label(for='email') Email
-                        input.form-control#email(type='email', name='email', autofocus=true)
-                      .form-group
-                        label(for='password') Password
-                        input.form-control#password(type='password', name='password')
-                      button.btn.btn-success(type='submit') Submit
-                    .form-group
-                      p: a(href='/auth/reddit'): i.fa.fa-reddit.fa-lg  &nbsp Log in with Reddit
-                      p: a(href='/auth/tumblr'): i.fa.fa-tumblr.fa-lg  &nbsp Log in with Tumblr
+  #index
+    video(autoplay loop poster="" id="bgvid")
+      source(src="/video/bgClip2L.mp4", type="video/mp4")
+    if(!user)
+      .row#login-header
+        .col-xs-6
+          h2.text-center Register
+        .col-xs-6
+          h2.text-center Login
+      .row#login-form
+        .col-xs-1
+        .col-xs-4
+          form(role='form', method='post', action='/register')
+            .form-group
+              label(for='email') Email
+              input.form-control#email(type='email', name='email', autofocus=true)
+            .form-group
+              label(for='password') Password
+              input.form-control#password(type='password', name='password')
+            button.btn.btn-warning(type='submit') Submit
+        .col-xs-1
+        .col-xs-1
+        .col-xs-4
+          form(role='form', method='post', action='/login')
+            .form-group
+              label(for='email') Email
+              input.form-control#email(type='email', name='email', autofocus=true)
+            .form-group
+              label(for='password') Password
+              input.form-control#password(type='password', name='password')
+            button.btn.btn-success(type='submit') Submit
 
+    else
+
+      .row.band
+        .col-xs-2
+        .col-xs-8.title
+          h1 Unmarked White 
+            strong.color Van
+          p Come find your match!
+          //span.text-center Is it really that easy? There is only one way to find out...
+        .col-xs-2
 
  block scripts
  script(src='/js/user/home.js')

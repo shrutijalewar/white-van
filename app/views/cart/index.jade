@@ -1,51 +1,55 @@
 extends ../shared/template
 block content
-  h2 Bribes Cart
-
-  table#products.table.table-bordered-table-hover
-    thead
-      th Product
-      th Image
-      th Price
-      th Quantity
-      th Subtotal
-    tbody
-      each id in ids
-        tr
-          td= gifts[id].g.name
-          td#cartPhoto(style='background-image:url("#{gifts[id].g.photo}")')
-          td $#{gifts[id].g.price.toFixed(2)}
-          td= gifts[id].c
-          td= '$' + (gifts[id].g.price * gifts[id].c).toFixed(2)
-        tr
+  h2.text-center Duffel Bag
+  .col-xs-2
+  .col-xs-8
+    table#products.table.table-bordered-table-hover
+      thead
+        th Product
+        th Image
+        th Price
+        th Quantity
+        th Subtotal
+      tbody
+        each id in ids
+          tr
+            td= gifts[id].g.name
+            td#cartPhoto(style='background-image:url("#{gifts[id].g.photo}")')
+            td $#{gifts[id].g.price.toFixed(2)}
+            td= gifts[id].c
+            td= '$' + (gifts[id].g.price * gifts[id].c).toFixed(2)
+      tfoot
+        tr.nonimportant
           td
           td
           td
           td Subtotal
           td= '$'+ subtotal.toFixed(2)
-        tr
+        tr.nonimportant
           td
           td
           td
           td Tax
           td= '$'+ tax.toFixed(2)
-        tr
+        tr.nonimportant
           td
           td
           td
           td Total
           td= '$'+ total.toFixed(2)
-
+  .col-xs-2
   .row
-    .col-xs-4
+    .col-xs-1.buttons
+    .col-xs-4.buttons
+      form#pay-here(action='/charge', method='post')
+       script.stripe-button(src='https://checkout.stripe.com/checkout.js', data-key=key, data-image='/img/marketplace.png', data-name='True Love Has A Price', data-amount=Math.round(total * 100))
+    .col-xs-3.buttons
       form(method='post', action='/cart')
         input(type='hidden', name='_method', value='delete')
-        button.btn.btn-info(type='submit') Empty Cart
-    .col-xs-4
-      button.btn.btn-info#backBribes: a(href='/gifts') Back to Bribes
-    .col-xs-4
-      form(action='/charge', method='post')
-        script.stripe-button(src='https://checkout.stripe.com/checkout.js', data-key=key, data-image='/img/marketplace.png', data-name='Amzon', data-amount=Math.round(total * 100))
+        button.btn.btn-success#empty-cart(type='submit') Empty Cart
+    .col-xs-3.buttons
+      button.btn.btn-success#backBribes: a(href='/gifts') Back to Bribes
+    .col-xs-1.buttons
 
 block scripts
   script(src='/js/user/index.js')

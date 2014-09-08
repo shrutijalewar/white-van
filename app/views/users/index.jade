@@ -1,83 +1,101 @@
 extends ../shared/template
 block content
-  .col-xs-5#userLocation(data-name='user.loc.name', data-lat='user.loc.lat', data-lng='user.loc.lng')
+  .col-xs-5#userLocation(data-name=user.loc.name, data-lat=user.loc.lat, data-lng=user.loc.lng)
     #map
   .col-xs-7
     #searchbar
-    form(method='post', action='' name='query')
+    form(method='get', action='/users' name='filter')
       .col-xs-2.search-btn
         .btn-group.btn-input.clearfix
-          button.btn.btn-default.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
+          button.btn.btn-info.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
             input(type='hidden', name='gender', value='')
             span(data-bind='label') Gender
             span.caret
           ul.dropdown-menu(role='menu')
             li
-              a(href='#') Male
+              a(href='#', data-value='male') Male
             li
-              a(href='#') Female
-            li
-              a(href='#') Other
+              a(href='#', data-value='female') Female
       .col-xs-2.search-btn
         .btn-group.btn-input.clearfix
-          button.btn.btn-default.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
-            input(type='hidden', name='smoker', value='')
+          button.btn.btn-info.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
+            input(type='hidden', name='isSmoker', value='')
             span(data-bind='label') Smoker
             span.caret
           ul.dropdown-menu(role='menu')
             li
-              a(href='#') NonSmoker
+              a(href='#', data-value='false') No
             li
-              a(href='#') Smoker
+              a(href='#', data-value='true') Yes
       .col-xs-2.search-btn
         .btn-group.btn-input.clearfix
-          button.btn.btn-default.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
-            input(type='hidden', name='criminal', value='')
+          button.btn.btn-info.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
+            input(type='hidden', name='isRecord', value='')
             span(data-bind='label') Record
             span.caret
           ul.dropdown-menu(role='menu')
             li
-              a(href='#') Criminal
+              a(href='#', data-value='true') Criminal
             li
-              a(href='#') Clean
+              a(href='#', data-value='false') Clean
       .col-xs-2.search-btn
         .btn-group.btn-input.clearfix
-          button.btn.btn-default.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
+          button.btn.btn-info.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
             input(type='hidden', name='weapon', value='')
             span(data-bind='label') Weapon
             span.caret
           ul.dropdown-menu(role='menu')
             li
-              a(href='#') Blade
+              a(href='#', data-value='blade') Blade
             li
-              a(href='#') Firearm
+              a(href='#', data-value='firearm') Firearm
             li
-              a(href='#') Hand-to-Hand
+              a(href='#', data-value='hand-to-hand') Hand-to-Hand
             li
-              a(href='#') Natural Elements
+              a(href='#', data-value='natural elements') Natural Elements
             li
-              a(href='#') Other
+              a(href='#', data-value='other') Other
       .col-xs-2.search-btn
         .btn-group.btn-input.clearfix
-          button.btn.btn-default.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
+          button.btn.btn-info.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
             input(type='hidden', name='lookingFor', value='')
             span(data-bind='label') Seeking
             span.caret
           ul.dropdown-menu(role='menu')
             li
-              a(href='#') Relationship
+              a(href='#', data-value='relationship') Relationship
             li
-              a(href='#') Companionship
+              a(href='#', data-value='companionship') Companionship
             li
-              a(href='#') No Strings Attached
+              a(href='#', data-value='no strings attached') No Strings Attached
       .col-xs-2.search-btn
-        button.btn.btn-default.form-control.btn-search(type='submit') Search
-    #users
-      //each user in users
-        .user
-          .user-img.thumbnail(style='background-image: url("#{user.profilePic}");')
+        button.btn.btn-danger.form-control.btn-search(type='submit') Search
+    if(query != null)
+      #criteria
+        h4 You searched for:
+
+        if query.gender
+          span= query.gender
+        if query.isSmoker
+          span= query.isSmoker === 'true' ? 'Smoker' : 'Non-smoker'
+        if query.isRecord
+          span= query.isRecord === 'true' ? 'Criminal Record' : 'No Record'
+        if query.weapon
+          span= query.weapon
+        if query.lookingFor
+          span= query.lookingFor
+
+        #clear.pull-right
+          a.btn.btn-info.btn-xs(href='/users') Clear
+    else
+
+    #clients
+      each client in clients
+        .col-xs-4.clients: a(href='/users/'+client._id)
+          .client-img.thumbnail(style='background-image:url(#{client.profilePic || "/img/anon.jpg"});')
           .caption
-            .user-name= user.username
+            .client-name.locationValue(data-name=client.loc.name, data-lat=client.loc.lat, data-lng=client.loc.lng)
+              h2= client.username
 
 block scripts
   script(src='/js/user/index.js')

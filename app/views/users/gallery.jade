@@ -1,16 +1,21 @@
-h3 Your Photos
-//.row
-  .col-xs-12
-    #carousel-example-generic(class='carousel slide', data-ride='carousel')
-      ol.carousel-indicators
-        - for (var i = 0; i < treasure.photos.length; i ++){
-          li(data-target='#carousel-example-generic', data-slide-to=i)
-        - }
-      .carousel-inner
-        each photo, index in treasure.photos
-          div(class=index === 0 ? 'item active' : 'item')
-            .photo-treasure(style='background-image: url(#{photo})')
-      a(class='left carousel-control', href='#carousel-example-generic', role='button', data-slide='prev')
-        span(class='glyphicon glyphicon-chevron-left')
-      a(class='right carousel-control', href='#carousel-example-generic', role='button', data-slide='next')
-        span(class='glyphicon glyphicon-chevron-right')
+h2.text-center Your Photos
+.col-xs-6
+  form#addPhotos(role='form', method='post', action='/photos', enctype='multipart/form-data')
+    .form-group
+      label(for='photos') Upload Photos
+      input.form-control#photos(type='file', name='photos', multiple=true)
+    button.btn.btn-warning(type='submit') Add
+.col-xs-6
+  form#changeProfile(role='form', method='post', action='/photos')
+    input(type='hidden', name='_method', value='put')
+    .form-group
+      label(for='photo') Select Profile Photo
+      select.form-control(name='photo')
+        each photo, index in user.photos || []
+          option= index + 1
+    button.btn.btn-warning(type='submit') Change
+.row
+  .col-xs-12.user-photos
+    each photo, index in user.photos || []
+      div.profile-photo(style='background-image: url(#{photo})')
+      p.index=index + 1

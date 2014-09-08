@@ -55,32 +55,29 @@ describe('users', function(){
       });
     });
   });
- /* describe('put /profile', function(){
+  describe('put /profile', function(){
     it('should show the updated profile page', function(done){
       request(app)
       .put('/profile')
       .set('cookie',cookie)
       .send('_method=put&username=bobby&email=bob%40aol.com&phone=123-123-1234&bio=I+am+bobby+and+I+am+sad+and+lonely.&lookingFor=Relationship&weapon=Blade&age=35&gender=male&smoker=nonsmoker&criminal=criminalRecord')
       .end(function(err, res){
-        //expect(res.status).to.equal(200);
-       // expect(res.text).to.include('bobby');
-       // expect(res.text).to.include('Relationship');
-       // expect(res.text).to.include('Blade');
-       // expect(res.text).to.include('I am sad');
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/profile');
         done();
       });
     });
-  });*/
+  });
   describe('get /users', function(){
     it('should list all the users on the page', function(done){
       request(app)
       .get('/users')
       .set('cookie',cookie)
       .end(function(err, res){
-        //expect(res.status).to.equal(200);
-       // expect(res.text).to.include('bobby');
-       // expect(res.text).to.include('Search');
-       // expect(res.text).to.include('Smoker');
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('Gender');
+        expect(res.text).to.include('Smoker');
+        expect(res.text).to.include('Record');
         done();
       });
     });
@@ -92,7 +89,8 @@ describe('users', function(){
       .set('cookie',cookie)
       .send('')
       .end(function(err, res){
-        //expect(res.status).to.equal(302);
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/users/:userid');
         done();
       });
     });
@@ -104,7 +102,8 @@ describe('users', function(){
       .set('cookie',cookie)
       .send('')
       .end(function(err, res){
-        //expect(res.status).to.equal(302);
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/users/:userid');
         done();
       });
     });
@@ -116,7 +115,8 @@ describe('users', function(){
       .set('cookie',cookie)
       .send('')
       .end(function(err, res){
-        //expect(res.status).to.equal(302);
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/users/:userid');
         done();
       });
     });
@@ -128,7 +128,8 @@ describe('users', function(){
       .set('cookie',cookie)
       .send('')
       .end(function(err, res){
-        //expect(res.status).to.equal(302);
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/users/:userid');
         done();
       });
     });
@@ -140,7 +141,8 @@ describe('users', function(){
       .set('cookie',cookie)
       .send('')
       .end(function(err, res){
-        //expect(res.status).to.equal(302);
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/users/:userid');
         done();
       });
     });
@@ -148,11 +150,26 @@ describe('users', function(){
   describe('get /users/:userId', function(){
     it('should show a specific user on the page', function(done){
       request(app)
-      .get('/users/:userId')
+      .get('/users/000000000000000000000002')
       .set('cookie',cookie)
       .end(function(err, res){
-        //expect(res.status).to.equal(200);
-       // expect(res.text).to.include('Sue');
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('Stalk');
+        expect(res.text).to.include('Shank');
+        expect(res.text).to.include('Bribe');
+        expect(res.text).to.include('Seeking');
+        done();
+      });
+    });
+  });
+  describe('post /users/:userId/bribe', function(){
+    it('should show a series of giftable objects on the page', function(done){
+      request(app)
+      .post('/users/000000000000000000000002/bribe')
+      .set('cookie',cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/gifts');
         done();
       });
     });
@@ -160,11 +177,11 @@ describe('users', function(){
   describe('delete /logout', function(){
     it('should delete redis and logout user', function(done){
       request(app)
-      .post('/carts')
+      .delete('/logout')
       .set('cookie',cookie)
       .end(function(err, res){
-        //expect(res.status).to.equal(200);
-       // expect(res.text).to.include('Login');
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/');
         done();
       });
     });

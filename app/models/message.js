@@ -3,13 +3,15 @@
 var Mongo  = require('mongodb'),
     async  = require('async');
 
-function Message(senderId, receiverId, subject, body){
-  this.senderId = senderId;
-  this.receiverId = receiverId;
-  this.subject = subject;
-  this.body = body;
-  this.date = new Date();
-  this.isRead = false;
+function Message(senderId, receiverId, subject, body, request){
+  console.log(senderId, receiverId, subject, body, request);
+  this.senderId   = Mongo.ObjectID(senderId);
+  this.receiverId = Mongo.ObjectID(receiverId);
+  this.subject    = subject;
+  this.body       = body;
+  this.date       = new Date();
+  this.isRequest  = request;
+  this.isRead     = false;
 }
 
 Object.defineProperty(Message, 'collection', {
@@ -27,8 +29,8 @@ Message.unread = function(receiverId, cb){
   Message.collection.find({receiverId:receiverId, isRead:false}).count(cb);
 };
 
-Message.send = function(senderId, receiverId, subject, body, cb){
-  var m = new Message(senderId, receiverId, subject, body);
+Message.send = function(senderId, receiverId, subject, body, request, cb){
+  var m = new Message(senderId, receiverId, subject, body, request);
   Message.collection.save(m, cb);
 };
 

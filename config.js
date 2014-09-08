@@ -1,23 +1,33 @@
 'use strict';
 
-var config = {},
-    URL = 'http://liza-vm.com:3333/auth/' //This is what you change to customize your callback URL
-
-config.stripe = {
-  publishKey : 'pk_test_7FwAQbFq8Lc0FprSIJvFT5bc',
-  secretKey : process.env.STRIPE_SECRET
-};
+var config = {};
 
 config.tumblr = {
-  consumerKey    :'GfHoULdthEKVp6Z6ZPdAsllbVcR0DR6AGeSUHgXCCqHhG1Dv0E',
-  consumerSecret: process.env.TUMBLR_SECRET,
-  callbackURL : URL+'tumblr/callback'
+  consumerKey : process.env.TUMBLR_CONSUMER_KEY,
+  consumerSecret : process.env.TUMBLR_CONSUMER_SECRET,
+  callbackUrl : process.env.TUMBLR_CALLBACKURL
 };
 
 config.reddit = {
-  clientID    : 'hpMCAFV_PFlFSw',
-  clientSecret: process.env.REDDIT_SECRET,
-  callbackURL : URL+'reddit/callback'
+  clientID : process.env.REDDIT_CLIENTID,
+  clientSecret : process.env.REDDIT_CLIENT_SECRET,
+  callbackURL : process.env.REDDIT_CALLBACKURL
+};
+
+config.stripe = {
+  publishKey : process.env.STRIPE_PUBLISH_KEY,
+  secretKey : process.env.STRIPE_SECRET_KEY
+};
+
+config.twilio = {
+  accountSid : process.env.TWSID,
+  authToken  : process.env.TWTOK,
+  from       : process.env.FROM
+};
+
+config.mailgun = {
+  ApiKey : process.env.MAIL_API_KEY,
+  domain : process.env.MAIL_DOMAIN
 };
 
 module.exports = config;

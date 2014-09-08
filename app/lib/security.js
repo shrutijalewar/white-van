@@ -17,7 +17,7 @@ exports.bounce = function(req, res, next){
     next();
   }else{
     req.flash('error', 'This page is protected. Please log in.');
-    res.redirect('/login');
+    res.redirect('/');
   }
 };
 
