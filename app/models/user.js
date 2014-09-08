@@ -162,7 +162,7 @@ User.prototype.send = function(receiver, obj, cb){
       sendEmail(this.email, receiver.email, obj.subject, obj.message, cb);
       break;
     case 'internal':
-      Message.send(this._id, obj.receiverId, obj.subject, obj.message, request, cb);
+      Message.send(this._id, receiver._id, obj.subject, obj.message, request, cb);
   }
 };
 
