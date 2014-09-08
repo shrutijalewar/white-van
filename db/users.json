@@ -7,7 +7,13 @@
   "gender":"male",
   "isPublic": true,
   "profilePic": "https://ga-core.s3.amazonaws.com/production/uploads/instructor/image/413/chyld-medford.jpg",
-  "photos":[],
+  "photos":[
+    "/img/users/000000000000000000000001/0.jpg", 
+    "/img/users/000000000000000000000001/2.jpg", 
+    "/img/users/000000000000000000000001/4.jpg", 
+    "/img/users/000000000000000000000001/6.gif", 
+    "/img/users/000000000000000000000001/8.gif"
+    ],
   "loc": {"name":"Knoxville", "lat":35.9 , "lng":-83.9 },
   "phone" :"615-496-3485",
   "isSmoker" : true,
@@ -27,7 +33,14 @@
   "gender":"female",
   "isPublic": true,
   "profilePic": "http://www.tinhouse.com/blog/wp-content/uploads/2011/12/Dana_Spiotta_by_Jessica_Marx.jpg",
-  "photos":[],
+  "photos":[
+    "/img/users/000000000000000000000002/0.jpg", 
+    "/img/users/000000000000000000000002/2.jpg", 
+    "/img/users/000000000000000000000002/4.jpg", 
+    "/img/users/000000000000000000000002/6.jpg", 
+    "/img/users/000000000000000000000002/8.jpg", 
+    "/img/users/000000000000000000000002/10.jpg"
+  ],
   "loc": {"name":"Huntsville", "lat":34.7 , "lng":-86.6 },
   "phone" :"615-496-3485",
   "isSmoker" : false,
@@ -47,7 +60,11 @@
   "gender":"female",
   "isPublic": true,
   "profilePic": "http://lightingforphoto.com/wp-content/uploads/2010/04/jill-greenberg-lighting-setup.jpg",
-  "photos":[],
+  "photos":[
+    "/img/users/540bd748b00a321142dd27de/0.jpg", 
+    "/img/users/540bd748b00a321142dd27de/2.jpg", 
+    "/img/users/540bd748b00a321142dd27de/4.jpg"
+  ],
   "loc": {"name":"Louisville", "lat":38.2 , "lng":-85.7 },
   "phone" :"615-496-3485",
   "isSmoker" : false,
@@ -67,7 +84,9 @@
   "gender":"male",
   "isPublic": true,
   "profilePic": "http://imagesci.com/img/2013/12/psycho-26268-hd-wallpapers.jpg",
-  "photos":[],
+  "photos":[
+    "/img/users/540bd9d2b00a321142dd27df/0.jpg"
+  ],
   "loc": {"name":"Memphis", "lat":35.1 , "lng":-89.9 },
   "phone" :"615-496-3485",
   "isSmoker" : true,
@@ -87,7 +106,9 @@
   "gender":"male",
   "isPublic": true,
   "profilePic": "http://istandardproducers.com/wp-content/uploads/2013/07/Boaz-Psycho-Killa.jpeg",
-  "photos":[],
+  "photos":[
+    "/img/users/540bdd5eb00a321142dd27e0/0.gif"
+  ],
   "loc": {"name":"Charlotte", "lat":35.2 , "lng":-80.8 },
   "phone" :"615-496-3485",
   "isSmoker" : false,
@@ -187,7 +208,11 @@
   "gender":"female",
   "isPublic": true,
   "profilePic": "http://img2-1.timeinc.net/ew/dynamic/imgs/080324/Villains/Hand-That-Rocks-Rebecca_l.jpg",
-  "photos":[],
+  "photos":[
+    "/img/users/540be773b00a321142dd27e5/0.jpg", 
+    "/img/users/540be773b00a321142dd27e5/2.jpg", 
+    "/img/users/540be773b00a321142dd27e5/4.jpg"
+  ],
   "loc": {"name":"Cincinnati", "lat":39.1 , "lng":-84.5 },
   "phone" :"615-496-3485",
   "isSmoker" : false,
