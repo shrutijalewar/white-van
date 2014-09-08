@@ -6,7 +6,7 @@
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href='/') UWV
+      a.navbar-brand(href='/') UnmarkedWhiteVan.com
 
     .collapse.navbar-collapse#bs-navbar-collapse
       ul.nav.navbar-nav.navbar-right
@@ -15,7 +15,7 @@
             i.fa.fa-binoculars.fa-fw.fa-lg
           li: a(href='/profile') Lair &nbsp
             i.fa.fa-dashboard.fa-fw.fa-lg
-          li: a(href='#')= user.username
+          li: a(href='/profile')= user.username
           li
             form.navbar-form(method='post', action='/logout')
               .form-group

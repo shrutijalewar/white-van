@@ -7,7 +7,7 @@ block content
     form(method='get', action='/users' name='filter')
       .col-xs-2.search-btn
         .btn-group.btn-input.clearfix
-          button.btn.btn-default.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
+          button.btn.btn-info.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
             input(type='hidden', name='gender', value='')
             span(data-bind='label') Gender
             span.caret
@@ -20,7 +20,7 @@ block content
               a(href='#') Other
       .col-xs-2.search-btn
         .btn-group.btn-input.clearfix
-          button.btn.btn-default.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
+          button.btn.btn-info.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
             input(type='hidden', name='isSmoker', value='')
             span(data-bind='label') Smoker
             span.caret
@@ -31,7 +31,7 @@ block content
               a(href='#', data-value='true') Smoker
       .col-xs-2.search-btn
         .btn-group.btn-input.clearfix
-          button.btn.btn-default.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
+          button.btn.btn-info.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
             input(type='hidden', name='isRecord', value='')
             span(data-bind='label') Record
             span.caret
@@ -42,7 +42,7 @@ block content
               a(href='#', data-value='false') Clean
       .col-xs-2.search-btn
         .btn-group.btn-input.clearfix
-          button.btn.btn-default.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
+          button.btn.btn-info.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
             input(type='hidden', name='weapon', value='')
             span(data-bind='label') Weapon
             span.caret
@@ -59,7 +59,7 @@ block content
               a(href='#', data-value='other') Other
       .col-xs-2.search-btn
         .btn-group.btn-input.clearfix
-          button.btn.btn-default.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
+          button.btn.btn-info.dropdown-toggle.form-control(type='button', data-toggle='dropdown')
             input(type='hidden', name='lookingFor', value='')
             span(data-bind='label') Seeking
             span.caret
@@ -71,7 +71,7 @@ block content
             li
               a(href='#', data-value='no strings attached') No Strings Attached
       .col-xs-2.search-btn
-        button.btn.btn-default.form-control.btn-search(type='submit') Search
+        button.btn.btn-danger.form-control.btn-search(type='submit') Search
     #criteria
       h4 You searched for:
 
@@ -98,7 +98,7 @@ block content
       else
 
       #clear.pull-right
-        a.btn.btn-warning.btn-xs(href='/users') Clear
+        a.btn.btn-info.btn-xs(href='/users') Clear
     #clients
       each client in clients
         .col-xs-4.clients: a(href='/users/'+client._id)
