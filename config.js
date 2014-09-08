@@ -4,7 +4,7 @@ var config = {};
 
 config.tumblr = {
   consumerKey : process.env.TUMBLR_CONSUMER_KEY,
-  consumerSecret : process.env.TUMBLR_CONSUMER_SECRET,
+  consumerSecret : process.env.TUMBLR_CONSUMER_SECRET_KEY,
   callbackUrl : process.env.TUMBLR_CALLBACKURL
 };
 
