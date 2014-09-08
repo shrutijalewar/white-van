@@ -79,8 +79,15 @@ exports.index = function(req, res){
 
 exports.show = function(req, res){
   User.findById(req.params.userId, function(err, client){
-    var stalked = _.contains(res.locals.user.stalk, String(client._id));
-    res.render('users/show', {client:client, stalked:stalked});
+    var self    = res.locals.user,
+        stalked = _.contains(self.stalk, String(client._id));
+
+    self.hookUp   = self.hookUp || [];
+    client.hookUp = client.hookUp || [];
+
+    var hooked = _.contains(self.hookUp, String(client._id)) && _.contains(client.hookUp, String(self._id));
+
+    res.render('users/show', {client:client, stalked:stalked, hooked:hooked});
   });
 };
 
@@ -146,5 +153,8 @@ exports.reject = function(req, res){
 };
 
 exports.breakup = function(req, res){
-  res.redirect('/users/' + req.params.userId);
+  res.locals.user.breakup(req.params.userId, function(){
+    req.flash('success', 'Time to put that relationship in a box in the ground.');
+    res.redirect('/users/' + req.params.userId);
+  });
 };

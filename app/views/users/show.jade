@@ -41,9 +41,15 @@ block content
           .btn-group
             form(name='bribe', method='post', action='/users/#{client._id}/bribe')
               button.btn.btn-success.interactions.btn-md#bribe(type='submit') Bribe
-          .btn-group
-            form(name='hookup', method='post', action='/users/#{client._id}/request')
-              button.btn.btn-info.interactions.btn-md#hookup(type='submit') Hookup
+          if hooked === false
+            .btn-group
+              form(name='hookup', method='post', action='/users/#{client._id}/request')
+                button.btn.btn-info.interactions.btn-md#hookup(type='submit') Hookup
+          else
+            .btn-group
+              form(name='hookup', method='post', action='/users/#{client._id}/hookup')
+                input(type='hidden', name='_method', value='delete')
+                button.btn.btn-info.interactions.btn-md#hookup(type='submit') Breakup
     .col-xs-2
   .row
     .col-xs-2
