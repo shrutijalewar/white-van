@@ -18,6 +18,9 @@ body {
   h1, h2, h3, h4, h5, h5, h6 {
     font-family: @headerfont;
   }
+  .navbar {
+    z-index: 100;
+  }
   .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
     margin-left: 5px;
   }
@@ -111,19 +114,20 @@ body {
       letter-spacing: 2px;
 
       .color {
-        color: @darkredcolor;
+        //color: @darkredcolor;
       }
     }
     p {
       font-size: 40px;
       color: #eee;
       text-align: center;
+        color: @darkredcolor;
     }
     span {
       display: block;
       text-align: center;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 30px;
     }
   }
 }
