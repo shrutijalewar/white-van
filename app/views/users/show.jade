@@ -23,25 +23,27 @@ block content
             li.list-group-item Criminal Record: No
           li.list-group-item My Favorite Weapon is: &nbsp#{client.weapon}
       p= client.bio
-      .buttons.btn-group.btn-group-justified.interaction-btns
-        if(stalked === false)
+      if user.username === client.username
+      else
+        .buttons.btn-group.btn-group-justified.interaction-btns
+          if stalked === false
+            .btn-group
+              form(name='stalk', method='post', action='/users/#{client._id}/stalk')
+                button.btn.btn-danger.btn-disabled.interactions.btn-md#stalk(type='submit') Stalk
+          else
+            .btn-group
+              form(name='stalk', method='post', action='/users/#{client._id}/stalk')
+                input(type='hidden', name='_method', value='put')
+                button.btn.btn-danger.interactions.btn-md#stalk(type='submit') Unstalk
           .btn-group
-            form(name='stalk', method='post', action='/users/#{client._id}/stalk')
-              button.btn.btn-danger.interactions.btn-md#stalk(type='submit') Stalk
-        else
+            form(name='shank', method='post', action='/users/#{client._id}/shank')
+              button.btn.btn-warning.interactions.btn-md#shank(type='submit') Shank
           .btn-group
-            form(name='stalk', method='post', action='/users/#{client._id}/stalk')
-              input(type='hidden', name='_method', value='put')
-              button.btn.btn-danger.interactions.btn-md#stalk(type='submit') Unstalk
-        .btn-group
-          form(name='shank', method='post', action='/users/#{client._id}/shank')
-            button.btn.btn-warning.interactions.btn-md#shank(type='submit') Shank
-        .btn-group
-          form(name='bribe', method='post', action='/users/#{client._id}/bribe')
-            button.btn.btn-success.interactions.btn-md#bribe(type='submit') Bribe
-        .btn-group
-          form(name='hookup', method='post', action='/users/#{client._id}/request')
-            button.btn.btn-info.interactions.btn-md#hookup(type='submit') Hookup
+            form(name='bribe', method='post', action='/users/#{client._id}/bribe')
+              button.btn.btn-success.interactions.btn-md#bribe(type='submit') Bribe
+          .btn-group
+            form(name='hookup', method='post', action='/users/#{client._id}/request')
+              button.btn.btn-info.interactions.btn-md#hookup(type='submit') Hookup
     .col-xs-2
   .row
     .col-xs-2

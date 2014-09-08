@@ -31,7 +31,6 @@ Message.unread = function(receiverId, cb){
 
 Message.send = function(senderId, receiverId, subject, body, request, cb){
   var m = new Message(senderId, receiverId, subject, body, request);
-  console.log(m);
   Message.collection.save(m, cb);
 };
 
