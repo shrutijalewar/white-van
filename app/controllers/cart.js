@@ -47,6 +47,8 @@ exports.purchase = function(req, res){
   var stripe = require('stripe')(config.stripe.secretKey),
       stripeToken = req.body.stripeToken;
 
+  console.log('stripeToken', stripeToken);
+
   stripe.charges.create({
     amount: req.session.totalCents,
     currency: 'usd',
@@ -55,11 +57,13 @@ exports.purchase = function(req, res){
   }, function(err, charge){
     req.session.cart       = [];
     req.flash('success', 'You successfully bribed', req.session.receiver.username + '!');
-    res.locals.user.send({mType: 'internal', senderId: res.locals.user._id, receiverId: req.session.receiver._id, subject: 'Head\'s Up!', message: 'A bribe is on its way to you.'}, function(){
-      req.session.receiver   = null;
-      req.session.totalCents = null;
-      req.session.save(function(){
-        res.redirect('/profile');
+    res.locals.user.send(req.session.receiver, {mType: 'internal', subject: 'Head\'s Up!', message: 'A bribe is on its way to you.'}, function(){
+      res.locals.user.send(req.session.receiver, {mType: 'email', subject: 'Head\'s Up!', message: 'A bribe is on its way to you.'}, function(){
+        req.session.receiver   = null;
+        req.session.totalCents = null;
+        req.session.save(function(){
+          res.redirect('/profile');
+        });
       });
     });
   });
