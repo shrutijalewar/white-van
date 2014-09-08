@@ -14,7 +14,6 @@ config.reddit = {
   callbackURL : process.env.REDDIT_CALLBACKURL
 };
 
-
 config.stripe = {
   publishKey : process.env.STRIPE_PUBLISH_KEY,
   secretKey : process.env.STRIPE_SECRET_KEY
