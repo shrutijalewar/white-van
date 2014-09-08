@@ -94,7 +94,8 @@ exports.show = function(req, res){
 exports.send = function(req, res){
   User.findById(req.body.receiverId, function(err, client){
     res.locals.user.send(client, req.body, function(){
-      res.redirect('profile');
+      req.flash('sucess', 'Message sent!');
+      res.redirect('/profile');
     });
   });
 };

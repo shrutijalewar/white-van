@@ -159,7 +159,7 @@ User.prototype.send = function(receiver, obj, cb){
       sendText(receiver.phone, obj.message, cb);
       break;
     case 'email':
-      sendEmail(this.email, 'Message from Unmarked White Van', obj.message, cb);
+      sendEmail(this.email, receiver.email, obj.subject, obj.message, cb);
       break;
     case 'internal':
       Message.send(this._id, obj.receiverId, obj.subject, obj.message, request, cb);
@@ -273,9 +273,8 @@ function sendText(to, body, cb){
   client.messages.create({to:to, from:from, body:body}, cb);
 }
 
-function sendEmail(from, to, subject, message, cb){
-  var mailgun = new Mailgun({apiKey:process.env.MGKEY, domain:process.env.MGDOM}),
-      data   = {from:from, to:to, subject:subject, text:message};
-
+function sendEmail(from, to, subject, html, cb){
+  var mailgun = new Mailgun({apiKey:process.env.MAIL_API_KEY, domain:process.env.MAIL_DOMAIN}),
+      data   = {from:from, to:to, subject:subject, html:html};
   mailgun.messages().send(data, cb);
 }
