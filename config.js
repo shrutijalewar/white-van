@@ -2,39 +2,32 @@
 
 var config = {};
 
-config.twitter = {
-  apiKey : 'QVUxQ1TGAaHNLUxi59uzr18qh',
-  apiSecret : process.env.TWITTER_SECRET,
-  callbackUrl : 'http://kayla-vm.com:3333/auth/twitter/callback'
+config.tumblr = {
+  consumerKey : process.env.TUMBLR_CONSUMER_KEY,
+  consumerSecret : process.env.TUMBLR_CONSUMER_SECRET,
+  callbackUrl : process.env.TUMBLR_CALLBACKURL
 };
 
-config.github = {
-  clientID : '04d8fa10fc0cb1d83c58',
-  clientSecret : process.env.GITHUB_SECRET,
-  callbackURL : 'http://kayla-vm.com:3333/auth/gihub/callback'
+config.reddit = {
+  clientID : process.env.REDDIT_CLIENTID,
+  clientSecret : process.env.REDDIT_CLIENT_SECRET,
+  callbackURL : process.env.REDDIT_CALLBACKURL
 };
 
-config.google = {
-  clientID : '510224929319-ko0ro11i553b9me44dg6amgii8fa8b7h.apps.googleusercontent.com',
-  clientSecret : process.env.GOOGLE_SECRET,
-  callbackURL : 'http://kayla-vm.com:3333/auth/google/callback'
-};
-
-config.facebook = {
-  clientID : '529615620517180',
-  clientSecret : process.env.FB_SECRET,
-  callbackURL : 'http://kayla-vm.com:3333/auth/facebook/callback'
-};
-
-config.instagram = {
-  clientID : '356e30e4ff7e4406962c0fe994ba7a33',
-  clientSecret : process.env.INSTA_SECRET,
-  callbackURL : 'http://kayla-vm.com:3333/auth/instagram/callback'
-};
 
 config.stripe = {
-  publishKey : 'pk_test_7FwAQbFq8Lc0FprSIJvFT5bc',
-  secretKey : process.env.STRIPE_SECRET
+  publishKey : process.env.STRIPE_PUBLISH_KEY,
+  secretKey : process.env.STRIPE_SECRET_KEY
 };
 
+config.twilio = {
+  accountSid : process.env.TWSID,
+  authToken  : process.env.TWTOK,
+  from       : process.env.FROM,
+};
+
+config.mailgun = {
+  ApiKey : process.env.MAILAPIKEY,
+  domain : process.env.MAILDOMAIN,
+};
 module.exports = config;

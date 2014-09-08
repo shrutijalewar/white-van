@@ -7,6 +7,7 @@
 @redcolor: #E81F12;
 @darkredcolor: #9E001B;
 @purplecolor: #7F1D4A;
+@greyfont : dimgrey;
 
 //-----------   GENERAL -----------//
 //=================================//
@@ -14,8 +15,11 @@ body{
   font-family: @bodyfont;
   font-size: 16px;
   background-image: url('/img/dark_Tire.png') !important;
-  h1, h2, h3, h4, h5, h5 {
+  h1, h2, h3, h4, h5, h5, h6{
     font-family: @headerfont;
+  }
+  .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+    margin-left: 5px;
   }
   .container-fluid {
     padding: 0;
@@ -62,11 +66,31 @@ body{
     background-color: darken(@greencolor, 10%);
     border: none;
   }
+  .btn-danger:active{
+    background-color: darken(@redcolor, 20%);
+    border: none;
+  }
+  .btn-warning:active{
+    background-color: darken(@purplecolor, 10%);
+    border: none;
+  }
+  .btn-info:active{
+    background-color: darken(@bluecolor, 20%);
+    border: none;
+  }
+  .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open>.dropdown-toggle.btn-info {
+    background-color: darken(@bluecolor, 20%);
+  }
+  .btn-success:active{
+    background-color: darken(@greencolor, 10%);
+    border: none;
+  }
   a {
     color: black;
   }
   a:hover {
     color: rgb(194, 194, 194);
+    text-decoration: none;
   }
   a:visited {
     color: rgb(194, 194, 194);
@@ -85,11 +109,21 @@ body{
     h1 {
       font-size: 75px;
       letter-spacing: 2px;
+
+      .color {
+        color: @darkredcolor;
+      }
     }
     p {
       font-size: 40px;
       color: #eee;
       text-align: center;
+    }
+    span {
+      display: block;
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
     }
   }
 }
@@ -107,6 +141,8 @@ body{
     background-size: cover;
     margin: 0 auto;
     background-repeat: no-repeat;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
   }
   .interaction-btns {
     margin-bottom: 20px;
@@ -120,7 +156,7 @@ body{
   }
   .tabs .tab {
     padding: 5px 10px;
-    background-color: #eee;
+    background-color: #3C3C3C;
   }
   .tab {
     width: 150px;
@@ -133,7 +169,7 @@ body{
     margin: 0 5px;
   }
   .tabs .tab.active {
-    background-color: #bbb;
+    background-color: #810000;
     font-weight: bold;
   }
   .tab a {
@@ -144,10 +180,11 @@ body{
   }
   .panes .pane {
     display: none;
-    border: 1px solid #eee;
+    border: 1px solid #5F5F5F;
     width: 100%;
     height: 700px;
-
+    overflow: scroll;
+    border-radius: 5px;
   }
   .panes .pane.active {
     display: block;
@@ -157,16 +194,15 @@ body{
     background-color: rgba(255, 255, 255, .1);
     padding: 50px 0;
   }
-  .gallery {
-    //background-image: url('/img/lightpaperfibers.png');
-    background-color: lightgrey;
+  .inbox-container, .gallery, .message, .edit {
+    background-color: rgba(173, 173, 173, 0.29);
+    overflow: scroll;
   }
 
 //---------------
 // inbox include
 //---------------
 .inbox {
-  overflow: scroll;
 
   .message {
     padding: 10px;
@@ -176,20 +212,24 @@ body{
 
     h3:first-of-type {
       padding: 0 40px;
+      color: @greyfont;
     }
     .subject {
       padding: 0 40px;
+      color: @greyfont;
     }
     .from {
       padding: 0 40px;
+      color: @greyfont;
     }
     .date {
       padding: 0 40px;
+      color: @greyfont;
     }
     .body {
-      border: 1px solid #eee;
-      background-color: #FCFCFC;
+      background-color: transparent;
       padding: 40px;
+      color: @greyfont;
     }
 
   }
@@ -201,25 +241,57 @@ body{
 //---------------
 
 .send-message {
-    background-image: url('/img/linedpaper.png');
   button {
     float: right;
     margin-top: 10px;
   }
 }
+#to {
+  margin-left: 13px;
+  width: 95%;
+}
+#subject, #message {
+  background-image: url('/img/linedpaper.png');
+  margin-bottom: 15px;
+}
 
 //---------------
 // gallery include
 //---------------
-.photo-treasure{
-    height: 410px;
+
+.user-photos {
+  margin-top: 40px;
+
+  .profile-photo {
+    height: 200px;
     background-size: cover;
-    }
+    width: 200px;
+    margin: 15px;
+    border-radius: 5px;
+    display: inline-block;
+  }
+  p.index {
+    font-size: 25px;
+    color: rgb(250, 244, 244);
+    display: inline;
+    background-color: grey;
+    padding: 5px 15px;
+    width: 50px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: top;
+  }
+}
 
 //---------------
 // edit profile include
 //---------------
 
+#editProfile {
+  overflow: hidden;
+  margin: 0 5px;
+}
 .checkbox {
   margin-left: 20px;
 }
@@ -251,7 +323,8 @@ body{
   font-size: 40px;
   margin: 0 52px;
   background-color: rgb(233,232,232);
-
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   h2 {
     color: black;
   }
@@ -262,7 +335,6 @@ body{
 //----GIFTS PAGE -----------//
 //=================================//
 .table {
-  //background-color: #282828;i
   border-color: #3C3B3B;
   border: 2px outset #3C3B3B;
   th {
@@ -274,6 +346,7 @@ body{
   }
   .product-img {
     width: 140px;
+    border-radius: 5px;
   }
   .price {
     font-size: 25px;
@@ -285,15 +358,34 @@ body{
 }
 //----CART PAGE -----------//
 //=================================//
-#products td{
-  height: 150px;
-  background-size:contain;
-  background-repeat: no-repeat;
+#products td:hover{
+  background-color: transparent;
 }
-#products #cartPhoto{
+td {
+ font-size: 18px;
+}
+#cartPhoto{
   background-size: contain;
+  background-repeat: no-repeat;
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
+  vertical-align: middle;
 }
-
+.buttons {
+  float: right;
+  margin-bottom: 50px;
+}
+#pay-here {
+  display: inline-block;
+  margin: 5px;
+}
+#empty-cart {
+  margin: 0 15px 0 0;
+}
+#backBribes {
+  margin: 0 30px;
+}
 #backBribes a, a:visited{
   text-decoration: none;
   color: white;
@@ -316,7 +408,6 @@ body{
 }
 .btn.dropdown-toggle {
   height: 60px;
-  background-color: #bbb;
 }
 .btn-input .btn.form-control .caret {
    margin-top: -1px;
