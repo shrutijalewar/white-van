@@ -191,7 +191,6 @@ User.prototype.request = function(receiverId, cb){
 };
 
 User.prototype.hookup = function(obj, cb){
-  console.log('in the model');
   var messageId = Mongo.ObjectID(obj.messageId),
       self      = this,
       body      = 'And you\'re not going to have to ride it alone. Total messaging is now available with ' + self.username + '.',
@@ -201,8 +200,10 @@ User.prototype.hookup = function(obj, cb){
   Message.collection.remove({_id:messageId}, function(){
     User.findById(obj.userId, function(err, receiver){
       receiver.hookUp = receiver.hookUp || [];
-      receiver.hookUp.push(self._id);
-      self.hookUp.push(receiver._id);
+      receiver.hookUp.push(String(self._id));
+      self.hookUp.push(String(receiver._id));
+      receiver.hookUp = _.uniq(receiver.hookUp);
+      self.hookUp     = _.uniq(self.hookUp);
       User.collection.save(receiver, function(){
         User.collection.save(self, function(){
           Message.send(self._id, receiver._id, subject, body, false, cb);
@@ -219,8 +220,25 @@ User.prototype.reject = function(obj, cb){
       subject   = 'Life Is A Highway...';
 
   Message.collection.remove({_id:messageId}, function(a, b, c){
-    console.log(a, b, c);
     Message.send(self._id, obj.userId, subject, body, false, cb);
+  });
+};
+
+User.prototype.breakup = function(receiverId, cb){
+  var self = this;
+
+  User.findById(receiverId, function(err, client){
+    self.hookUp   = _.without(self.hookup, String(client._id));
+    client.hookUp = _.without(client.hookup, String(self._id));
+
+    User.collection.save(self, function(){
+      User.collection.save(client, function(){
+        var subject = 'An APB Has Been Issued',
+            body    = 'It seems ' + self.username + ' has gotten over you. Hope this breakup doesn\'t make you more twisted!';
+
+        Message.send(self._id, client._id, subject, body, false, cb);
+      });
+    });
   });
 };
 
