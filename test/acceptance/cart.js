@@ -52,7 +52,7 @@ describe('cart', function(){
       });
     });
   });
-  describe('post /charge', function(){
+  /*describe('post /charge', function(){
     it('should post for transaction of the cart', function(done){
       request(app)
       .post('/charge')
@@ -64,7 +64,7 @@ describe('cart', function(){
         done();
       });
     });
-  });
+  });*/
   describe('delete /cart', function(){
     it('should delete objects in the cart', function(done){
       request(app)
