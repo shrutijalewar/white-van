@@ -70,22 +70,25 @@ block content
               a(href='#', data-value='no strings attached') No Strings Attached
       .col-xs-2.search-btn
         button.btn.btn-danger.form-control.btn-search(type='submit') Search
-    #criteria
-      h4 You searched for:
+    if(query != null)
+      #criteria
+        h4 You searched for:
 
-      if query.gender
-        span= query.gender
-      if query.isSmoker
-        span= query.isSmoker === 'true' ? 'Smoker' : 'Non-smoker'
-      if query.isRecord
-        span= query.isRecord === 'true' ? 'Criminal Record' : 'No Record'
-      if query.weapon
-        span= query.weapon
-      if query.lookingFor 
-        span= query.lookingFor
+        if query.gender
+          span= query.gender
+        if query.isSmoker
+          span= query.isSmoker === 'true' ? 'Smoker' : 'Non-smoker'
+        if query.isRecord
+          span= query.isRecord === 'true' ? 'Criminal Record' : 'No Record'
+        if query.weapon
+          span= query.weapon
+        if query.lookingFor
+          span= query.lookingFor
 
-      #clear.pull-right
-        a.btn.btn-info.btn-xs(href='/users') Clear
+        #clear.pull-right
+          a.btn.btn-info.btn-xs(href='/users') Clear
+    else
+
     #clients
       each client in clients
         .col-xs-4.clients: a(href='/users/'+client._id)

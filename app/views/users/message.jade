@@ -9,19 +9,19 @@
           select.form-control#to(name='receiverId', for='receiverId', autofocus=true)
             each hookUp in hookedUp
               option(value=hookUp._id)= hookUp.username
-      br
-      .radios
+        br
+        .radios
+          label
+            input#internal(type='radio', name='mType', value='internal')
+            span &nbsp Internal &nbsp
+          label
+            input#email(type='radio', name='mType', value='email')
+            span &nbsp Email &nbsp
+          label
+            input#text(type='radio', name='mType', value='text')
+            span &nbsp Text &nbsp
         label
-          input#internal(type='radio', name='mType', value='internal')
-          span &nbsp Internal &nbsp
-        label
-          input#email(type='radio', name='mType', value='email')
-          span &nbsp Email &nbsp
-        label
-          input#text(type='radio', name='mType', value='text')
-          span &nbsp Text &nbsp
-      label
-      input.form-control#subject(type='text', name='subject', placeholder='Subject')
-      textarea.form-control#message(name='message', rows='10')
-      button.btn.btn-info.btn-md(type='submit') Send
+        input.form-control#subject(type='text', name='subject', placeholder='Subject')
+        textarea.form-control#message(name='message', rows='10')
+        button.btn.btn-info.btn-md(type='submit') Send
   .col-xs-2
