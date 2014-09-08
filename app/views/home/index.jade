@@ -1,6 +1,8 @@
 extends ../shared/template
 block content
-  #index(style= 'background-image: url(/img/home-bg.jpg)')
+  #index
+    video(autoplay loop poster="" id="bgvid")
+      source(src="/video/bgClip2L.mp4", type="video/mp4")
     if(!user)
       .row#login-header
         .col-xs-6
