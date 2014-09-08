@@ -33,10 +33,10 @@ module.exports = function(app, express){
   app.post('/register',                users.create);
   app.post('/login',                   passport.authenticate('local', {successRedirect:'/profile', failureRedirect:'/', successFlash:'You\'re logged in. Knock \'em dead!', failureFlash:'Did you feed someone YOUR brains? Try logging in again.'}));
   app.post('/login',                   users.authenticate);
-  app.get('/auth/reddit',              passport.authenticate('reddit'));
-  app.get('/auth/reddit/callback',     passport.authenticate('reddit', {successRedirect:'/', failureRedirect:'/login', successFlash:'Reddit login successful!', failureFlash:'Hmmm. That login didn\'t work.'}));
-  app.get('/auth/tumblr',              passport.authenticate('tumblr'));
-  app.get('/auth/tublr/callback',      passport.authenticate('tumblr', {successRedirect:'/', failureRedirect:'/login', successFlash:'Tumblr login successful!', failureFlash:'Hmmm. That login didn\'t work.'}));
+  //app.get('/auth/reddit',              passport.authenticate('reddit'));
+  //app.get('/auth/reddit/callback',     passport.authenticate('reddit', {successRedirect:'/', failureRedirect:'/login', successFlash:'Reddit login successful!', failureFlash:'Hmmm. That login didn\'t work.'}));
+  //app.get('/auth/tumblr',              passport.authenticate('tumblr'));
+  //app.get('/auth/tublr/callback',      passport.authenticate('tumblr', {successRedirect:'/', failureRedirect:'/login', successFlash:'Tumblr login successful!', failureFlash:'Hmmm. That login didn\'t work.'}));
 
   app.use(security.bounce);
   app.get('/profile', users.profile);
