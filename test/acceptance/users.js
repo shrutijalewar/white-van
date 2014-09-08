@@ -82,7 +82,7 @@ describe('users', function(){
       });
     });
   });
-  describe('post /users/:userid/stalk', function(){
+  /*describe('post /users/:userid/stalk', function(){
     it('should post a stalk to a specific user', function(done){
       request(app)
       .post('/users/:userid/stalk')
@@ -146,7 +146,7 @@ describe('users', function(){
         done();
       });
     });
-  });
+  });*/
   describe('get /users/:userId', function(){
     it('should show a specific user on the page', function(done){
       request(app)
@@ -154,7 +154,7 @@ describe('users', function(){
       .set('cookie',cookie)
       .end(function(err, res){
         expect(res.status).to.equal(200);
-        expect(res.text).to.include('Stalk');
+        expect(res.text).to.include('Unstalk');
         expect(res.text).to.include('Shank');
         expect(res.text).to.include('Bribe');
         expect(res.text).to.include('Seeking');
